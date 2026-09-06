@@ -1,0 +1,19 @@
+# Dependencies and build output
+node_modules/
+dist/
+coverage/
+.vite/
+*.tsbuildinfo
+.eslintcache
+
+# Local env files (Vite convention)
+*.local
+
+# Editors and OS
+.idea/
+.vscode/
+.DS_Store
+
+# Logs
+npm-debug.log*
+*.log
