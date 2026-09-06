@@ -520,6 +520,16 @@
     flex-basis: 100%;
   }
 
+  /* In the tray the picker's menu is anchored to the row (not the picker) so it fits the viewport. */
+  .se-tray .se-model {
+    position: static;
+  }
+
+  .se-tray .se-model__list {
+    right: auto;
+    left: 0;
+  }
+
   .se-empty {
     margin: var(--se-sp-8) auto;
   }

@@ -76,7 +76,14 @@ export type SemanticState =
   | { kind: "starting" }
   | { kind: "loading"; progress: number | undefined }
   | { kind: "indexing"; done: number; total: number; coverage: number; etaMs: number | undefined }
-  | { kind: "ready"; device: string | undefined; dtype: string | undefined; mainThread: boolean }
+  | {
+      kind: "ready";
+      /** Hugging Face id of the loaded model. */
+      model: string;
+      device: string | undefined;
+      dtype: string | undefined;
+      mainThread: boolean;
+    }
   | { kind: "error"; message: string; hint: string | undefined; retryable: boolean };
 
 export interface SearchState {
@@ -90,6 +97,8 @@ export type ThemePreference = "light" | "dark" | "auto";
 export interface Prefs {
   theme: ThemePreference;
   semantic: boolean;
+  /** Hugging Face id of the embedding model used for semantic search (see `search/models.ts`). */
+  semanticModel: string;
 }
 
 export interface BusyState {
@@ -120,6 +129,8 @@ export interface AppState {
   search: SearchState;
   semantic: SemanticState;
   prefs: Prefs;
+  /** Whether a WebGPU adapter is available (undefined until probed at boot). */
+  webGpu: boolean | undefined;
   /** Newest last; capped. */
   notices: Notice[];
   busy: BusyState | undefined;
@@ -136,6 +147,7 @@ export function initialState(prefs: Prefs): AppState {
     search: { query: "", result: undefined },
     semantic: { kind: "off" },
     prefs,
+    webGpu: undefined,
     notices: [],
     busy: undefined,
     persistence: { available: true, lastError: undefined },

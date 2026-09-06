@@ -1,6 +1,6 @@
-// Semantic search lifecycle: start the embedder (worker first, main thread as a fallback),
-// download the model, keep exactly ONE semantic index over the current merged catalog, and
-// report progress as a small state machine the UI renders.
+// Semantic search lifecycle: start the embedder for the chosen model (worker first, main
+// thread as a fallback), download the model, keep exactly ONE semantic index over the current
+// merged catalog, and report progress as a small state machine the UI renders.
 
 import {
   createIndexedDbVectorCache,
@@ -14,7 +14,7 @@ import {
 } from "json-schema-data-dictionary";
 import type { SemanticState } from "../state/types";
 import { withTimeout } from "../util/async";
-import { errorMessage } from "../util/text";
+import { errorMessage, slugify } from "../util/text";
 import type { Catalog } from "./catalog";
 import {
   MAIN_THREAD_BATCH_SIZE,
@@ -23,8 +23,11 @@ import {
   WORKER_START_TIMEOUT_MS
 } from "./constants";
 import { createLocalEmbedder } from "./embedderFactory";
+import { DEFAULT_MODEL_ID, EMBEDDING_MODELS } from "./models";
 
 export interface WorkerConfig {
+  /** Hugging Face model id (set by the controller from the user's choice). */
+  model?: string | undefined;
   device?: string | undefined;
   dtype?: string | undefined;
   nogpu?: boolean | undefined;
@@ -50,12 +53,18 @@ export function createEmbedWorker(config: WorkerConfig = {}): Worker {
   });
 }
 
+/** IndexedDB name of a model's vector cache; the default model keeps the bare name. */
+export function vectorDbName(model: string): string {
+  return model === DEFAULT_MODEL_ID ? VECTOR_DB_NAME : `${VECTOR_DB_NAME}:${slugify(model)}`;
+}
+
 export interface SemanticControllerOptions {
-  createWorker?: (() => Worker) | undefined;
+  createWorker?: ((config: WorkerConfig) => Worker) | undefined;
+  /** Device/dtype overrides merged into every worker's config (the model is added per start). */
   workerConfig?: WorkerConfig | undefined;
-  /** Bypass the worker entirely (tests): supply the embedder directly. */
-  createEmbedder?: (() => Promise<Embedder>) | undefined;
-  /** Vector cache; default IndexedDB (dedicated DB), `false` for memory only. */
+  /** Bypass the worker entirely (tests): supply the embedder for a model directly. */
+  createEmbedder?: ((model: string) => Promise<Embedder>) | undefined;
+  /** One vector cache for every model (tests); default: one IndexedDB cache per model, `false` for memory only. */
   cache?: VectorCache | false | undefined;
   /** Optional precomputed `.jsddvec` vectors for the loaded texts. */
   snapshotUrl?: string | undefined;
@@ -67,12 +76,19 @@ export interface SemanticController {
   readonly state: SemanticState;
   readonly embedder: Embedder | undefined;
   readonly index: SemanticIndex | undefined;
-  /** Load the embedder; resolves true when it is ready and this start was not superseded. Idempotent. */
-  start(): Promise<boolean>;
+  /** The model of the running (or starting) embedder. */
+  readonly model: string | undefined;
+  /**
+   * Load the embedder for `model` (default: the app's default model); resolves true when it is
+   * ready and this start was not superseded. Idempotent for the same model; a different model
+   * stops the running embedder first.
+   */
+  start(model?: string): Promise<boolean>;
   stop(): void;
   /** Replace the index with one over `catalog`; undefined when the embedder is not loaded or the catalog is empty. */
   attach(catalog: Catalog): SemanticIndex | undefined;
   subscribe(listener: (state: SemanticState) => void): () => void;
+  /** Drop the cached vectors of every offered model. */
   clearVectors(): Promise<void>;
   dispose(): void;
 }
@@ -82,29 +98,44 @@ const NETWORK_HINT = /failed to fetch|networkerror|load failed|err_|fetch|networ
 
 export function hintFor(message: string): string | undefined {
   if (NETWORK_HINT.test(message)) {
-    return "The model (~23 MB) is downloaded from huggingface.co and Transformers.js from cdn.jsdelivr.net; check your connection or content blockers, then retry.";
+    return "The model is downloaded from huggingface.co and Transformers.js from cdn.jsdelivr.net; check your connection or content blockers, then retry.";
   }
-  if (DEVICE_HINT.test(message)) return "WebGPU failed; retrying should fall back to WASM.";
+  if (DEVICE_HINT.test(message))
+    return "WebGPU failed; retry, or pick a model that also runs on WASM (LEAF-IR).";
   if (/did not respond|worker/i.test(message))
     return "The embedding worker did not start; retrying uses the main thread.";
   return undefined;
 }
 
+interface Acquired {
+  embedder: Embedder;
+  worker: Worker | undefined;
+  mainThread: boolean;
+}
+
 export function createSemanticController(options: SemanticControllerOptions = {}): SemanticController {
   const listeners = new Set<(state: SemanticState) => void>();
   const now = options.now ?? (() => (typeof performance !== "undefined" ? performance.now() : Date.now()));
-  const cache: VectorCache =
-    options.cache === false
-      ? createMemoryVectorCache()
-      : (options.cache ??
-        (typeof indexedDB !== "undefined"
-          ? createIndexedDbVectorCache({ dbName: VECTOR_DB_NAME })
-          : createMemoryVectorCache()));
+  const caches = new Map<string, VectorCache>();
+  const cacheFor = (model: string): VectorCache => {
+    if (options.cache) return options.cache;
+    let cache = caches.get(model);
+    if (!cache) {
+      cache =
+        options.cache === false || typeof indexedDB === "undefined"
+          ? createMemoryVectorCache()
+          : createIndexedDbVectorCache({ dbName: vectorDbName(model) });
+      caches.set(model, cache);
+    }
+    return cache;
+  };
 
   let state: SemanticState = { kind: "off" };
   let generation = 0;
   let starting: Promise<boolean> | undefined;
+  let startingModel: string | undefined;
   let embedder: Embedder | undefined;
+  let model: string | undefined;
   let worker: Worker | undefined;
   let mainThread = false;
   let index: SemanticIndex | undefined;
@@ -127,6 +158,14 @@ export function createSemanticController(options: SemanticControllerOptions = {}
     return { kind: "error", message, hint: hintFor(message), retryable: true };
   };
 
+  const readyState = (): SemanticState => ({
+    kind: "ready",
+    model: embedder?.info?.model ?? model ?? DEFAULT_MODEL_ID,
+    device: embedder?.info?.device,
+    dtype: embedder?.info?.dtype,
+    mainThread
+  });
+
   const mapStatus = (status: SemanticStatus): SemanticState => {
     switch (status.state) {
       case "loading":
@@ -143,7 +182,7 @@ export function createSemanticController(options: SemanticControllerOptions = {}
         return { kind: "indexing", done: status.done, total: status.total, coverage: status.coverage, etaMs };
       }
       case "ready":
-        return { kind: "ready", device: embedder?.info?.device, dtype: embedder?.info?.dtype, mainThread };
+        return readyState();
       case "error":
         return errorState(new Error(status.message));
     }
@@ -162,14 +201,13 @@ export function createSemanticController(options: SemanticControllerOptions = {}
     else if (candidate) void Promise.resolve(candidate.dispose?.()).catch(() => undefined);
   };
 
-  const acquireEmbedder = async (
-    gen: number
-  ): Promise<{ embedder: Embedder; worker: Worker | undefined; mainThread: boolean }> => {
+  const acquireEmbedder = async (gen: number, wanted: string): Promise<Acquired> => {
     if (options.createEmbedder)
-      return { embedder: await options.createEmbedder(), worker: undefined, mainThread: false };
+      return { embedder: await options.createEmbedder(wanted), worker: undefined, mainThread: false };
     let candidate: Worker | undefined;
     try {
-      candidate = (options.createWorker ?? (() => createEmbedWorker(options.workerConfig)))();
+      const config: WorkerConfig = { ...options.workerConfig, model: wanted };
+      candidate = (options.createWorker ?? createEmbedWorker)(config);
       const proxy = await withTimeout(
         createWorkerEmbedder(candidate),
         options.startTimeoutMs ?? WORKER_START_TIMEOUT_MS,
@@ -183,7 +221,12 @@ export function createSemanticController(options: SemanticControllerOptions = {}
         `[schema-explorer] embedding worker unavailable (${errorMessage(err)}); using the main thread`
       );
       return {
-        embedder: createLocalEmbedder({ batchSize: MAIN_THREAD_BATCH_SIZE }),
+        embedder: createLocalEmbedder({
+          model: wanted,
+          device: options.workerConfig?.device,
+          dtype: options.workerConfig?.dtype,
+          batchSize: MAIN_THREAD_BATCH_SIZE
+        }),
         worker: undefined,
         mainThread: true
       };
@@ -200,16 +243,22 @@ export function createSemanticController(options: SemanticControllerOptions = {}
     get index() {
       return index;
     },
+    get model() {
+      return embedder ? model : startingModel;
+    },
 
-    start() {
-      if (embedder) return Promise.resolve(true);
-      if (starting) return starting;
+    start(wanted = DEFAULT_MODEL_ID) {
+      if (embedder && model === wanted) return Promise.resolve(true);
+      if (starting && startingModel === wanted) return starting;
+      // A different model: drop whatever runs or is still starting.
+      if (embedder || starting) controller.stop();
       const gen = ++generation;
+      startingModel = wanted;
       setState({ kind: "starting" });
       starting = (async () => {
-        let acquired: { embedder: Embedder; worker: Worker | undefined; mainThread: boolean } | undefined;
+        let acquired: Acquired | undefined;
         try {
-          acquired = await acquireEmbedder(gen);
+          acquired = await acquireEmbedder(gen, wanted);
           if (gen !== generation) {
             discard(acquired.worker, acquired.embedder);
             return false;
@@ -223,6 +272,7 @@ export function createSemanticController(options: SemanticControllerOptions = {}
             return false;
           }
           embedder = acquired.embedder;
+          model = wanted;
           worker = acquired.worker;
           mainThread = acquired.mainThread;
           setState({ kind: "loading", progress: 1 });
@@ -232,7 +282,10 @@ export function createSemanticController(options: SemanticControllerOptions = {}
           if (gen === generation) setState(errorState(err));
           return false;
         } finally {
-          if (gen === generation) starting = undefined;
+          if (gen === generation) {
+            starting = undefined;
+            startingModel = undefined;
+          }
         }
       })();
       return starting;
@@ -241,10 +294,12 @@ export function createSemanticController(options: SemanticControllerOptions = {}
     stop() {
       generation += 1;
       starting = undefined;
+      startingModel = undefined;
       dropIndex();
       discard(worker, embedder);
       worker = undefined;
       embedder = undefined;
+      model = undefined;
       mainThread = false;
       setState({ kind: "off" });
     },
@@ -253,12 +308,12 @@ export function createSemanticController(options: SemanticControllerOptions = {}
       dropIndex();
       if (!embedder) return undefined;
       if (catalog.totalRows === 0) {
-        setState({ kind: "ready", device: embedder.info?.device, dtype: embedder.info?.dtype, mainThread });
+        setState(readyState());
         return undefined;
       }
       const created = createSemanticIndex(catalog.merged, {
         embedder,
-        cache,
+        cache: cacheFor(model ?? DEFAULT_MODEL_ID),
         batchSize: mainThread ? MAIN_THREAD_BATCH_SIZE : WORKER_BATCH_SIZE,
         ...(options.snapshotUrl ? { snapshot: options.snapshotUrl } : {})
       });
@@ -280,11 +335,16 @@ export function createSemanticController(options: SemanticControllerOptions = {}
     },
 
     async clearVectors() {
-      try {
-        await cache.clear();
-      } catch (err) {
-        console.warn("[schema-explorer] could not clear the vector cache", err);
-      }
+      const ids = new Set<string>([...EMBEDDING_MODELS.map((option) => option.id), ...caches.keys()]);
+      await Promise.all(
+        [...ids].map(async (id) => {
+          try {
+            await cacheFor(id).clear();
+          } catch (err) {
+            console.warn(`[schema-explorer] could not clear the vector cache of ${id}`, err);
+          }
+        })
+      );
     },
 
     dispose() {

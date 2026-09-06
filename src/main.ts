@@ -12,9 +12,16 @@ const root = document.getElementById("app");
 if (!root) throw new Error("Missing #app root element");
 
 const store = createStore(initialState(loadPrefs()));
-const semantic = createSemanticController({ workerConfig: workerConfigFromLocation(window.location.search) });
+const workerConfig = workerConfigFromLocation(window.location.search);
+const semantic = createSemanticController({ workerConfig });
 const datasetsStore = createDatasetsStore(openKv(DB_NAME, DB_VERSION, STORES));
-const actions = createActions(store, { semantic, datasetsStore, appVersion: __APP_VERSION__ });
+const actions = createActions(store, {
+  semantic,
+  datasetsStore,
+  appVersion: __APP_VERSION__,
+  // ?nogpu=1 hides WebGPU from the worker; the picker must agree with it.
+  detectWebGpu: workerConfig.nogpu ? () => Promise.resolve(false) : undefined
+});
 mountApp(root, store, actions);
 void actions.boot();
 

@@ -103,6 +103,15 @@ describe("app smoke test", () => {
     expect(box?.value).toBe(jumpName);
     expect(app.store.get().ui.announcement).toContain(jumpName);
 
+    // The model picker next to the semantic switch: LEAF-IR selected, Jina disabled without WebGPU.
+    const picker = root.querySelector<HTMLDetailsElement>(".se-model");
+    expect(picker?.querySelector("summary")?.textContent).toContain("LEAF-IR");
+    const options = Array.from(root.querySelectorAll<HTMLButtonElement>(".se-model__item"));
+    expect(options.map((option) => option.getAttribute("aria-checked"))).toEqual(["true", "false"]);
+    expect(app.store.get().webGpu).toBe(false);
+    expect(options[1]?.disabled).toBe(true);
+    expect(options[1]?.textContent).toContain("WebGPU unavailable");
+
     // Export and clear.
     expect(app.actions.exportResultsCsv()?.split("\r\n")[0]).toMatch(/^Dataset,Variable/);
     app.actions.setQuery("");

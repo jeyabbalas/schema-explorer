@@ -361,6 +361,94 @@
   cursor: default;
 }
 
+/* Model picker: a menu next to the switch; the summary names the current model. */
+.se-model > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  height: 26px;
+  padding: 0 6px 0 8px;
+  border-radius: var(--se-r-pill);
+  background: var(--se-surface-3);
+  color: var(--se-fg-muted);
+  font-size: var(--se-fs-xs);
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--se-dur-fast) var(--se-ease),
+    color var(--se-dur-fast) var(--se-ease);
+}
+
+.se-model > summary:hover,
+.se-model[open] > summary {
+  background: var(--se-border);
+  color: var(--se-fg);
+}
+
+.se-model > summary svg {
+  width: 14px;
+  height: 14px;
+}
+
+.se-model > .se-model__list {
+  min-width: 300px;
+  max-width: min(380px, calc(100vw - 2 * var(--se-gutter)));
+}
+
+.se-model__item {
+  align-items: flex-start;
+  gap: var(--se-sp-2);
+  padding: 8px 10px 8px 8px;
+}
+
+.se-model__item .se-model__check {
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--se-fg);
+  visibility: hidden;
+}
+
+.se-model__item[aria-checked="true"] .se-model__check {
+  visibility: visible;
+}
+
+.se-model__item:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.se-model__item:disabled:hover {
+  background: transparent;
+}
+
+.se-model__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.se-model__item .se-model__name {
+  font-weight: 600;
+}
+
+.se-model__summary-line,
+.se-model__meta {
+  font-size: var(--se-fs-xs);
+  line-height: 1.4;
+  white-space: normal;
+}
+
+.se-model__meta {
+  color: var(--se-fg-muted);
+}
+
+/* The tooltip would sit under the open menu: keep it clipped meanwhile. */
+.se-semantic:has(.se-model[open]) .se-tip {
+  display: none;
+}
+
 /* Tooltip: clipped away until the switch group is hovered or focused. */
 .se-tip {
   position: absolute;

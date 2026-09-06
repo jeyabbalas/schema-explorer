@@ -13,15 +13,18 @@ import { savePrefs } from "../persist/prefs";
 import { buildCatalog, type Catalog } from "../search/catalog";
 import { createCatalogSearch, type CatalogSearch } from "../search/catalogSearch";
 import { exportResultsCsv, suggestedCsvFilename } from "../search/exportCsv";
+import { DEFAULT_MODEL_ID, findModel, modelName } from "../search/models";
 import type { SemanticController } from "../search/semantic";
 import type { CatalogSearchResult } from "../search/types";
+import { WEBGPU_PROBE_TIMEOUT_MS } from "../search/constants";
 import { appendNotices, createNotice } from "../state/notices";
 import { downloadText } from "../util/download";
 import { colorAllocator } from "../state/selectors";
 import type { Store } from "../state/store";
 import type { AppState, Dataset, LoadBatch, Notice, NoticeLevel, ThemePreference } from "../state/types";
-import { yieldToBrowser } from "../util/async";
+import { withTimeout, yieldToBrowser } from "../util/async";
 import { errorMessage, pluralize } from "../util/text";
+import { detectWebGpu } from "json-schema-data-dictionary";
 
 /** What the card shelf can do for the actions layer (registered once the UI is mounted). */
 export interface ShelfBridge {
@@ -57,6 +60,8 @@ export interface AppActions {
   setQuery(query: string): void;
   /** Turn semantic search on or off (remembered). */
   setSemantic(on: boolean): Promise<void>;
+  /** Choose the embedding model (remembered); restarts semantic search when it is on. */
+  setSemanticModel(id: string): Promise<void>;
   retrySemantic(): Promise<void>;
   /** Download the current results as CSV; returns the CSV text (undefined when there is nothing to export). */
   exportResultsCsv(): string | undefined;
@@ -73,6 +78,8 @@ export interface ActionDeps {
   /** Persistence of loaded schemas and the dataset arrangement across reloads. */
   datasetsStore?: DatasetsStore | undefined;
   appVersion?: string | undefined;
+  /** Whether a WebGPU adapter is available (gates WebGPU-only models); default: the library's probe. */
+  detectWebGpu?: (() => Promise<boolean>) | undefined;
 }
 
 interface RemovedEntry {
@@ -250,21 +257,47 @@ export function createActions(store: Store<AppState>, deps: ActionDeps = {}): Ap
     store.set({ semantic });
   });
 
+  /** Probe WebGPU once (never throws; false when the probe stalls). */
+  const probeWebGpu = async (): Promise<boolean> => {
+    const probe = deps.detectWebGpu ?? (() => detectWebGpu().then((support) => support.available));
+    try {
+      return await withTimeout(probe(), WEBGPU_PROBE_TIMEOUT_MS, "WebGPU probe timed out");
+    } catch {
+      return false;
+    }
+  };
+
+  /** A WebGPU-only model cannot run here: fall back to the default model and say so. */
+  const ensureModelSupported = (): void => {
+    const state = store.get();
+    const model = findModel(state.prefs.semanticModel);
+    if (!model?.needsWebGpu || state.webGpu !== false) return;
+    savePrefs({ semanticModel: DEFAULT_MODEL_ID });
+    store.set({ prefs: { ...state.prefs, semanticModel: DEFAULT_MODEL_ID } });
+    pushNotices([
+      createNotice(
+        "info",
+        `${model.name} needs WebGPU, which this browser doesn’t expose; using ${modelName(DEFAULT_MODEL_ID)} instead.`
+      )
+    ]);
+  };
+
   /** Start the embedder (model download) and, once ready, rebuild the search with its index. */
   const startSemantic = async (userInitiated: boolean): Promise<void> => {
     const semantic = deps.semantic;
     if (!semantic) return;
+    const modelId = store.get().prefs.semanticModel;
     const wasOff = store.get().semantic.kind === "off";
     if (userInitiated && wasOff) {
+      const model = findModel(modelId);
+      const what = model ? `${model.name} (${model.download} download on first use)` : modelId;
       pushNotices([
-        createNotice(
-          "info",
-          "Downloading the semantic model (23 MB) from Hugging Face. Keyword search keeps working meanwhile."
-        )
+        createNotice("info", `Loading ${what} from Hugging Face. Keyword search keeps working meanwhile.`)
       ]);
     }
-    const ok = await semantic.start();
-    if (!store.get().prefs.semantic) return; // switched off while starting
+    const ok = await semantic.start(modelId);
+    const prefs = store.get().prefs;
+    if (!prefs.semantic || prefs.semanticModel !== modelId) return; // switched off or changed meanwhile
     if (ok) {
       rebuildSearch();
       return;
@@ -425,6 +458,7 @@ export function createActions(store: Store<AppState>, deps: ActionDeps = {}): Ap
     boot() {
       return enqueue(async () => {
         rebuildSearch();
+        const webGpu = probeWebGpu();
         try {
           await restore();
         } catch (err) {
@@ -433,6 +467,8 @@ export function createActions(store: Store<AppState>, deps: ActionDeps = {}): Ap
           setBusy(undefined);
           store.set({ phase: "ready" });
         }
+        store.set({ webGpu: await webGpu });
+        ensureModelSupported();
         if (store.get().prefs.semantic) void startSemantic(false);
       });
     },
@@ -701,6 +737,23 @@ export function createActions(store: Store<AppState>, deps: ActionDeps = {}): Ap
         deps.semantic?.stop();
         rebuildSearch();
       }
+    },
+
+    async setSemanticModel(id) {
+      const state = store.get();
+      const model = findModel(id);
+      if (!model || state.prefs.semanticModel === id) return;
+      if (model.needsWebGpu && state.webGpu === false) {
+        pushNotices([createNotice("info", `${model.name} needs WebGPU, which this browser doesn’t expose.`)]);
+        return;
+      }
+      savePrefs({ semanticModel: id });
+      store.set({ prefs: { ...state.prefs, semanticModel: id } });
+      if (!state.prefs.semantic) return;
+      // Keyword-only while the new model loads; the old worker and index go right away.
+      deps.semantic?.stop();
+      rebuildSearch();
+      await startSemantic(true);
     },
 
     async retrySemantic() {

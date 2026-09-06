@@ -30,6 +30,8 @@ function fnv(text: string): number {
 export interface FakeEmbedderOptions {
   dims?: number;
   id?: string;
+  /** Reported in `info.model` (the controller surfaces it in the ready state). */
+  model?: string;
   minScore?: number;
   delayMs?: number;
   /** Throw when a text containing this string is embedded. */
@@ -63,7 +65,7 @@ export function createFakeEmbedder(options: FakeEmbedderOptions = {}): FakeEmbed
   return {
     id: options.id ?? "fake-bow-v1",
     minScore: options.minScore ?? 0.3,
-    info: { model: "fake-bow", device: "cpu", dtype: "fp32", dims },
+    info: { model: options.model ?? "fake-bow", device: "cpu", dtype: "fp32", dims },
     calls,
     load(onProgress) {
       calls.loads += 1;

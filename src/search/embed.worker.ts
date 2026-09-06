@@ -1,6 +1,6 @@
 // The embedding worker: runs the text-embedding model off the main thread so indexing never
-// janks the page. Configuration (dev/test overrides only) travels in the worker's `name`, which
-// keeps the `new Worker(new URL(...))` call site literal for the bundler.
+// janks the page. Configuration (the model, plus dev/test overrides) travels in the worker's
+// `name`, which keeps the `new Worker(new URL(...))` call site literal for the bundler.
 
 import { serveEmbedder } from "json-schema-data-dictionary";
 import { WORKER_BATCH_SIZE } from "./constants";
@@ -31,5 +31,10 @@ if (config.nogpu) {
 }
 
 serveEmbedder(
-  createLocalEmbedder({ device: config.device, dtype: config.dtype, batchSize: WORKER_BATCH_SIZE })
+  createLocalEmbedder({
+    model: config.model,
+    device: config.device,
+    dtype: config.dtype,
+    batchSize: WORKER_BATCH_SIZE
+  })
 );

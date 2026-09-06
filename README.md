@@ -19,7 +19,8 @@ renders a JSON Schema for an array of records as a flat, searchable data diction
   at a glance; matches are grouped per dataset with highlighted terms, and any row can be opened in its
   dictionary. Export the results as CSV.
 - **Keyword + semantic search.** Keyword search (BM25F) is instant. An opt-in switch adds semantic search:
-  variables that are related by meaning appear as "related" rows with a similarity score.
+  variables that are related by meaning appear as "related" rows with a similarity score. Two on-device
+  embedding models are offered: a small default and Jina v5 nano for the best results (WebGPU only).
 - **Load schemas however you keep them.** Drop files or a whole folder (relative `$ref`s resolve by path),
   use the file or folder picker, or load the bundled example datasets with one click.
 - **Everything stays in your browser.** Schemas are parsed on your device and kept in IndexedDB so a reload
@@ -37,8 +38,9 @@ renders a JSON Schema for an array of records as a flat, searchable data diction
    cell per dataset; groups below list the matching variables. _Open in dictionary_ (the arrow next to a
    variable name) scrolls to the dataset's card and filters its dictionary to that variable.
 4. Turn on **Semantic search** to also find variables that are related by meaning. The first time, the
-   model (about 23 MB) is downloaded from Hugging Face and cached by the browser; indexing the loaded
-   datasets takes a few seconds on WebGPU (longer on WASM). Keyword search keeps working meanwhile.
+   model is downloaded from Hugging Face and cached by the browser; indexing the loaded datasets takes a
+   few seconds on WebGPU (longer on WASM). Keyword search keeps working meanwhile. The picker next to the
+   switch chooses the embedding model (see below); changing it re-indexes the loaded datasets.
 5. Rename a dataset (pencil), collapse it, remove it (undo from the toast), or **Clear all** to start over.
 
 ## Privacy
@@ -50,15 +52,24 @@ huggingface.co.
 
 ## Semantic search notes
 
-- Model: [MongoDB/mdbr-leaf-ir](https://huggingface.co/MongoDB/mdbr-leaf-ir) (23M parameters, Apache-2.0),
-  run in the browser with Transformers.js (ONNX Runtime): about 23 MB (q8) on WASM or 46 MB (fp16) on
-  WebGPU.
+Both models run in the browser with Transformers.js (ONNX Runtime); the picker next to the switch
+chooses between them and the choice is remembered.
+
+| Model                                                                                                                                | Params | Download     | Licence                                    | Runs on        | Notes                                                                              |
+| ------------------------------------------------------------------------------------------------------------------------------------ | ------ | ------------ | ------------------------------------------ | -------------- | ---------------------------------------------------------------------------------- |
+| [MongoDB/mdbr-leaf-ir](https://huggingface.co/MongoDB/mdbr-leaf-ir) (LEAF-IR, default)                                               | 23M    | 23–46 MB     | Apache-2.0                                 | WebGPU or WASM | Small and quick to index; good results.                                            |
+| [jinaai/jina-embeddings-v5-text-nano-retrieval](https://huggingface.co/jinaai/jina-embeddings-v5-text-nano-retrieval) (Jina v5 nano) | 239M   | 124 MB q4f16 | **CC BY-NC 4.0** (non-commercial use only) | WebGPU only    | Highest retrieval quality (best MRR in the library's evaluation); slower to index. |
+
 - WebGPU is used when the browser exposes it (Chrome/Edge 113+, Safari 26, Firefox on Windows); otherwise
-  the model runs on single-threaded WASM, which is slower to index but works everywhere.
-- The model weights are cached by the browser (Cache API) and the row vectors in IndexedDB, so later visits
-  are fast. **Before a live demo, open the site once on the demo machine, load your datasets and switch
-  semantic search on** so the model and the vectors are already cached.
-- The switch is remembered; semantic search starts automatically on later visits.
+  LEAF-IR runs on single-threaded WASM, which is slower to index but works everywhere. Jina v5 nano is far
+  too large for WASM, so the picker disables it in browsers without WebGPU, and a saved Jina preference falls
+  back to LEAF-IR there (with a notice).
+- Jina v5 nano's weights are licensed for **non-commercial use only**; pick it only when that applies to you.
+- The model weights are cached by the browser (Cache API) and the row vectors in IndexedDB, one vector cache
+  per model, so later visits and switching back and forth are fast. **Before a live demo, open the site once
+  on the demo machine, load your datasets, switch semantic search on and pick the model you will present
+  with** so its weights and vectors are already cached.
+- The switch and the model are remembered; semantic search starts automatically on later visits.
 
 ## Example datasets
 

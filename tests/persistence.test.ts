@@ -11,6 +11,7 @@ import {
   type StoredBatch
 } from "../src/persist/datasetsStore";
 import { openKv } from "../src/persist/kv";
+import { DEFAULT_MODEL_ID } from "../src/search/models";
 import { createStore } from "../src/state/store";
 import { initialState, type LoadBatch } from "../src/state/types";
 import { until } from "./helpers/dom";
@@ -133,7 +134,9 @@ describe("restore on boot", () => {
     const datasetsStore = createDatasetsStore(kv);
 
     // Session 1: load the examples, remove one table of a two-table batch, rename and collapse another.
-    const first = createStore(initialState({ theme: "light", semantic: false }));
+    const first = createStore(
+      initialState({ theme: "light", semantic: false, semanticModel: DEFAULT_MODEL_ID })
+    );
     const firstActions = createActions(first, {
       datasetsStore,
       yield: () => Promise.resolve(),
@@ -159,7 +162,9 @@ describe("restore on boot", () => {
     expect(savedMeta?.datasetOrder).toHaveLength(4);
 
     // Session 2: a fresh store restores the same arrangement.
-    const second = createStore(initialState({ theme: "light", semantic: false }));
+    const second = createStore(
+      initialState({ theme: "light", semantic: false, semanticModel: DEFAULT_MODEL_ID })
+    );
     const secondActions = createActions(second, {
       datasetsStore,
       yield: () => Promise.resolve(),
@@ -189,14 +194,18 @@ describe("restore on boot", () => {
     // Clearing wipes storage too.
     await secondActions.clearAll();
     expect((await datasetsStore.loadAll()).batches).toEqual([]);
-    const third = createStore(initialState({ theme: "light", semantic: false }));
+    const third = createStore(
+      initialState({ theme: "light", semantic: false, semanticModel: DEFAULT_MODEL_ID })
+    );
     await createActions(third, { datasetsStore, yield: () => Promise.resolve() }).boot();
     expect(third.get().datasets).toEqual([]);
   });
 
   it("boots without a store and reports an unavailable one", async () => {
     const silent = vi.spyOn(console, "warn").mockImplementation(() => undefined);
-    const plain = createStore(initialState({ theme: "light", semantic: false }));
+    const plain = createStore(
+      initialState({ theme: "light", semantic: false, semanticModel: DEFAULT_MODEL_ID })
+    );
     await createActions(plain, { yield: () => Promise.resolve() }).boot();
     expect(plain.get().phase).toBe("ready");
     const unavailable = createDatasetsStore(
@@ -205,7 +214,9 @@ describe("restore on boot", () => {
         timeoutMs: 20
       })
     );
-    const store = createStore(initialState({ theme: "light", semantic: false }));
+    const store = createStore(
+      initialState({ theme: "light", semantic: false, semanticModel: DEFAULT_MODEL_ID })
+    );
     await createActions(store, { datasetsStore: unavailable, yield: () => Promise.resolve() }).boot();
     expect(store.get().persistence.available).toBe(false);
     expect(store.get().notices[0]?.text).toContain("will not be kept");

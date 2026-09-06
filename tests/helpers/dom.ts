@@ -1,6 +1,7 @@
 // Mount the whole app into happy-dom for smoke tests.
 
 import { createActions, type AppActions } from "../../src/app/actions";
+import { DEFAULT_MODEL_ID } from "../../src/search/models";
 import { createStore, type Store } from "../../src/state/store";
 import { initialState, type AppState } from "../../src/state/types";
 import { mountApp, type AppHandle } from "../../src/ui/app";
@@ -17,7 +18,9 @@ export function mountTestApp(): TestApp {
   const root = document.createElement("div");
   root.id = "app";
   document.body.appendChild(root);
-  const store = createStore(initialState({ theme: "light", semantic: false }));
+  const store = createStore(
+    initialState({ theme: "light", semantic: false, semanticModel: DEFAULT_MODEL_ID })
+  );
   const actions = createActions(store, { yield: () => Promise.resolve() });
   const app = mountApp(root, store, actions);
   return {
