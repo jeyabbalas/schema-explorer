@@ -6,6 +6,9 @@ import { collectFromDataTransfer, collectFromFileList, type Collected } from "..
 import { fetchExampleGroup, fetchExampleManifest } from "../ingest/examples";
 import { ingest, type IngestResult, type IngestSource } from "../ingest/index";
 import { uniqueLabel } from "../ingest/paths";
+import { parseTexts } from "../ingest/parse";
+import { buildDatasets } from "../ingest/build";
+import { toStoredBatch, type DatasetsStore, type StoredMeta } from "../persist/datasetsStore";
 import { savePrefs } from "../persist/prefs";
 import { buildCatalog, type Catalog } from "../search/catalog";
 import { createCatalogSearch, type CatalogSearch } from "../search/catalogSearch";
@@ -67,6 +70,9 @@ export interface ActionDeps {
   yield?: (() => Promise<void>) | undefined;
   /** The semantic-search controller; attaches one index to each rebuilt catalog. */
   semantic?: SemanticController | undefined;
+  /** Persistence of loaded schemas and the dataset arrangement across reloads. */
+  datasetsStore?: DatasetsStore | undefined;
+  appVersion?: string | undefined;
 }
 
 interface RemovedEntry {
@@ -85,6 +91,152 @@ export function createActions(store: Store<AppState>, deps: ActionDeps = {}): Ap
   let catalog: Catalog | undefined;
   let catalogSearch: CatalogSearch | undefined;
   let unsubscribeSearch: (() => void) | undefined;
+  /** Datasets removed while their batch still has other datasets (kept out on restore). */
+  const hidden = new Set<string>();
+  let metaTimer: ReturnType<typeof setTimeout> | undefined;
+
+  const currentMeta = (): StoredMeta => {
+    const state = store.get();
+    const overrides: StoredMeta["overrides"] = {};
+    for (const dataset of state.datasets) {
+      overrides[dataset.id] = {
+        label: dataset.label,
+        colorIndex: dataset.colorIndex,
+        collapsed: state.ui.cards[dataset.id]?.collapsed ?? false
+      };
+    }
+    return {
+      v: 1,
+      appVersion: deps.appVersion ?? "dev",
+      datasetOrder: state.datasets.map((dataset) => dataset.id),
+      hiddenDatasets: [...hidden],
+      overrides
+    };
+  };
+
+  /** Save the arrangement (order, labels, colours, collapsed cards); bursts are coalesced. */
+  const persistMeta = (): void => {
+    if (!deps.datasetsStore) return;
+    if (metaTimer) clearTimeout(metaTimer);
+    metaTimer = setTimeout(() => {
+      metaTimer = undefined;
+      void deps.datasetsStore?.saveMeta(currentMeta());
+    }, 300);
+  };
+
+  const persistBatches = async (batches: readonly LoadBatch[]): Promise<void> => {
+    const datasetsStore = deps.datasetsStore;
+    if (!datasetsStore || batches.length === 0) return;
+    for (const batch of batches) {
+      const result = await datasetsStore.saveBatch(toStoredBatch(batch));
+      if (result === "skipped-quota") {
+        pushNotices([
+          createNotice(
+            "warning",
+            `${batch.label} is too large to keep after a reload; it stays loaded for this session.`
+          )
+        ]);
+      } else if (result === "failed") {
+        pushNotices([
+          createNotice(
+            "warning",
+            `${batch.label} could not be saved in this browser; it stays loaded for this session.`
+          )
+        ]);
+      }
+    }
+    persistMeta();
+  };
+
+  /** Rebuild datasets from the saved documents (same path as ingestion). */
+  const restore = async (): Promise<void> => {
+    const datasetsStore = deps.datasetsStore;
+    if (!datasetsStore) return;
+    const available = await datasetsStore.ready();
+    store.set({ persistence: { available, lastError: undefined } });
+    if (!available) {
+      pushNotices([createNotice("info", "Datasets will not be kept after a reload in this browser.")]);
+      return;
+    }
+    const { batches, meta } = await datasetsStore.loadAll();
+    if (batches.length === 0) return;
+    setBusy({ kind: "restoring", label: "Restoring saved datasets…" });
+    for (const id of meta?.hiddenDatasets ?? []) hidden.add(id);
+    const restoredBatches: LoadBatch[] = [];
+    const restored: Dataset[] = [];
+    const notices: Notice[] = [];
+    for (const stored of batches) {
+      try {
+        const { docs, errors } = parseTexts(stored.docs);
+        if (errors.length > 0)
+          notices.push(
+            createNotice("warning", `Some saved files of ${stored.label} could not be read.`, {
+              details: errors.map((e) => e.path)
+            })
+          );
+        const outcome = await buildDatasets(
+          {
+            batchId: stored.id,
+            label: stored.label,
+            source: stored.source,
+            docs,
+            createdAt: stored.createdAt
+          },
+          {
+            existing: restored,
+            maxDatasets: MAX_DATASETS,
+            nextColor: colorAllocator(restored),
+            yield: yieldFn
+          }
+        );
+        const kept = outcome.datasets.filter((dataset) => !hidden.has(dataset.id));
+        if (outcome.batch && kept.length > 0) {
+          restoredBatches.push(outcome.batch);
+          restored.push(...kept);
+        } else {
+          await datasetsStore.deleteBatch(stored.id);
+        }
+      } catch (err) {
+        notices.push(createNotice("error", `Could not restore ${stored.label}: ${errorMessage(err)}`));
+      }
+    }
+    // Apply the saved arrangement: order, labels, colours (unique), collapsed cards.
+    const order = new Map((meta?.datasetOrder ?? []).map((id, index) => [id, index]));
+    restored.sort(
+      (a, b) => (order.get(a.id) ?? Number.MAX_SAFE_INTEGER) - (order.get(b.id) ?? Number.MAX_SAFE_INTEGER)
+    );
+    const overrides = meta?.overrides ?? {};
+    const taken = new Set<number>();
+    const cards: AppState["ui"]["cards"] = {};
+    const labels = new Set<string>();
+    const finalDatasets = restored.map((dataset) => {
+      const override = overrides[dataset.id];
+      let colorIndex = override?.colorIndex;
+      if (colorIndex === undefined || taken.has(colorIndex)) {
+        colorIndex = 0;
+        while (taken.has(colorIndex)) colorIndex += 1;
+      }
+      taken.add(colorIndex);
+      const label = uniqueLabel(override?.label?.trim() || dataset.label, labels);
+      labels.add(label);
+      if (override?.collapsed) cards[dataset.id] = { collapsed: true };
+      return { ...dataset, label, colorIndex };
+    });
+    store.batch(() => {
+      store.set((state) => {
+        const nextBatches = { ...state.batches };
+        for (const batch of restoredBatches) nextBatches[batch.id] = batch;
+        return {
+          batches: nextBatches,
+          datasets: [...state.datasets, ...finalDatasets],
+          catalogVersion: state.catalogVersion + 1,
+          notices: appendNotices(state.notices, notices),
+          ui: { ...state.ui, cards: { ...state.ui.cards, ...cards } }
+        };
+      });
+    });
+    if (finalDatasets.length > 0) datasetsChanged("restore");
+  };
 
   /** Accept a result only if it was computed against the current catalog. */
   const applyResult = (result: CatalogSearchResult): void => {
@@ -246,6 +398,7 @@ export function createActions(store: Store<AppState>, deps: ActionDeps = {}): Ap
       });
     });
     if (added.length > 0) datasetsChanged("add");
+    void persistBatches(batches);
     return added;
   };
 
@@ -269,11 +422,19 @@ export function createActions(store: Store<AppState>, deps: ActionDeps = {}): Ap
     }).then(() => []);
 
   const actions: AppActions = {
-    async boot() {
-      rebuildSearch();
-      store.set({ phase: "ready" });
-      if (store.get().prefs.semantic) void startSemantic(false);
-      await Promise.resolve();
+    boot() {
+      return enqueue(async () => {
+        rebuildSearch();
+        try {
+          await restore();
+        } catch (err) {
+          pushNotices([createNotice("error", `Could not restore the saved datasets: ${errorMessage(err)}`)]);
+        } finally {
+          setBusy(undefined);
+          store.set({ phase: "ready" });
+        }
+        if (store.get().prefs.semantic) void startSemantic(false);
+      });
     },
 
     addFiles(files, _kind) {
@@ -376,6 +537,8 @@ export function createActions(store: Store<AppState>, deps: ActionDeps = {}): Ap
         );
         const batch = stillUsed ? undefined : state.batches[dataset.batchId];
         removed.set(id, { dataset, batch, index });
+        if (batch) void deps.datasetsStore?.deleteBatch(batch.id);
+        else hidden.add(id);
         const notice = createNotice("info", `Removed ${dataset.label}`, {});
         notice.action = { label: "Undo" };
         noticeActions.set(notice.id, () => actions.undoRemove(id));
@@ -395,6 +558,7 @@ export function createActions(store: Store<AppState>, deps: ActionDeps = {}): Ap
           });
         });
         datasetsChanged("remove");
+        persistMeta();
         await Promise.resolve();
       });
     },
@@ -430,6 +594,9 @@ export function createActions(store: Store<AppState>, deps: ActionDeps = {}): Ap
         });
       });
       datasetsChanged("undo");
+      hidden.delete(id);
+      if (entry.batch) void persistBatches([entry.batch]);
+      else persistMeta();
     },
 
     renameDataset(id, label) {
@@ -445,10 +612,12 @@ export function createActions(store: Store<AppState>, deps: ActionDeps = {}): Ap
         datasets[index] = { ...(datasets[index] as Dataset), label: uniqueLabel(trimmed, taken) };
         return { datasets };
       });
+      persistMeta();
     },
 
     setCardCollapsed(id, collapsed) {
       store.set((state) => ({ ui: { ...state.ui, cards: { ...state.ui.cards, [id]: { collapsed } } } }));
+      persistMeta();
     },
 
     setAllCardsCollapsed(collapsed) {
@@ -457,12 +626,16 @@ export function createActions(store: Store<AppState>, deps: ActionDeps = {}): Ap
         for (const dataset of state.datasets) cards[dataset.id] = { collapsed };
         return { ui: { ...state.ui, cards } };
       });
+      persistMeta();
     },
 
     clearAll() {
       return enqueue(async () => {
         removed.clear();
-        await deps.semantic?.clearVectors();
+        hidden.clear();
+        if (metaTimer) clearTimeout(metaTimer);
+        metaTimer = undefined;
+        await Promise.all([deps.semantic?.clearVectors(), deps.datasetsStore?.clearAll()]);
         store.set((state) => ({
           datasets: [],
           batches: {},

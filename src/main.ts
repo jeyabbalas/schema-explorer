@@ -1,5 +1,7 @@
 import "./styles/app.css";
 import { createActions } from "./app/actions";
+import { createDatasetsStore, DB_NAME, DB_VERSION, STORES } from "./persist/datasetsStore";
+import { openKv } from "./persist/kv";
 import { loadPrefs } from "./persist/prefs";
 import { createSemanticController, workerConfigFromLocation } from "./search/semantic";
 import { createStore } from "./state/store";
@@ -11,7 +13,8 @@ if (!root) throw new Error("Missing #app root element");
 
 const store = createStore(initialState(loadPrefs()));
 const semantic = createSemanticController({ workerConfig: workerConfigFromLocation(window.location.search) });
-const actions = createActions(store, { semantic });
+const datasetsStore = createDatasetsStore(openKv(DB_NAME, DB_VERSION, STORES));
+const actions = createActions(store, { semantic, datasetsStore, appVersion: __APP_VERSION__ });
 mountApp(root, store, actions);
 void actions.boot();
 

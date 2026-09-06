@@ -34,12 +34,12 @@ export function mountTestApp(): TestApp {
 
 /** Poll until `predicate` holds (or fail after `timeoutMs`). */
 export async function until(
-  predicate: () => boolean,
+  predicate: () => boolean | Promise<boolean>,
   timeoutMs = 10_000,
   label = "condition"
 ): Promise<void> {
   const start = Date.now();
-  while (!predicate()) {
+  while (!(await predicate())) {
     if (Date.now() - start > timeoutMs) throw new Error(`Timed out waiting for ${label}`);
     await new Promise((resolve) => setTimeout(resolve, 20));
   }

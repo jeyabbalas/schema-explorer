@@ -127,9 +127,11 @@ export function mountResults(
       for (const hit of shownRelated) tbody.appendChild(renderResultRow(hit, dataset, terms, actions));
     }
     const countLabel =
-      group.related.length > 0
-        ? `${pluralize(group.exact.length, "match", "matches")} · ${formatCount(group.related.length)} related`
-        : pluralize(group.exact.length, "match", "matches");
+      group.exact.length === 0
+        ? `${formatCount(group.related.length)} related`
+        : group.related.length > 0
+          ? `${pluralize(group.exact.length, "match", "matches")} · ${formatCount(group.related.length)} related`
+          : pluralize(group.exact.length, "match", "matches");
     const foot =
       hiddenCount > 0 || isExpanded
         ? el(
