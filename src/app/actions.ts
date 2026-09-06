@@ -677,6 +677,7 @@ export function createActions(store: Store<AppState>, deps: ActionDeps = {}): Ap
     openInDictionary(datasetId, name) {
       const dataset = store.get().datasets.find((candidate) => candidate.id === datasetId);
       if (!dataset) return;
+      if (store.get().ui.cards[datasetId]?.collapsed) actions.setCardCollapsed(datasetId, false);
       const shown = shelf?.showVariable(datasetId, name) ?? false;
       actions.announce(shown ? `Opened ${name} in ${dataset.label}.` : `Scrolled to ${dataset.label}.`);
     },
