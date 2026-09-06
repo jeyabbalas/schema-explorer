@@ -14,6 +14,7 @@ import { mountHeader } from "./header";
 import { mountKeyboard } from "./keyboard";
 import { mountResults } from "./results";
 import { mountSearchBar, type SearchBarHandle } from "./searchBar";
+import { mountSemanticSwitch } from "./semanticSwitch";
 import { mountNotices } from "./notices";
 import { createPickers } from "./pickers";
 import { mountTheme } from "./theme";
@@ -46,8 +47,17 @@ export function mountApp(root: HTMLElement, store: Store<AppState>, actions: App
   const unmountTheme = mountTheme(store);
   const unmountHeader = mountHeader(headerSlot, store, actions, pickers);
   const unmountEmpty = mountEmptyState(emptySlot, store, actions, pickers);
-  const unmountTray = mountTray(traySlot, store, actions, pickers);
+  const tray = mountTray(traySlot, store, actions, pickers);
   const searchBar = mountSearchBar(searchSlot, store, actions);
+  const unmountSemantic = mountSemanticSwitch(searchBar.semanticSlot, store, actions, searchBar.progress);
+  // On narrow screens the switch moves from the sticky bar into the tray row.
+  const narrow = typeof matchMedia === "function" ? matchMedia("(max-width: 639px)") : undefined;
+  const placeSemantic = (): void => {
+    const target = narrow?.matches ? tray.semanticSlot : searchBar.row;
+    if (searchBar.semanticSlot.parentElement !== target) target.appendChild(searchBar.semanticSlot);
+  };
+  placeSemantic();
+  narrow?.addEventListener?.("change", placeSemantic);
   const unmountResults = mountResults(resultsSlot, store, actions);
   const unmountKeyboard = mountKeyboard(() => searchBar.input, actions);
   const shelf = mountShelf(shelfSlot, store, actions);
@@ -94,8 +104,10 @@ export function mountApp(root: HTMLElement, store: Store<AppState>, actions: App
       shelf.destroy();
       unmountKeyboard();
       unmountResults();
+      narrow?.removeEventListener?.("change", placeSemantic);
+      unmountSemantic();
       searchBar.destroy();
-      unmountTray();
+      tray.destroy();
       unmountEmpty();
       unmountHeader();
       unmountTheme();

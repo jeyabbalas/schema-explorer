@@ -20,12 +20,18 @@ export function cardDomId(datasetId: string): string {
   return `ds-${datasetId}`;
 }
 
+export interface TrayHandle {
+  /** Where the semantic switch lives on narrow screens. */
+  semanticSlot: HTMLElement;
+  destroy(): void;
+}
+
 export function mountTray(
   container: HTMLElement,
   store: Store<AppState>,
   actions: AppActions,
   pickers: Pickers
-): () => void {
+): TrayHandle {
   const list = el("ul", { class: "se-tray__list" });
   const busy = el("div", { class: "se-tray__busy", hidden: true });
   const ignoredList = el("ul", null);
@@ -182,9 +188,12 @@ export function mountTray(
   renderChips(store.get().datasets);
   const unsubscribeAll = store.subscribe(render);
   const unsubscribeChips = store.select((state) => state.datasets, renderChips);
-  return () => {
-    unsubscribeAll();
-    unsubscribeChips();
-    nav.remove();
+  return {
+    semanticSlot,
+    destroy() {
+      unsubscribeAll();
+      unsubscribeChips();
+      nav.remove();
+    }
   };
 }

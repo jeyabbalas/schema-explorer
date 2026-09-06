@@ -10,8 +10,11 @@ import { icon } from "./icons";
 
 export interface SearchBarHandle {
   input: HTMLInputElement;
-  /** Where the semantic switch mounts. */
+  /** Where the semantic switch mounts (moved into the tray on narrow screens). */
   semanticSlot: HTMLElement;
+  /** The row the semantic slot belongs to on wide screens. */
+  row: HTMLElement;
+  progress: HTMLProgressElement;
   section: HTMLElement;
   destroy(): void;
 }
@@ -85,17 +88,18 @@ export function mountSearchBar(
     "aria-hidden": "true",
     hidden: true
   });
+  const row = el(
+    "div",
+    { class: "se-container se-search__row" },
+    el("div", { class: "se-search__field" }, icon("search", 18), input, kbd, mini, clearButton),
+    summary,
+    live,
+    semanticSlot
+  );
   const section = el(
     "section",
     { class: "se-search", "aria-label": "Search all datasets", hidden: true },
-    el(
-      "div",
-      { class: "se-container se-search__row" },
-      el("div", { class: "se-search__field" }, icon("search", 18), input, kbd, mini, clearButton),
-      summary,
-      live,
-      semanticSlot
-    ),
+    row,
     progress
   );
   container.appendChild(section);
@@ -148,6 +152,8 @@ export function mountSearchBar(
   return {
     input,
     semanticSlot,
+    row,
+    progress,
     section,
     destroy() {
       unsubscribe();

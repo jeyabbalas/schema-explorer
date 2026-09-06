@@ -1,7 +1,6 @@
 // Orchestration: every state mutation goes through here. Dataset-changing operations are
 // serialised through one queue so a drop during an example load cannot interleave with it.
 
-import type { SemanticIndex } from "json-schema-data-dictionary";
 import { MAX_DATASETS } from "../ingest/build";
 import { collectFromDataTransfer, collectFromFileList, type Collected } from "../ingest/collect";
 import { fetchExampleGroup, fetchExampleManifest } from "../ingest/examples";
@@ -11,6 +10,7 @@ import { savePrefs } from "../persist/prefs";
 import { buildCatalog, type Catalog } from "../search/catalog";
 import { createCatalogSearch, type CatalogSearch } from "../search/catalogSearch";
 import { exportResultsCsv, suggestedCsvFilename } from "../search/exportCsv";
+import type { SemanticController } from "../search/semantic";
 import type { CatalogSearchResult } from "../search/types";
 import { appendNotices, createNotice } from "../state/notices";
 import { downloadText } from "../util/download";
@@ -52,6 +52,9 @@ export interface AppActions {
   openInDictionary(datasetId: string, name: string): void;
   registerShelf(bridge: ShelfBridge): void;
   setQuery(query: string): void;
+  /** Turn semantic search on or off (remembered). */
+  setSemantic(on: boolean): Promise<void>;
+  retrySemantic(): Promise<void>;
   /** Download the current results as CSV; returns the CSV text (undefined when there is nothing to export). */
   exportResultsCsv(): string | undefined;
   announce(text: string): void;
@@ -62,8 +65,8 @@ export interface AppActions {
 export interface ActionDeps {
   /** Injected in tests to avoid real timers between roots. */
   yield?: (() => Promise<void>) | undefined;
-  /** The semantic-search controller (added by the semantic feature); attaches an index to each catalog. */
-  semantic?: { attach(catalog: Catalog): SemanticIndex | undefined } | undefined;
+  /** The semantic-search controller; attaches one index to each rebuilt catalog. */
+  semantic?: SemanticController | undefined;
 }
 
 interface RemovedEntry {
@@ -89,6 +92,43 @@ export function createActions(store: Store<AppState>, deps: ActionDeps = {}): Ap
     if (result.catalogVersion !== state.catalogVersion) return;
     if (result.normalizedQuery !== result.query.trim().toLowerCase().replace(/\s+/g, " ")) return;
     store.set({ search: { query: state.search.query, result } });
+  };
+
+  deps.semantic?.subscribe((semantic) => {
+    store.set({ semantic });
+  });
+
+  /** Start the embedder (model download) and, once ready, rebuild the search with its index. */
+  const startSemantic = async (userInitiated: boolean): Promise<void> => {
+    const semantic = deps.semantic;
+    if (!semantic) return;
+    const wasOff = store.get().semantic.kind === "off";
+    if (userInitiated && wasOff) {
+      pushNotices([
+        createNotice(
+          "info",
+          "Downloading the semantic model (23 MB) from Hugging Face. Keyword search keeps working meanwhile."
+        )
+      ]);
+    }
+    const ok = await semantic.start();
+    if (!store.get().prefs.semantic) return; // switched off while starting
+    if (ok) {
+      rebuildSearch();
+      return;
+    }
+    const state = store.get().semantic;
+    if (userInitiated && state.kind === "error") {
+      pushNotices([
+        createNotice(
+          "error",
+          `Couldn’t start semantic search: ${state.message}. Keyword search still works.`,
+          {
+            details: state.hint ? [state.hint] : undefined
+          }
+        )
+      ]);
+    }
   };
 
   const runQuery = (): void => {
@@ -232,6 +272,7 @@ export function createActions(store: Store<AppState>, deps: ActionDeps = {}): Ap
     async boot() {
       rebuildSearch();
       store.set({ phase: "ready" });
+      if (store.get().prefs.semantic) void startSemantic(false);
       await Promise.resolve();
     },
 
@@ -421,6 +462,7 @@ export function createActions(store: Store<AppState>, deps: ActionDeps = {}): Ap
     clearAll() {
       return enqueue(async () => {
         removed.clear();
+        await deps.semantic?.clearVectors();
         store.set((state) => ({
           datasets: [],
           batches: {},
@@ -471,6 +513,26 @@ export function createActions(store: Store<AppState>, deps: ActionDeps = {}): Ap
       if (state.search.query === query) return;
       store.set({ search: { query, result: state.search.result } });
       runQuery();
+    },
+
+    async setSemantic(on) {
+      if (store.get().prefs.semantic === on && (on ? store.get().semantic.kind !== "off" : true)) {
+        if (!on) return;
+      }
+      savePrefs({ semantic: on });
+      store.set((state) => ({ prefs: { ...state.prefs, semantic: on } }));
+      if (on) {
+        await startSemantic(true);
+      } else {
+        deps.semantic?.stop();
+        rebuildSearch();
+      }
+    },
+
+    async retrySemantic() {
+      if (!store.get().prefs.semantic) return;
+      deps.semantic?.stop();
+      await startSemantic(true);
     },
 
     exportResultsCsv() {
