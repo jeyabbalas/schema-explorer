@@ -76,6 +76,38 @@ describe("app smoke test", () => {
     expect(root.querySelectorAll(".se-card").length).toBe(5);
     expect(app.store.get().notices.some((notice) => notice.text.includes("already loaded"))).toBe(true);
 
+    // Search across every dataset.
+    app.actions.setAllCardsCollapsed(false);
+    const input = root.querySelector<HTMLInputElement>(".se-search__input");
+    if (!input) throw new Error("no search input");
+    expect(root.querySelector(".se-search")?.hasAttribute("hidden")).toBe(false);
+    app.actions.setQuery("smoking");
+    await until(() => !(root.querySelector("#se-results")?.hasAttribute("hidden") ?? true), 5_000, "results");
+    expect(root.querySelectorAll(".se-group").length).toBeGreaterThanOrEqual(3);
+    expect(root.querySelectorAll(".se-strip__cell").length).toBe(5);
+    expect(root.querySelector("#se-summary")?.textContent).toMatch(/^Found in \d of 5 datasets/);
+    expect(root.querySelectorAll(".se-row mark.se-mark").length).toBeGreaterThan(0);
+
+    // Jump into a dictionary: the card's own search box is driven to the variable.
+    const jump = root.querySelector<HTMLButtonElement>(".se-group[data-ds] .se-row__name");
+    const jumpName = jump?.querySelector("code")?.textContent ?? "";
+    jump?.click();
+    const targetCard = Array.from(root.querySelectorAll(".se-card")).find(
+      (card) => !card.querySelector(".se-card__filter")?.hasAttribute("hidden")
+    );
+    expect(targetCard).toBeDefined();
+    expect(targetCard?.querySelector(".se-card__filter code")?.textContent).toBe(jumpName);
+    const box = targetCard
+      ?.querySelector("json-data-dictionary")
+      ?.shadowRoot?.querySelector<HTMLInputElement>("[data-dd-search]");
+    expect(box?.value).toBe(jumpName);
+    expect(app.store.get().ui.announcement).toContain(jumpName);
+
+    // Export and clear.
+    expect(app.actions.exportResultsCsv()?.split("\r\n")[0]).toMatch(/^Dataset,Variable/);
+    app.actions.setQuery("");
+    expect(root.querySelector("#se-results")?.hasAttribute("hidden")).toBe(true);
+
     // Clear everything.
     await app.actions.clearAll();
     expect(root.querySelectorAll(".se-card").length).toBe(0);

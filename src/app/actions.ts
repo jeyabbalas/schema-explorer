@@ -1,13 +1,19 @@
 // Orchestration: every state mutation goes through here. Dataset-changing operations are
 // serialised through one queue so a drop during an example load cannot interleave with it.
 
+import type { SemanticIndex } from "json-schema-data-dictionary";
 import { MAX_DATASETS } from "../ingest/build";
 import { collectFromDataTransfer, collectFromFileList, type Collected } from "../ingest/collect";
 import { fetchExampleGroup, fetchExampleManifest } from "../ingest/examples";
 import { ingest, type IngestResult, type IngestSource } from "../ingest/index";
 import { uniqueLabel } from "../ingest/paths";
 import { savePrefs } from "../persist/prefs";
+import { buildCatalog, type Catalog } from "../search/catalog";
+import { createCatalogSearch, type CatalogSearch } from "../search/catalogSearch";
+import { exportResultsCsv, suggestedCsvFilename } from "../search/exportCsv";
+import type { CatalogSearchResult } from "../search/types";
 import { appendNotices, createNotice } from "../state/notices";
+import { downloadText } from "../util/download";
 import { colorAllocator } from "../state/selectors";
 import type { Store } from "../state/store";
 import type { AppState, Dataset, LoadBatch, Notice, NoticeLevel, ThemePreference } from "../state/types";
@@ -42,7 +48,13 @@ export interface AppActions {
   dismissNotice(id: string): void;
   runNoticeAction(noticeId: string): void;
   focusDataset(id: string): void;
+  /** Scroll to a dataset's card and show one variable in its own dictionary. */
+  openInDictionary(datasetId: string, name: string): void;
   registerShelf(bridge: ShelfBridge): void;
+  setQuery(query: string): void;
+  /** Download the current results as CSV; returns the CSV text (undefined when there is nothing to export). */
+  exportResultsCsv(): string | undefined;
+  announce(text: string): void;
   /** Observe dataset set changes (search rebuilds, persistence). */
   onDatasetsChanged(listener: (reason: DatasetsChangeReason) => void): () => void;
 }
@@ -50,6 +62,8 @@ export interface AppActions {
 export interface ActionDeps {
   /** Injected in tests to avoid real timers between roots. */
   yield?: (() => Promise<void>) | undefined;
+  /** The semantic-search controller (added by the semantic feature); attaches an index to each catalog. */
+  semantic?: { attach(catalog: Catalog): SemanticIndex | undefined } | undefined;
 }
 
 interface RemovedEntry {
@@ -65,6 +79,44 @@ export function createActions(store: Store<AppState>, deps: ActionDeps = {}): Ap
   const noticeActions = new Map<string, () => void>();
   const changeListeners = new Set<(reason: DatasetsChangeReason) => void>();
   const yieldFn = deps.yield ?? yieldToBrowser;
+  let catalog: Catalog | undefined;
+  let catalogSearch: CatalogSearch | undefined;
+  let unsubscribeSearch: (() => void) | undefined;
+
+  /** Accept a result only if it was computed against the current catalog. */
+  const applyResult = (result: CatalogSearchResult): void => {
+    const state = store.get();
+    if (result.catalogVersion !== state.catalogVersion) return;
+    if (result.normalizedQuery !== result.query.trim().toLowerCase().replace(/\s+/g, " ")) return;
+    store.set({ search: { query: state.search.query, result } });
+  };
+
+  const runQuery = (): void => {
+    const state = store.get();
+    if (!catalogSearch || state.search.query.trim().length === 0) {
+      if (state.search.result !== undefined)
+        store.set({ search: { query: state.search.query, result: undefined } });
+      return;
+    }
+    applyResult(catalogSearch.search(state.search.query));
+  };
+
+  /** Rebuild the merged catalog and its engine after any change to the set of datasets. */
+  const rebuildSearch = (): void => {
+    unsubscribeSearch?.();
+    unsubscribeSearch = undefined;
+    catalogSearch?.dispose();
+    catalogSearch = undefined;
+    const state = store.get();
+    catalog = buildCatalog(state.datasets, state.catalogVersion);
+    if (catalog.totalRows > 0) {
+      catalogSearch = createCatalogSearch(catalog, { semanticIndex: deps.semantic?.attach(catalog) });
+      unsubscribeSearch = catalogSearch.subscribe(applyResult);
+    } else {
+      deps.semantic?.attach(catalog);
+    }
+    runQuery();
+  };
 
   const enqueue = (task: () => Promise<void>): Promise<void> => {
     const run = queue.then(task, task);
@@ -75,6 +127,7 @@ export function createActions(store: Store<AppState>, deps: ActionDeps = {}): Ap
   };
 
   const datasetsChanged = (reason: DatasetsChangeReason): void => {
+    rebuildSearch();
     for (const listener of [...changeListeners]) {
       try {
         listener(reason);
@@ -177,6 +230,7 @@ export function createActions(store: Store<AppState>, deps: ActionDeps = {}): Ap
 
   const actions: AppActions = {
     async boot() {
+      rebuildSearch();
       store.set({ phase: "ready" });
       await Promise.resolve();
     },
@@ -403,6 +457,34 @@ export function createActions(store: Store<AppState>, deps: ActionDeps = {}): Ap
 
     focusDataset(id) {
       shelf?.focusDataset(id);
+    },
+
+    openInDictionary(datasetId, name) {
+      const dataset = store.get().datasets.find((candidate) => candidate.id === datasetId);
+      if (!dataset) return;
+      const shown = shelf?.showVariable(datasetId, name) ?? false;
+      actions.announce(shown ? `Opened ${name} in ${dataset.label}.` : `Scrolled to ${dataset.label}.`);
+    },
+
+    setQuery(query) {
+      const state = store.get();
+      if (state.search.query === query) return;
+      store.set({ search: { query, result: state.search.result } });
+      runQuery();
+    },
+
+    exportResultsCsv() {
+      const state = store.get();
+      const result = state.search.result;
+      if (!result || result.totalExact + result.totalRelated === 0) return undefined;
+      const csv = exportResultsCsv(result, state.datasets);
+      downloadText(suggestedCsvFilename(state.search.query), csv, "text/csv;charset=utf-8");
+      actions.notify("info", "Results CSV downloaded.");
+      return csv;
+    },
+
+    announce(text) {
+      store.set((state) => ({ ui: { ...state.ui, announcement: text } }));
     },
 
     registerShelf(bridge) {

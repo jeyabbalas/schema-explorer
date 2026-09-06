@@ -39,9 +39,9 @@ export function createCard(dataset: Dataset, actions: AppActions, options: CardO
   const filter = el(
     "p",
     { class: "se-card__filter", hidden: true },
-    "Showing ",
+    "Filtered to ",
     filterName,
-    " only · ",
+    " · ",
     el(
       "button",
       {

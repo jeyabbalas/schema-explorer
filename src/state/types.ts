@@ -106,6 +106,8 @@ export interface UiState {
   cards: Record<string, { collapsed: boolean }>;
   /** Files ignored by the most recent ingestion, for the "N files ignored" disclosure. */
   ignoredFiles: IgnoredFile[];
+  /** Text for the polite live region (e.g. after a jump to a variable). */
+  announcement: string;
 }
 
 export interface AppState {
@@ -137,6 +139,6 @@ export function initialState(prefs: Prefs): AppState {
     notices: [],
     busy: undefined,
     persistence: { available: true, lastError: undefined },
-    ui: { dragOver: false, cards: {}, ignoredFiles: [] }
+    ui: { dragOver: false, cards: {}, ignoredFiles: [], announcement: "" }
   };
 }

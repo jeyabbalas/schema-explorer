@@ -552,3 +552,8 @@
     display: block !important;
   }
 }
+
+/* View mount points must not create boxes: the sticky search bar needs <main> as its containing block. */
+.se-slot {
+  display: contents;
+}

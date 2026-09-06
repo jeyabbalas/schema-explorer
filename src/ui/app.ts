@@ -11,6 +11,9 @@ import { mountDropOverlay } from "./dropOverlay";
 import { mountEmptyState } from "./emptyState";
 import { mountFooter } from "./footer";
 import { mountHeader } from "./header";
+import { mountKeyboard } from "./keyboard";
+import { mountResults } from "./results";
+import { mountSearchBar, type SearchBarHandle } from "./searchBar";
 import { mountNotices } from "./notices";
 import { createPickers } from "./pickers";
 import { mountTheme } from "./theme";
@@ -18,8 +21,7 @@ import { mountTheme } from "./theme";
 export interface AppHandle {
   root: HTMLElement;
   shelf: ShelfHandle;
-  /** Mount points for views added by later features (search bar, results). */
-  slots: { search: HTMLElement; results: HTMLElement };
+  searchBar: SearchBarHandle;
   destroy(): void;
 }
 
@@ -45,6 +47,9 @@ export function mountApp(root: HTMLElement, store: Store<AppState>, actions: App
   const unmountHeader = mountHeader(headerSlot, store, actions, pickers);
   const unmountEmpty = mountEmptyState(emptySlot, store, actions, pickers);
   const unmountTray = mountTray(traySlot, store, actions, pickers);
+  const searchBar = mountSearchBar(searchSlot, store, actions);
+  const unmountResults = mountResults(resultsSlot, store, actions);
+  const unmountKeyboard = mountKeyboard(() => searchBar.input, actions);
   const shelf = mountShelf(shelfSlot, store, actions);
   const unmountNotices = mountNotices(app, store, actions);
   const unmountDrop = mountDropOverlay(app, store, actions);
@@ -68,15 +73,28 @@ export function mountApp(root: HTMLElement, store: Store<AppState>, actions: App
     }
   });
 
+  const announcer = el("div", { class: "se-visually-hidden", role: "status", "aria-live": "polite" });
+  app.appendChild(announcer);
+  const unsubscribeAnnounce = store.select(
+    (state) => state.ui.announcement,
+    (text) => {
+      announcer.textContent = text;
+    }
+  );
+
   return {
     root: app,
     shelf,
-    slots: { search: searchSlot, results: resultsSlot },
+    searchBar,
     destroy() {
+      unsubscribeAnnounce();
       unmountFooter();
       unmountDrop();
       unmountNotices();
       shelf.destroy();
+      unmountKeyboard();
+      unmountResults();
+      searchBar.destroy();
       unmountTray();
       unmountEmpty();
       unmountHeader();

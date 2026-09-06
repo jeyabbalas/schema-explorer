@@ -1210,3 +1210,8 @@ a.se-strip__cell:hover {
     background: var(--se-surface-2);
   }
 }
+
+/* Descriptions carry line breaks between title, description and $comment (like the library's table). */
+.se-row__desc {
+  white-space: pre-line;
+}
