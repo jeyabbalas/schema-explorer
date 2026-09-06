@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cd3-mws-pilot/recruitment/categories/reproductive_pregnancy.json",
+  "title": "RECRUITMENT — Reproductive Pregnancy",
+  "type": "object",
+  "x-variable-group": "reproductive_pregnancy",
+  "properties": {
+    "RANYCHLD": {
+      "title": "Any children",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 2,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ]
+    },
+    "RNUMFTP": {
+      "title": "Number of full-term pregnancies",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9
+        },
+        {
+          "const": 10,
+          "title": "10 or more"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "$comment": "10 is a real top-coded value ('10 or more'), not a sentinel -- adopted verbatim from the source's own code list."
+    },
+    "RAGEFB": {
+      "title": "Age at first birth",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 10,
+          "maximum": 55
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ]
+    },
+    "RAGELB": {
+      "title": "Age at last birth",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 10,
+          "maximum": 55
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ]
+    },
+    "RBFYN": {
+      "title": "Ever breastfed",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 2,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/not_on_questionnaire"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ]
+    },
+    "RBFNUM": {
+      "title": "Number of children breastfed",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 20
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/not_on_questionnaire"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "$comment": "Bound is an agent-decided plausibility range. -1 (not_on_questionnaire) adopted verbatim from the source ('Unable to derive (not asked on questionnaire)'), consistent with this field's No availability for the Blue version."
+    },
+    "RBFDUR": {
+      "title": "Total breastfeeding duration (months)",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 240
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/not_on_questionnaire"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "$comment": "Bound is an agent-decided plausibility range (20 years cumulative, generous). -1 adopted verbatim from the source, same as RBFNUM."
+    }
+  },
+  "required": [
+    "RANYCHLD",
+    "RNUMFTP",
+    "RAGEFB",
+    "RAGELB",
+    "RBFYN",
+    "RBFNUM",
+    "RBFDUR"
+  ]
+}

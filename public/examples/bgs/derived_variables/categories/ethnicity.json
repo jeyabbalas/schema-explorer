@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cd3-bgs-pilot/derived_variables/categories/ethnicity.json",
+  "title": "DERIVED_VARIABLES — Ethnicity",
+  "type": "object",
+  "x-variable-group": "ethnicity",
+  "properties": {
+    "R0_Ethnicity": {
+      "title": "Ethnicity of the study participant",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "White"
+        },
+        {
+          "const": 2,
+          "title": "Black"
+        },
+        {
+          "const": 3,
+          "title": "Asian"
+        },
+        {
+          "const": 4,
+          "title": "Other"
+        },
+        {
+          "const": 9,
+          "title": "Not known"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "White includes: White, Jewish Ashkenazi, Jewish Sephardi. Black includes: Caribbean, African, Black-other. Asian includes: Indian, Pakistani, Bangladeshi, Chinese. Those reporting other or multiple ethnicities are grouped together. Derived from: R0_EthnGroupWhite, R0_EthnGroupJAshk, R0_EthnGroupJSeph, R0_EthnGroupBlkCarib, R0_EthnGroupBlkAfr, R0_EthnGroupBlkOther, R0_EthnGroupIndian, R0_EthnGroupPakistani, R0_EthnGroupBngldsh, R0_EthnGroupChinese, R0_EthnGroupNone",
+      "$comment": "Legacy name: ethnicity."
+    },
+    "R0_AshkenaziAncestry": {
+      "title": "Flag for whether the participant has Ashkenazi Jewish ancestry",
+      "oneOf": [
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Binary field indicating Ashkenazi Jewish ancestry. Derived from: R0_EthnGroupJAshk",
+      "$comment": "Legacy name: AJancestry."
+    }
+  },
+  "required": [
+    "R0_Ethnicity",
+    "R0_AshkenaziAncestry"
+  ]
+}

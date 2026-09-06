@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cd3-bgs-pilot/derived_variables/categories/diabetes.json",
+  "title": "DERIVED_VARIABLES — Diabetes",
+  "type": "object",
+  "x-variable-group": "diabetes",
+  "properties": {
+    "R0_DiabetesStatus": {
+      "title": "Diabetes diagnosis status at baseline",
+      "oneOf": [
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Questionnaire self-report of doctor diagnosis prior to R0. Derived from: R0_Diabetes",
+      "$comment": "Legacy name: illnessdiabetes."
+    },
+    "R0_AgeDiabetes": {
+      "title": "Age at diabetes diagnosis (years)",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Taken directly from questionnaire variable, otherwise unknown (only retained if R0_DiabetesStatus=1). Derived from: R0_DiabetesAge",
+      "$comment": "Legacy name: illnessdiabetesage. Upper bound is a plausibility bound the source does not state -- agent-decided."
+    },
+    "R0_DiabetesInsulin": {
+      "title": "Whether diabetes was treated with insulin at baseline",
+      "oneOf": [
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Taken directly from questionnaire variable, otherwise unknown. Derived from: R0_TreatedWithInsulin",
+      "$comment": "Legacy name: illnessdiabetesinsulin."
+    }
+  },
+  "required": [
+    "R0_DiabetesStatus",
+    "R0_AgeDiabetes",
+    "R0_DiabetesInsulin"
+  ]
+}

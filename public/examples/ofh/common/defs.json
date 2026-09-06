@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cd3-ofh-pilot/common/defs.json",
+  "title": "CD3 / Our Future Health (schemify pilot) — shared definitions",
+  "description": "Only invariant tokens are centralised here; context-specific sentinels are inlined per field because their meanings differ by variable. Shared across both tables in this package (participant, questionnaire).",
+  "$defs": {
+    "prefer_not_to_answer": {
+      "const": -3,
+      "title": "Prefer not to answer",
+      "description": "Adopted verbatim from the source's own coding tables (our_future_health_codings_v14.xlsx). Confirmed invariant at scale: appears with this exact meaning across all 5 DEMOG_* participant-domain fields and 347 of 353 coded questionnaire-domain fields."
+    },
+    "suppressed": {
+      "const": -999,
+      "title": "Suppressed",
+      "description": "Adopted verbatim from the source's own coding tables: statistical disclosure control, not a generic 'missing' sentinel. Note this is a DIFFERENT meaning from the -999 used in the sibling BGS pilot package (that one is agent-decided generic missingness) -- packages are independent and this collision is expected, not a bug."
+    },
+    "dont_know": {
+      "const": -1,
+      "title": "Do not know",
+      "description": "Adopted verbatim from the source's own coding tables. Found only in the questionnaire domain (280 of 353 coded fields), not present in participant."
+    },
+    "none_of_the_above": {
+      "const": -7,
+      "title": "None of the above",
+      "description": "Adopted verbatim from the source's own coding tables (131 of 353 coded questionnaire fields). Unlike the other three shared defs, this is a substantive response (the participant actively selected 'none of the listed options apply'), not a missingness sentinel -- centralised here because the code and meaning are invariant wherever it appears, per SCHEMA-PATTERNS.md's rule for any truly invariant shared shape, not only sentinels."
+    }
+  }
+}

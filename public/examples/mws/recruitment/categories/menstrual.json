@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cd3-mws-pilot/recruitment/categories/menstrual.json",
+  "title": "RECRUITMENT — Menstrual",
+  "type": "object",
+  "x-variable-group": "menstrual",
+  "properties": {
+    "RMENARCH": {
+      "title": "Age at menarche",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 7,
+          "maximum": 20
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ]
+    },
+    "RPSTOPYN": {
+      "title": "Periods stopped now",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 2,
+          "title": "No"
+        },
+        {
+          "const": 3,
+          "title": "Irregular"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ]
+    },
+    "RPSTOPAG": {
+      "title": "Age periods stopped",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "$comment": "Bound is a plausibility range the source does not fully state -- agent-decided."
+    }
+  },
+  "required": [
+    "RMENARCH",
+    "RPSTOPYN",
+    "RPSTOPAG"
+  ]
+}

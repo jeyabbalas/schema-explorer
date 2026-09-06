@@ -1,0 +1,202 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cd3-bgs-pilot/derived_variables/categories/body_size.json",
+  "title": "DERIVED_VARIABLES — Body Size",
+  "type": "object",
+  "x-variable-group": "body_size",
+  "properties": {
+    "R0_Height20": {
+      "title": "Height in centimeters at 20 years old",
+      "anyOf": [
+        {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "exclusiveMaximum": 320
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/not_applicable"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Derived from the RecordedHeights entry where R0_RecHght_Num == '20'. Height is set to R0_HghtAge_Cm if it is present and >0; otherwise it is calculated from imperial inputs as R0_HghtAge_Ft*30.48 + R0_HghtAge_In*2.54 when either imperial component is present and the converted value is >0; otherwise null. No discrepancy check is applied when both metric and imperial values are present. Derived from: R0_RecWght_Num, R0_HghtAge_Ft, R0_HghtAge_In, R0_HghtAge_Cm",
+      "$comment": "Legacy name: bodysizeht20."
+    },
+    "R0_Weight20": {
+      "title": "Weight in kilograms at 20 years old",
+      "anyOf": [
+        {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "exclusiveMaximum": 500
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/not_applicable"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Derived from the RecordedWeights entry where R0_RecWght_Num == '20'. Weight is set to R0_WghtAge_Kg if it is present and >0; otherwise it is calculated from imperial inputs as R0_WghtAge_St*6.35029318 + R0_WghtAge_Lbs*0.45359237 when either imperial component is present and the converted value is >0; otherwise null. No discrepancy check is applied when both metric and imperial values are present. Derived from: R0_RecWght_Num, R0_WghtAge_St, R0_WghtAge_Lbs, R0_WghtAge_Kg",
+      "$comment": "Legacy name: weight_20."
+    },
+    "R0_BMI20": {
+      "title": "BMI at 20 years old. ",
+      "anyOf": [
+        {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "exclusiveMaximum": 165
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/not_applicable"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Body Mass Index (kg/m²) at age 20. If AgeEntry < 20 or R0_PregAt20 == 1, BMI is set to 9999. Otherwise BMI is calculated as R0_Weight20 / ((R0_Height20 / 100)^2) when both derived measures are present and >0; otherwise null. BMI is rounded to 1 decimal place. Calculation: R0_Weight20 / ((R0_Height20 / 100) ^ 2) Derived from: R0_Height20, R0_Weight20, R0_PregAt20, AgeEntry",
+      "$comment": "Legacy name: bmi_20."
+    },
+    "R0_Height": {
+      "title": "Height in centimeters at baseline",
+      "anyOf": [
+        {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "exclusiveMaximum": 320
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Derived from current height inputs in PhysicalDevelopment. Height is set to R0_CurrentHght_Cm if it is present and >0; otherwise it is calculated from imperial inputs as R0_CurrentHght_Ft*30.48 + R0_CurrentHght_In*2.54 when either imperial component is present and the converted value is >0; otherwise null. No discrepancy check is applied when both metric and imperial values are present. Derived from: R0_CurrentHght_Ft, R0_CurrentHght_In, R0_CurrentHght_Cm",
+      "$comment": "Legacy name: height_best."
+    },
+    "R0_Weight": {
+      "title": "Weight in kilograms at baseline",
+      "anyOf": [
+        {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "exclusiveMaximum": 500
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Derived from current weight inputs in PhysicalDevelopment. Weight is set to R0_CurrentWght_Kg if it is present and >0; otherwise it is calculated from imperial inputs as R0_CurrentWght_St*6.35029318 + R0_CurrentWght_Lbs*0.45359237 when either imperial component is present and the converted value is >0; otherwise null. No discrepancy check is applied when both metric and imperial values are present. Derived from: R0_CurrentWght_St, R0_CurrentWght_Lbs, R0_CurrentWght_Kg",
+      "$comment": "Legacy name: weight_entry."
+    },
+    "R0_BMI": {
+      "title": "BMI at baseline",
+      "anyOf": [
+        {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "exclusiveMaximum": 165
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/not_applicable"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Body Mass Index (kg/m²) at baseline. If R0_CurrentPreg == 1, BMI is set to 9999. Otherwise BMI is calculated as weight_kg / (height_m^2) using derived R0_Weight and R0_Height when both are present and >0; otherwise null. BMI is rounded to 1 decimal place. Calculation: R0_Weight / ((R0_Height / 100) ^ 2) Derived from: R0_Height, R0_Weight, R0_CurrentPreg",
+      "$comment": "Legacy name: bmi_entry."
+    },
+    "R0_HighestWeight": {
+      "title": "Greatest non-pregnant weight since age 18 (kg)",
+      "anyOf": [
+        {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "exclusiveMaximum": 700
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Derived from greatest non-pregnant weight since age 18 in PhysicalDevelopment. Weight is set to R0_HighestWght_Kg if it is present and >0; otherwise it is calculated from imperial inputs as R0_HighestWght_St*6.35029318 + R0_HighestWght_Lbs*0.45359237 when either imperial component is present and the converted value is >0; otherwise null. Derived from: R0_HighestWght_St, R0_HighestWght_Lbs, R0_HighestWght_Kg",
+      "$comment": "Legacy name: bodysizewtgreat."
+    },
+    "R0_HighestWeightAge": {
+      "title": "Age at greatest non-pregnant weight since age 18, in whole years",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Transfer from PhysicalDevelopment.R0_HighestWght_Age (no transformation). Derived from: R0_HighestWght_Age",
+      "$comment": "Legacy name: bodysizewtgreatage. Upper bound is a plausibility bound the source does not state -- agent-decided."
+    },
+    "R0_WaistCircum": {
+      "title": "Waist circumference in centimeters at baseline",
+      "anyOf": [
+        {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "exclusiveMaximum": 350
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Derived from waist circumference inputs in PhysicalDevelopment. Waist circumference is calculated from R0_WaistCircum_In*2.54 when inches is present and >0; otherwise R0_WaistCircum_Cm is used when present and >0; otherwise null. The selected value is rounded to 2 decimal places. Derived from: R0_WaistCircum_In, R0_WaistCircum_Cm",
+      "$comment": "Legacy name: bodysizewaist."
+    },
+    "R0_HipCircum": {
+      "title": "Hip circumference in centimeters at baseline",
+      "anyOf": [
+        {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "exclusiveMaximum": 350
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Derived from hip circumference inputs in PhysicalDevelopment. Hip circumference is calculated from R0_HipCircum_In*2.54 when inches is present and >0; otherwise R0_HipCircum_Cm is used when present and >0; otherwise null. The selected value is rounded to 2 decimal places. Derived from: R0_HipCircum_In, R0_HipCircum_Cm",
+      "$comment": "Legacy name: bodysizehip."
+    },
+    "R0_WaistHipRatio": {
+      "title": "Waist-to-hip ratio at baseline",
+      "anyOf": [
+        {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "exclusiveMaximum": 10
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/not_applicable"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Waist-to-hip ratio at baseline. If R0_CurrentPreg == 1, the value is set to 9999. Otherwise it is calculated as R0_WaistCircum / R0_HipCircum when both derived measurements are present and R0_HipCircum > 0; otherwise null. The ratio is rounded to 2 decimal places. Calculation: R0_WaistCircum / R0_HipCircum Derived from: R0_WaistCircum, R0_HipCircum, R0_CurrentPreg",
+      "$comment": "Legacy name: bodysizewhr."
+    }
+  },
+  "required": [
+    "R0_Height20",
+    "R0_Weight20",
+    "R0_BMI20",
+    "R0_Height",
+    "R0_Weight",
+    "R0_BMI",
+    "R0_HighestWeight",
+    "R0_HighestWeightAge",
+    "R0_WaistCircum",
+    "R0_HipCircum",
+    "R0_WaistHipRatio"
+  ]
+}

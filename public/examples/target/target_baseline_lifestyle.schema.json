@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cd3-target-pilot/target_baseline_lifestyle.schema.json",
+  "title": "CD3 Target Schema — Baseline Lifestyle (pilot)",
+  "description": "Array of harmonised target records. One element is one participant's baseline age and smoking/alcohol status, in the CD3 target (cross-cohort) representation that per-cohort source schemas will be mapped onto. Not derived from any single cohort's source dictionary — variable names, codes and titles are agent-proposed for this pilot and open for steward review.",
+  "x-schema-version": "0.1.0",
+  "$defs": {
+    "dont_know": {
+      "const": -777,
+      "title": "Don't know"
+    },
+    "prefer_not_to_answer": {
+      "const": -888,
+      "title": "Prefer not to answer"
+    },
+    "missing": {
+      "const": -999,
+      "title": "Missing or not recorded"
+    }
+  },
+  "type": "array",
+  "minItems": 1,
+  "uniqueItems": true,
+  "items": {
+    "type": "object",
+    "title": "TARGET_BASELINE_LIFESTYLE record",
+    "properties": {
+      "AgeAtBaseline": {
+        "title": "Age at baseline (years)",
+        "anyOf": [
+          {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 120
+          },
+          { "$ref": "#/$defs/dont_know" },
+          { "$ref": "#/$defs/prefer_not_to_answer" },
+          { "$ref": "#/$defs/missing" }
+        ]
+      },
+      "EverSmoked": {
+        "title": "Ever smoked at baseline",
+        "oneOf": [
+          {
+            "const": 0,
+            "title": "No"
+          },
+          {
+            "const": 1,
+            "title": "Yes"
+          },
+          { "$ref": "#/$defs/dont_know" },
+          { "$ref": "#/$defs/prefer_not_to_answer" },
+          { "$ref": "#/$defs/missing" }
+        ]
+      },
+      "SmokingStatus": {
+        "title": "Smoking status at baseline",
+        "oneOf": [
+          {
+            "const": 0,
+            "title": "Never"
+          },
+          {
+            "const": 1,
+            "title": "Former"
+          },
+          {
+            "const": 2,
+            "title": "Current"
+          },
+          { "$ref": "#/$defs/dont_know" },
+          { "$ref": "#/$defs/prefer_not_to_answer" },
+          { "$ref": "#/$defs/missing" }
+        ]
+      },
+      "EverDrankAlcohol": {
+        "title": "Ever drank alcohol at baseline",
+        "oneOf": [
+          {
+            "const": 0,
+            "title": "No"
+          },
+          {
+            "const": 1,
+            "title": "Yes"
+          },
+          { "$ref": "#/$defs/dont_know" },
+          { "$ref": "#/$defs/prefer_not_to_answer" },
+          { "$ref": "#/$defs/missing" }
+        ]
+      },
+      "AlcoholStatus": {
+        "title": "Alcohol status at baseline",
+        "oneOf": [
+          {
+            "const": 0,
+            "title": "Never"
+          },
+          {
+            "const": 1,
+            "title": "Former"
+          },
+          {
+            "const": 2,
+            "title": "Current"
+          },
+          { "$ref": "#/$defs/dont_know" },
+          { "$ref": "#/$defs/prefer_not_to_answer" },
+          { "$ref": "#/$defs/missing" }
+        ]
+      }
+    },
+    "required": [
+      "AgeAtBaseline",
+      "EverSmoked",
+      "SmokingStatus",
+      "EverDrankAlcohol",
+      "AlcoholStatus"
+    ],
+    "unevaluatedProperties": false
+  }
+}

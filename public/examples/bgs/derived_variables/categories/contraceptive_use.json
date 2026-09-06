@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cd3-bgs-pilot/derived_variables/categories/contraceptive_use.json",
+  "title": "DERIVED_VARIABLES — Contraceptive Use",
+  "type": "object",
+  "x-variable-group": "contraceptive_use",
+  "properties": {
+    "R0_OralContraceptiveStatus": {
+      "title": "Whether the participant was using oral contraceptives at baseline",
+      "oneOf": [
+        {
+          "const": 0,
+          "title": "Never"
+        },
+        {
+          "const": 1,
+          "title": "Former"
+        },
+        {
+          "const": 2,
+          "title": "Current"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Derived from pill episodes and age at entry. CURRENT (2) if any ContracepPill episode covers age at entry (StartAge ≤ AgeEntry ≤ StopAge) or if CurrentUse=1 on any episode; FORMER (1) if any prior use but no episode covers entry; NEVER (0) if no pill use. Null if insufficient info. Derived from: R0_ContracepPillUse, R0_ContracepPill_StartAge, R0_ContracepPill_StopAge, R0_ContracepPill_CurrentUse, AgeEntry",
+      "$comment": "Legacy name: ocstatus."
+    },
+    "R0_AgeStartedOC": {
+      "title": "Age first used oral contraceptives",
+      "anyOf": [
+        {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "exclusiveMaximum": 120
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/not_applicable"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Earliest start age across ContracepPill episodes. Null if never used or no valid start ages. Derived from: R0_ContracepPill_StartAge",
+      "$comment": "Legacy name: oc1age."
+    },
+    "R0_AgeLastUsedOC": {
+      "title": "Age last used oral contraceptives",
+      "anyOf": [
+        {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "exclusiveMaximum": 120
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/not_applicable"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "For former users, latest stop age across ContracepPill episodes that end on/before entry; for current, take age at entry, or never, null. Derived from: R0_ContracepPill_StopAge, AgeEntry",
+      "$comment": "Legacy name: ocLage."
+    },
+    "R0_OCLength": {
+      "title": "Total duration of oral contraceptive use (years)",
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0,
+          "exclusiveMaximum": 120
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/not_applicable"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Merge overlapping ContracepPill episodes; sum (min(StopAge, AgeEntry) - StartAge) across merged spans, floor negatives at 0; treat ongoing episodes (missing StopAge or CurrentUse=1) as ending at AgeEntry. Round to 1 dp. Null if insufficient info; 0 if never used. Derived from: R0_ContracepPill_StartAge, R0_ContracepPill_StopAge, R0_ContracepPill_CurrentUse, AgeEntry",
+      "$comment": "Legacy name: oclength."
+    }
+  },
+  "required": [
+    "R0_OralContraceptiveStatus",
+    "R0_AgeStartedOC",
+    "R0_AgeLastUsedOC",
+    "R0_OCLength"
+  ]
+}

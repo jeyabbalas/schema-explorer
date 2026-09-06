@@ -1,0 +1,3021 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cd3-ofh-pilot/questionnaire/categories/lifestyle.json",
+  "title": "QUESTIONNAIRE — Lifestyle",
+  "type": "object",
+  "x-variable-group": "lifestyle",
+  "properties": {
+    "ACTIVITY_MOD_DAYS_1_1": {
+      "title": "In a typical WEEK, on how many days did you do 10 minutes or more of moderate physical activities like carrying light loads, cycling at normal pace?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In a typical WEEK, on how many days did you do 10 minutes or more of moderate physical activities like carrying light loads, cycling at normal pace?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "ACTIVITY_MOD_DAYS_2_1": {
+      "title": "Thinking about the last 4 weeks, in a typical WEEK, on how many days did you do 10 minutes or more of moderate physical activities like carrying light loads, cycling at normal pace?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Thinking about the last 4 weeks, in a typical WEEK, on how many days did you do 10 minutes or more of moderate physical activities like carrying light loads, cycling at normal pace?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "ACTIVITY_MOD_MINS_1_1": {
+      "title": "How many minutes did you usually spend doing moderate activities on a typical DAY?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How many minutes did you usually spend doing moderate activities on a typical DAY?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "ACTIVITY_MOD_MINS_2_1": {
+      "title": "Thinking about the last 4 weeks, how many minutes did you usually spend doing moderate physical activities on a typical DAY?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Thinking about the last 4 weeks, how many minutes did you usually spend doing moderate physical activities on a typical DAY?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "ACTIVITY_STAIRS_1_1": {
+      "title": "At home, during the last 4 weeks, about how many times a DAY do you climb a flight of stairs?",
+      "oneOf": [
+        {
+          "const": 0,
+          "title": "None"
+        },
+        {
+          "const": 1,
+          "title": "1-5 times a day"
+        },
+        {
+          "const": 2,
+          "title": "6-10 times a day"
+        },
+        {
+          "const": 3,
+          "title": "11-15 times a day"
+        },
+        {
+          "const": 4,
+          "title": "16-20 times a day"
+        },
+        {
+          "const": 5,
+          "title": "More than 20 times a day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "At home, during the last 4 weeks, about how many times a DAY do you climb a flight of stairs?"
+    },
+    "ACTIVITY_TRANSPORT_1_M": {
+      "title": "In the last 4 weeks, which forms of transport have you used most often to get about?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Car/motor vehicle"
+        },
+        {
+          "const": 2,
+          "title": "Walk"
+        },
+        {
+          "const": 3,
+          "title": "Public transport"
+        },
+        {
+          "const": 4,
+          "title": "Cycle"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In the last 4 weeks, which forms of transport have you used most often to get about?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "ACTIVITY_TYPE_1_M": {
+      "title": "In the last 4 weeks did you spend any time doing the following?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Walking for pleasure (not as a means of transport)"
+        },
+        {
+          "const": 2,
+          "title": "Other exercises (eg: swimming, cycling, keep fit, bowling)"
+        },
+        {
+          "const": 3,
+          "title": "Strenuous sports"
+        },
+        {
+          "const": 4,
+          "title": "Light DIY (eg: pruning, watering the lawn)"
+        },
+        {
+          "const": 5,
+          "title": "Heavy DIY (eg: weeding, lawn mowing, carpentry, digging)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In the last 4 weeks did you spend any time doing the following?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "ACTIVITY_TYPE_DIY_HEAVY_1_1": {
+      "title": "How many times in the last 4 weeks did you do heavy DIY?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Once in the last 4 weeks"
+        },
+        {
+          "const": 2,
+          "title": "2-3 times in the last 4 weeks"
+        },
+        {
+          "const": 3,
+          "title": "Once a week"
+        },
+        {
+          "const": 4,
+          "title": "2-3 times a week"
+        },
+        {
+          "const": 5,
+          "title": "4-5 times a week"
+        },
+        {
+          "const": 6,
+          "title": "Every day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How many times in the last 4 weeks did you do heavy DIY?"
+    },
+    "ACTIVITY_TYPE_DIY_HEAVY_DUR_1_1": {
+      "title": "Each time you did heavy DIY, about how long did you spend doing it?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Less than 15 minutes"
+        },
+        {
+          "const": 2,
+          "title": "Between 15 and 30 minutes"
+        },
+        {
+          "const": 3,
+          "title": "Between 30 and 1 hour"
+        },
+        {
+          "const": 4,
+          "title": "Between 1 hour and 1.5 hours"
+        },
+        {
+          "const": 5,
+          "title": "Between 1.5 hours and 2 hours"
+        },
+        {
+          "const": 6,
+          "title": "Between 2 and 3 hours"
+        },
+        {
+          "const": 7,
+          "title": "Over 3 hours"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Each time you did heavy DIY, about how long did you spend doing it?"
+    },
+    "ACTIVITY_TYPE_DIY_LIGHT_1_1": {
+      "title": "How many times in the last 4 weeks did you do light DIY?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Once in the last 4 weeks"
+        },
+        {
+          "const": 2,
+          "title": "2-3 times in the last 4 weeks"
+        },
+        {
+          "const": 3,
+          "title": "Once a week"
+        },
+        {
+          "const": 4,
+          "title": "2-3 times a week"
+        },
+        {
+          "const": 5,
+          "title": "4-5 times a week"
+        },
+        {
+          "const": 6,
+          "title": "Every day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How many times in the last 4 weeks did you do light DIY?"
+    },
+    "ACTIVITY_TYPE_DIY_LIGHT_DUR_1_1": {
+      "title": "Each time you did light DIY, about how long did you spend doing it?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Less than 15 minutes"
+        },
+        {
+          "const": 2,
+          "title": "Between 15 and 30 minutes"
+        },
+        {
+          "const": 3,
+          "title": "Between 30 and 1 hour"
+        },
+        {
+          "const": 4,
+          "title": "Between 1 hour and 1.5 hours"
+        },
+        {
+          "const": 5,
+          "title": "Between 1.5 hours and 2 hours"
+        },
+        {
+          "const": 6,
+          "title": "Between 2 and 3 hours"
+        },
+        {
+          "const": 7,
+          "title": "Over 3 hours"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Each time you did light DIY, about how long did you spend doing it?"
+    },
+    "ACTIVITY_TYPE_EXERCISE_1_1": {
+      "title": "How many times in the last 4 weeks did you do other exercises such as swimming, cycling, keep fit?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Once in the last 4 weeks"
+        },
+        {
+          "const": 2,
+          "title": "2-3 times in the last 4 weeks"
+        },
+        {
+          "const": 3,
+          "title": "Once a week"
+        },
+        {
+          "const": 4,
+          "title": "2-3 times a week"
+        },
+        {
+          "const": 5,
+          "title": "4-5 times a week"
+        },
+        {
+          "const": 6,
+          "title": "Every day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How many times in the last 4 weeks did you do other exercises such as swimming, cycling, keep fit?"
+    },
+    "ACTIVITY_TYPE_EXERCISE_DUR_1_1": {
+      "title": "Each time you did other exercises such as swimming, cycling, keep fit, about how long did you spend doing them?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Less than 15 minutes"
+        },
+        {
+          "const": 2,
+          "title": "Between 15 and 30 minutes"
+        },
+        {
+          "const": 3,
+          "title": "Between 30 and 1 hour"
+        },
+        {
+          "const": 4,
+          "title": "Between 1 hour and 1.5 hours"
+        },
+        {
+          "const": 5,
+          "title": "Between 1.5 hours and 2 hours"
+        },
+        {
+          "const": 6,
+          "title": "Between 2 and 3 hours"
+        },
+        {
+          "const": 7,
+          "title": "Over 3 hours"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Each time you did other exercises such as swimming, cycling, keep fit, about how long did you spend doing them?"
+    },
+    "ACTIVITY_TYPE_STREN_1_1": {
+      "title": "How many times in the last 4 weeks did you do strenuous sports?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Once in the last 4 weeks"
+        },
+        {
+          "const": 2,
+          "title": "2-3 times in the last 4 weeks"
+        },
+        {
+          "const": 3,
+          "title": "Once a week"
+        },
+        {
+          "const": 4,
+          "title": "2-3 times a week"
+        },
+        {
+          "const": 5,
+          "title": "4-5 times a week"
+        },
+        {
+          "const": 6,
+          "title": "Every day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How many times in the last 4 weeks did you do strenuous sports?"
+    },
+    "ACTIVITY_TYPE_STREN_DUR_1_1": {
+      "title": "Each time you did strenuous sports, about how long did you spend doing it?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Less than 15 minutes"
+        },
+        {
+          "const": 2,
+          "title": "Between 15 and 30 minutes"
+        },
+        {
+          "const": 3,
+          "title": "Between 30 and 1 hour"
+        },
+        {
+          "const": 4,
+          "title": "Between 1 hour and 1.5 hours"
+        },
+        {
+          "const": 5,
+          "title": "Between 1.5 hours and 2 hours"
+        },
+        {
+          "const": 6,
+          "title": "Between 2 and 3 hours"
+        },
+        {
+          "const": 7,
+          "title": "Over 3 hours"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Each time you did strenuous sports, about how long did you spend doing it?"
+    },
+    "ACTIVITY_TYPE_WALK_1_1": {
+      "title": "How many times in the last 4 weeks did you go walking for pleasure?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Once in the last 4 weeks"
+        },
+        {
+          "const": 2,
+          "title": "2-3 times in the last 4 weeks"
+        },
+        {
+          "const": 3,
+          "title": "Once a week"
+        },
+        {
+          "const": 4,
+          "title": "2-3 times a week"
+        },
+        {
+          "const": 5,
+          "title": "4-5 times a week"
+        },
+        {
+          "const": 6,
+          "title": "Every day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How many times in the last 4 weeks did you go walking for pleasure?"
+    },
+    "ACTIVITY_TYPE_WALK_DUR_1_1": {
+      "title": "Each time you went walking for pleasure, about how long did you spend doing it?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Less than 15 minutes"
+        },
+        {
+          "const": 2,
+          "title": "Between 15 and 30 minutes"
+        },
+        {
+          "const": 3,
+          "title": "Between 30 and 1 hour"
+        },
+        {
+          "const": 4,
+          "title": "Between 1 hour and 1.5 hour"
+        },
+        {
+          "const": 5,
+          "title": "Between 1.5 hour and 2 hours"
+        },
+        {
+          "const": 6,
+          "title": "Between 2 and 3 hours"
+        },
+        {
+          "const": 7,
+          "title": "Over 3 hours"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Each time you went walking for pleasure, about how long did you spend doing it?"
+    },
+    "ACTIVITY_VIG_DAYS_1_1": {
+      "title": "In a typical WEEK, how many days did you do 10 minutes or more of vigorous physical activity?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In a typical WEEK, how many days did you do 10 minutes or more of vigorous physical activity?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "ACTIVITY_VIG_DAYS_2_1": {
+      "title": "Thinking about the last 4 weeks, in a typical WEEK, how many days did you do 10 minutes or more of vigorous physical activity?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Thinking about the last 4 weeks, in a typical WEEK, how many days did you do 10 minutes or more of vigorous physical activity?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "ACTIVITY_VIG_MINS_1_1": {
+      "title": "How many minutes did you usually spend doing vigorous activities on a typical DAY?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How many minutes did you usually spend doing vigorous activities on a typical DAY?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "ACTIVITY_VIG_MINS_2_1": {
+      "title": "Thinking about the last 4 weeks, how many minutes did you usually spend doing vigorous activities on a typical DAY?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Thinking about the last 4 weeks, how many minutes did you usually spend doing vigorous activities on a typical DAY?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "ACTIVITY_WALK_DAYS_1_1": {
+      "title": "In a typical WEEK, on how many days did you walk for at least 10 minutes at a time?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "const": -2,
+          "title": "Unable to walk"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In a typical WEEK, on how many days did you walk for at least 10 minutes at a time?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "ACTIVITY_WALK_DAYS_2_1": {
+      "title": "Thinking about the last 4 weeks, in a typical WEEK, on how many days did you walk for at least 10 minutes at a time?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "const": -2,
+          "title": "Unable to walk"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Thinking about the last 4 weeks, in a typical WEEK, on how many days did you walk for at least 10 minutes at a time?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "ACTIVITY_WALK_MINS_1_1": {
+      "title": "How many minutes did you usually spend walking on a typical DAY?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How many minutes did you usually spend walking on a typical DAY?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "ACTIVITY_WALK_MINS_2_1": {
+      "title": "Thinking about the last 4 weeks, how many minutes did you usually spend walking on a typical DAY?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Thinking about the last 4 weeks, how many minutes did you usually spend walking on a typical DAY?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "ACTIVITY_WALK_PACE_1_1": {
+      "title": "How would you describe your usual walking pace?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Slow pace"
+        },
+        {
+          "const": 2,
+          "title": "Steady average pace"
+        },
+        {
+          "const": 3,
+          "title": "Brisk pace"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How would you describe your usual walking pace?"
+    },
+    "ALCOHOL_BEER_MTH_1_1": {
+      "title": "In an average MONTH, how many pints of beer or cider would you drink?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In an average MONTH, how many pints of beer or cider would you drink?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "ALCOHOL_BEER_MTH_2_1": {
+      "title": "In an average MONTH, how many pints of beer or cider would you drink?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In an average MONTH, how many pints of beer or cider would you drink?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "ALCOHOL_BEER_WK_1_1": {
+      "title": "In an average WEEK, how many pints of beer or cider would you drink?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In an average WEEK, how many pints of beer or cider would you drink?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "ALCOHOL_CHG_1_1": {
+      "title": "Compared to 10 years ago, do you drink?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "More nowadays"
+        },
+        {
+          "const": 2,
+          "title": "About the same"
+        },
+        {
+          "const": 3,
+          "title": "Less nowadays"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Compared to 10 years ago, do you drink?"
+    },
+    "ALCOHOL_CHG_ABST_REASON_1_1": {
+      "title": "Why did you stop drinking alcohol?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Illness or ill health"
+        },
+        {
+          "const": 2,
+          "title": "Doctor's advice"
+        },
+        {
+          "const": 3,
+          "title": "Health precaution"
+        },
+        {
+          "const": 4,
+          "title": "Financial reasons"
+        },
+        {
+          "const": 5,
+          "title": "Other reason"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Why did you stop drinking alcohol?"
+    },
+    "ALCOHOL_CHG_ABST_REASON_2_M": {
+      "title": "Which of the following, if any, do you think contributed to you stopping drinking alcohol?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Advice from a doctor/health worker"
+        },
+        {
+          "const": 2,
+          "title": "Government TV/radio/press article"
+        },
+        {
+          "const": 3,
+          "title": "A decision drinking was too expensive"
+        },
+        {
+          "const": 4,
+          "title": "I knew someone else who was cutting down"
+        },
+        {
+          "const": 5,
+          "title": "Health problems I had at the time"
+        },
+        {
+          "const": 6,
+          "title": "A concern about future health problems"
+        },
+        {
+          "const": 7,
+          "title": "Something said by family/friends/children"
+        },
+        {
+          "const": 8,
+          "title": "A significant birthday or event"
+        },
+        {
+          "const": 9,
+          "title": "Improve my fitness"
+        },
+        {
+          "const": 10,
+          "title": "Help with weight loss"
+        },
+        {
+          "const": 11,
+          "title": "Detox (e.g. Dry January)"
+        },
+        {
+          "const": 12,
+          "title": "Other reason"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Which of the following, if any, do you think contributed to you stopping drinking alcohol?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "ALCOHOL_CHG_REDUCE_REASON_1_1": {
+      "title": "Why did you reduce the amount you drank?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Illness or ill health"
+        },
+        {
+          "const": 2,
+          "title": "Doctor's advice"
+        },
+        {
+          "const": 3,
+          "title": "Health precaution"
+        },
+        {
+          "const": 4,
+          "title": "Financial reasons"
+        },
+        {
+          "const": 5,
+          "title": "Other reason"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Why did you reduce the amount you drank?"
+    },
+    "ALCOHOL_CHG_REDUCE_REASON_2_M": {
+      "title": "Which of the following, if any, do you think contributed to you reducing the amount you drank?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Advice from a doctor/health worker"
+        },
+        {
+          "const": 2,
+          "title": "Government TV/radio/press article"
+        },
+        {
+          "const": 3,
+          "title": "A decision drinking was too expensive"
+        },
+        {
+          "const": 4,
+          "title": "I knew someone else who was cutting down"
+        },
+        {
+          "const": 5,
+          "title": "Health problems I had at the time"
+        },
+        {
+          "const": 6,
+          "title": "A concern about future health problems"
+        },
+        {
+          "const": 7,
+          "title": "Something said by family/friends/children"
+        },
+        {
+          "const": 8,
+          "title": "A significant birthday or event"
+        },
+        {
+          "const": 9,
+          "title": "Improve my fitness"
+        },
+        {
+          "const": 10,
+          "title": "Help with weight loss"
+        },
+        {
+          "const": 11,
+          "title": "Detox (e.g. Dry January)"
+        },
+        {
+          "const": 12,
+          "title": "Other reason"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Which of the following, if any, do you think contributed to you reducing the amount you drank?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "ALCOHOL_CURR_1_1": {
+      "title": "About how often do you drink alcohol?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Daily or almost daily"
+        },
+        {
+          "const": 2,
+          "title": "Three or four times a week"
+        },
+        {
+          "const": 3,
+          "title": "Once or twice a week"
+        },
+        {
+          "const": 4,
+          "title": "One to three times a month"
+        },
+        {
+          "const": 5,
+          "title": "Special occasions only"
+        },
+        {
+          "const": 6,
+          "title": "Never"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "About how often do you drink alcohol?"
+    },
+    "ALCOHOL_FOOD_1_1": {
+      "title": "When you drink alcohol is it usually with meals?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "const": -6,
+          "title": "It varies"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "When you drink alcohol is it usually with meals?"
+    },
+    "ALCOHOL_OTHER_MTH_1_1": {
+      "title": "In an average MONTH, how many glasses of other alcoholic drinks (such as alcopops) would you drink?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In an average MONTH, how many glasses of other alcoholic drinks (such as alcopops) would you drink?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "ALCOHOL_OTHER_MTH_2_1": {
+      "title": "In an average MONTH, how many glasses of other alcoholic drinks (such as alcopops) would you drink?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In an average MONTH, how many glasses of other alcoholic drinks (such as alcopops) would you drink?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "ALCOHOL_OTHER_WK_1_1": {
+      "title": "In an average WEEK, how many glasses of other alcoholic drinks (such as alcopops) would you drink?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In an average WEEK, how many glasses of other alcoholic drinks (such as alcopops) would you drink?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "ALCOHOL_PREV_1_1": {
+      "title": "Did you previously drink alcohol?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Did you previously drink alcohol?"
+    },
+    "ALCOHOL_SPIRITS_MTH_1_1": {
+      "title": "In an average MONTH, how many measures of spirits or liqueurs would you drink?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In an average MONTH, how many measures of spirits or liqueurs would you drink?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "ALCOHOL_SPIRITS_MTH_2_1": {
+      "title": "In an average MONTH, how many measures of spirits or liqueurs would you drink?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In an average MONTH, how many measures of spirits or liqueurs would you drink?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "ALCOHOL_SPIRITS_WK_1_1": {
+      "title": "In an average WEEK, how many measures of spirits or liqueurs would you drink?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In an average WEEK, how many measures of spirits or liqueurs would you drink?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "ALCOHOL_WINE_FORT_MTH_1_1": {
+      "title": "In an average MONTH, how many glasses of fortified wine would you drink?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In an average MONTH, how many glasses of fortified wine would you drink?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "ALCOHOL_WINE_FORT_MTH_2_1": {
+      "title": "In an average MONTH, how many glasses of fortified wine would you drink?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In an average MONTH, how many glasses of fortified wine would you drink?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "ALCOHOL_WINE_FORT_WK_1_1": {
+      "title": "In an average WEEK, how many glasses of fortified wine would you drink?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In an average WEEK, how many glasses of fortified wine would you drink?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "ALCOHOL_WINE_RED_MTH_1_1": {
+      "title": "In an average MONTH, how many glasses of RED wine would you drink?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In an average MONTH, how many glasses of RED wine would you drink?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "ALCOHOL_WINE_RED_MTH_2_1": {
+      "title": "In an average MONTH, how many glasses of RED wine would you drink?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In an average MONTH, how many glasses of RED wine would you drink?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "ALCOHOL_WINE_RED_WK_1_1": {
+      "title": "In an average WEEK, how many glasses of RED wine would you drink?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In an average WEEK, how many glasses of RED wine would you drink?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "ALCOHOL_WINE_WHITE_MTH_1_1": {
+      "title": "In an average MONTH, how many glasses of WHITE wine or champagne would you drink?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In an average MONTH, how many glasses of WHITE wine or champagne would you drink?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "ALCOHOL_WINE_WHITE_MTH_2_1": {
+      "title": "In an average MONTH, how many glasses of WHITE wine or champagne would you drink?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In an average MONTH, how many glasses of WHITE wine or champagne would you drink?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "ALCOHOL_WINE_WHITE_WK_1_1": {
+      "title": "In an average WEEK, how many glasses of WHITE wine or champagne would you drink?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In an average WEEK, how many glasses of WHITE wine or champagne would you drink?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "LIFESTYLE_DRIVE_HRS_1_1": {
+      "title": "In a typical DAY, how many hours do you spend driving?",
+      "oneOf": [
+        {
+          "const": -10,
+          "title": "Less than an hour a day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In a typical DAY, how many hours do you spend driving?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "LIFESTYLE_OUTDOOR_SUM_HRS_1_1": {
+      "title": "In a typical DAY in summer, how many hours do you spend outdoors?",
+      "oneOf": [
+        {
+          "const": -10,
+          "title": "Less than an hour a day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In a typical DAY in summer, how many hours do you spend outdoors?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "LIFESTYLE_OUTDOOR_WIN_HRS_1_1": {
+      "title": "In a typical DAY in winter, how many hours do you spend outdoors?",
+      "oneOf": [
+        {
+          "const": -10,
+          "title": "Less than an hour a day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In a typical DAY in winter, how many hours do you spend outdoors?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "LIFESTYLE_SCREEN_PC_HRS_1_1": {
+      "title": "In a typical DAY, how many hours do you spend using the computer?",
+      "oneOf": [
+        {
+          "const": -10,
+          "title": "Less than an hour a day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In a typical DAY, how many hours do you spend using the computer?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "LIFESTYLE_SCREEN_PC_HRS_2_1": {
+      "title": "In a typical DAY, how many hours do you usually spend with computers, cell phones, handheld video games, and other electronic devices?",
+      "oneOf": [
+        {
+          "const": -10,
+          "title": "Less than an hour a day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In a typical DAY, how many hours do you usually spend with computers, cell phones, handheld video games, and other electronic devices?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "LIFESTYLE_SCREEN_TV_HRS_1_1": {
+      "title": "In a typical DAY, how many hours do you spend watching TV?",
+      "oneOf": [
+        {
+          "const": -10,
+          "title": "Less than an hour a day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In a typical DAY, how many hours do you spend watching TV?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "LIFESTYLE_SCREEN_TV_HRS_2_1": {
+      "title": "In a typical DAY, how many hours do you usually spend in front of a TV watching TV programs, videos, or playing video games?",
+      "oneOf": [
+        {
+          "const": -10,
+          "title": "Less than an hour a day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In a typical DAY, how many hours do you usually spend in front of a TV watching TV programs, videos, or playing video games?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "LIFESTYLE_SOCIAL_REC_1_M": {
+      "title": "Which of the following do you attend once a week or more often?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Sports club or gym"
+        },
+        {
+          "const": 2,
+          "title": "Pub or social club"
+        },
+        {
+          "const": 3,
+          "title": "Religious group"
+        },
+        {
+          "const": 4,
+          "title": "Adult education class"
+        },
+        {
+          "const": 5,
+          "title": "Other group activity"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Which of the following do you attend once a week or more often?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "LIFESTYLE_SOCIAL_VISITS_1_1": {
+      "title": "How often do you visit friends or family or have them visit you?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Almost daily"
+        },
+        {
+          "const": 2,
+          "title": "2-4 times a week"
+        },
+        {
+          "const": 3,
+          "title": "About once a week"
+        },
+        {
+          "const": 4,
+          "title": "About once a month"
+        },
+        {
+          "const": 5,
+          "title": "Once every few month"
+        },
+        {
+          "const": 6,
+          "title": "Never or almost never"
+        },
+        {
+          "const": 7,
+          "title": "No friends/family outside household"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How often do you visit friends or family or have them visit you?"
+    },
+    "SLEEP_CHRONOTYPE_1_1": {
+      "title": "Do you consider yourself to be?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Definitely a 'morning' person"
+        },
+        {
+          "const": 2,
+          "title": "More a 'morning' than 'evening' person"
+        },
+        {
+          "const": 3,
+          "title": "More an 'evening' than a 'morning' person"
+        },
+        {
+          "const": 4,
+          "title": "Definitely an 'evening' person"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you consider yourself to be?"
+    },
+    "SLEEP_DAYTIME_1_1": {
+      "title": "How likely are you to doze off or fall asleep during the daytime when you don't mean to?",
+      "oneOf": [
+        {
+          "const": 0,
+          "title": "Never/rarely"
+        },
+        {
+          "const": 1,
+          "title": "Sometimes"
+        },
+        {
+          "const": 2,
+          "title": "Often"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How likely are you to doze off or fall asleep during the daytime when you don't mean to?"
+    },
+    "SLEEP_HRS_1_1": {
+      "title": "About how many hours sleep do you get in every 24 hours?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "About how many hours sleep do you get in every 24 hours?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "SLEEP_NAPPING_1_1": {
+      "title": "Do you have a nap during the day?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Never/rarely"
+        },
+        {
+          "const": 2,
+          "title": "Sometimes"
+        },
+        {
+          "const": 3,
+          "title": "Usually"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you have a nap during the day?"
+    },
+    "SLEEP_SNORING_1_1": {
+      "title": "Does your partner or a close relative or friend complain about your snoring?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 2,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Does your partner or a close relative or friend complain about your snoring?"
+    },
+    "SLEEP_TROUBLE_1_1": {
+      "title": "Do you have trouble falling asleep at night or do you wake up in the middle of the night?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Never/rarely"
+        },
+        {
+          "const": 2,
+          "title": "Sometimes"
+        },
+        {
+          "const": 3,
+          "title": "Usually"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you have trouble falling asleep at night or do you wake up in the middle of the night?"
+    },
+    "SLEEP_WAKING_1_1": {
+      "title": "On an average day, how easy do you find getting up in the morning?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Not easy at all"
+        },
+        {
+          "const": 2,
+          "title": "Not very easy"
+        },
+        {
+          "const": 3,
+          "title": "Fairly easy"
+        },
+        {
+          "const": 4,
+          "title": "Very easy"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "On an average day, how easy do you find getting up in the morning?"
+    },
+    "SMOKE_100_TIMES_1_1": {
+      "title": "In your lifetime, have you smoked a total of at least 100 times?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In your lifetime, have you smoked a total of at least 100 times?"
+    },
+    "SMOKE_100_TIMES_2_1": {
+      "title": "On how many occasions have you smoked cigarettes in your life?",
+      "oneOf": [
+        {
+          "const": 0,
+          "title": "10 or less"
+        },
+        {
+          "const": 1,
+          "title": "11-49"
+        },
+        {
+          "const": 2,
+          "title": "50-99"
+        },
+        {
+          "const": 3,
+          "title": "100 or more"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "On how many occasions have you smoked cigarettes in your life?"
+    },
+    "SMOKE_AVG_1_1": {
+      "title": "About how many cigarettes did you smoke on average each day?",
+      "oneOf": [
+        {
+          "const": -10,
+          "title": "Less then one a day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        }
+      ],
+      "x-derivation": "About how many cigarettes did you smoke on average each day?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "SMOKE_AVG_2_1": {
+      "title": "On the days that you smoked how many cigarettes did you smoke per day on average?",
+      "oneOf": [
+        {
+          "const": -10,
+          "title": "Less then one a day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        }
+      ],
+      "x-derivation": "On the days that you smoked how many cigarettes did you smoke per day on average?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "SMOKE_AVG_PREV_1_1": {
+      "title": "About how many cigarettes did you smoke on average each day?",
+      "oneOf": [
+        {
+          "const": -10,
+          "title": "Less then one a day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        }
+      ],
+      "x-derivation": "About how many cigarettes did you smoke on average each day?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "SMOKE_CHG_1_1": {
+      "title": "Compared to 10 years ago do you smoke",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "More nowadays?"
+        },
+        {
+          "const": 2,
+          "title": "About the same?"
+        },
+        {
+          "const": 3,
+          "title": "Less nowadays?"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Compared to 10 years ago do you smoke..."
+    },
+    "SMOKE_CHG_2_1": {
+      "title": "Compared to 10 years ago do you smoke",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "More nowadays?"
+        },
+        {
+          "const": 2,
+          "title": "About the same?"
+        },
+        {
+          "const": 3,
+          "title": "Less nowadays?"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Compared to 10 years ago do you smoke..."
+    },
+    "SMOKE_CHG_ABST_1_1": {
+      "title": "In the time that you smoked, did you ever stop for more than 6 months?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In the time that you smoked, did you ever stop for more than 6 months?"
+    },
+    "SMOKE_CHG_ABST_2_1": {
+      "title": "In the time that you have smoked, have you ever stopped for more than 6 months?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In the time that you have smoked, have you ever stopped for more than 6 months?"
+    },
+    "SMOKE_CHG_ABST_REASON_1_M": {
+      "title": "When you stopped smoking for more than 6 months, why did you stop?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Advice from a GP/Health professional"
+        },
+        {
+          "const": 2,
+          "title": "TV advert for a nicotine replacement product"
+        },
+        {
+          "const": 3,
+          "title": "Government TV/radio/Press advert"
+        },
+        {
+          "const": 4,
+          "title": "Hearing about a new stop smoking treatment"
+        },
+        {
+          "const": 5,
+          "title": "A decision that smoking was too expensive"
+        },
+        {
+          "const": 6,
+          "title": "Being faced with smoking restrictions"
+        },
+        {
+          "const": 7,
+          "title": " I knew someone else who was stopping"
+        },
+        {
+          "const": 8,
+          "title": "Seeing a health warning on a cigarette pack"
+        },
+        {
+          "const": 9,
+          "title": "Being contacted by my local NHS Stop Smoking Services"
+        },
+        {
+          "const": 10,
+          "title": "Health problems I had at the time"
+        },
+        {
+          "const": 11,
+          "title": "A concern about future health problems"
+        },
+        {
+          "const": 12,
+          "title": "Attending a local stop smoking activity or event"
+        },
+        {
+          "const": 13,
+          "title": "Something said by family/friends/children"
+        },
+        {
+          "const": 14,
+          "title": "A significant birthday"
+        },
+        {
+          "const": 15,
+          "title": "The coronavirus outbreak"
+        },
+        {
+          "const": 16,
+          "title": "Restrictions on where I could smoke"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "When you stopped smoking for more than 6 months, why did you stop?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "SMOKE_CHG_REDUCE_ABST_1_1": {
+      "title": "In the time that you have smoked, have you ever stopped for more than 6 months?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In the time that you have smoked, have you ever stopped for more than 6 months?"
+    },
+    "SMOKE_CHG_REDUCE_ABST_REASON_1_M": {
+      "title": "When you stopped smoking for more than 6 months, why did you stop?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Advice from a GP/Health professional"
+        },
+        {
+          "const": 2,
+          "title": "TV advert for a nicotine replacement product"
+        },
+        {
+          "const": 3,
+          "title": "Government TV/radio/Press advert"
+        },
+        {
+          "const": 4,
+          "title": "Hearing about a new stop smoking treatment"
+        },
+        {
+          "const": 5,
+          "title": "A decision that smoking was too expensive"
+        },
+        {
+          "const": 6,
+          "title": "Being faced with smoking restrictions"
+        },
+        {
+          "const": 7,
+          "title": " I knew someone else who was stopping"
+        },
+        {
+          "const": 8,
+          "title": "Seeing a health warning on a cigarette pack"
+        },
+        {
+          "const": 9,
+          "title": "Being contacted by my local NHS Stop Smoking Services"
+        },
+        {
+          "const": 10,
+          "title": "Health problems I had at the time"
+        },
+        {
+          "const": 11,
+          "title": "A concern about future health problems"
+        },
+        {
+          "const": 12,
+          "title": "Attending a local stop smoking activity or event"
+        },
+        {
+          "const": 13,
+          "title": "Something said by family/friends/children"
+        },
+        {
+          "const": 14,
+          "title": "A significant birthday"
+        },
+        {
+          "const": 15,
+          "title": "The coronavirus outbreak"
+        },
+        {
+          "const": 16,
+          "title": "Restrictions on where I could smoke"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "When you stopped smoking for more than 6 months, why did you stop?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "SMOKE_CHG_REDUCE_REASON_1_M": {
+      "title": "Why did you reduce your smoking?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Illness or ill health"
+        },
+        {
+          "const": 2,
+          "title": "Doctor's advice"
+        },
+        {
+          "const": 3,
+          "title": "Health precaution"
+        },
+        {
+          "const": 4,
+          "title": "Financial reasons"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Why did you reduce your smoking?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "SMOKE_CHG_REDUCE_REASON_2_M": {
+      "title": "Why did you reduce your smoking?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Advice from a GP/Health professional"
+        },
+        {
+          "const": 2,
+          "title": "TV advert for a nicotine replacement product"
+        },
+        {
+          "const": 3,
+          "title": "Government TV/radio/Press advert"
+        },
+        {
+          "const": 4,
+          "title": "Hearing about a new stop smoking treatment"
+        },
+        {
+          "const": 5,
+          "title": "A decision that smoking was too expensive"
+        },
+        {
+          "const": 6,
+          "title": "Being faced with smoking restrictions"
+        },
+        {
+          "const": 7,
+          "title": " I knew someone else who was stopping"
+        },
+        {
+          "const": 8,
+          "title": "Seeing a health warning on a cigarette pack"
+        },
+        {
+          "const": 9,
+          "title": "Being contacted by my local NHS Stop Smoking Services"
+        },
+        {
+          "const": 10,
+          "title": "Health problems I had at the time"
+        },
+        {
+          "const": 11,
+          "title": "A concern about future health problems"
+        },
+        {
+          "const": 12,
+          "title": "Attending a local stop smoking activity or event"
+        },
+        {
+          "const": 13,
+          "title": "Something said by family/friends/children"
+        },
+        {
+          "const": 14,
+          "title": "A significant birthday"
+        },
+        {
+          "const": 15,
+          "title": "The coronavirus outbreak"
+        },
+        {
+          "const": 16,
+          "title": "Restrictions on where I could smoke"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Why did you reduce your smoking?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "SMOKE_EXPOSE_HOUSE_HRS_1_1": {
+      "title": "At home, about how many hours per WEEK are you exposed to other people's tobacco smoke?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "At home, about how many hours per WEEK are you exposed to other people's tobacco smoke?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "SMOKE_EXPOSE_OUTSIDE_HRS_1_1": {
+      "title": "Outside of your home, about how many hours per WEEK are you exposed to other people's tobacco smoke?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Outside of your home, about how many hours per WEEK are you exposed to other people's tobacco smoke?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "SMOKE_EXPOSURE_1_1": {
+      "title": "In the past year, about how often were you around tobacco smoke from other people smoking in your home or at work?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Every day"
+        },
+        {
+          "const": 2,
+          "title": "Most days of the week"
+        },
+        {
+          "const": 3,
+          "title": "One day per week"
+        },
+        {
+          "const": 5,
+          "title": "One day per month"
+        },
+        {
+          "const": 6,
+          "title": "A few days per year"
+        },
+        {
+          "const": 0,
+          "title": "Never"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In the past year, about how often were you around tobacco smoke from other people smoking in your home or at work?"
+    },
+    "SMOKE_EXPOSURE_HRS_1_1": {
+      "title": "On days you were around other people's tobacco smoke in the past year in your home or work, about how many hours per day were you around it?",
+      "oneOf": [
+        {
+          "const": 0,
+          "title": "Less than 1 hour per day"
+        },
+        {
+          "const": 1,
+          "title": "1 to 2 hours per days"
+        },
+        {
+          "const": 2,
+          "title": "3 to 5 hours per day"
+        },
+        {
+          "const": 3,
+          "title": "6 to 9 hours per day"
+        },
+        {
+          "const": 4,
+          "title": "10 to 15 hours per day"
+        },
+        {
+          "const": 5,
+          "title": "More than 15 hours per day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "On days you were around other people's tobacco smoke in the past year in your home or work, about how many hours per day were you around it?"
+    },
+    "SMOKE_FIRST_AGE_1_1": {
+      "title": "How old were you when you first started smoking on most days?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How old were you when you first started smoking on most days?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "SMOKE_FIRST_AGE_2_1": {
+      "title": "How old were you when you FIRST smoked on most days?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How old were you when you FIRST smoked on most days?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "SMOKE_HOUSE_1_1": {
+      "title": "Does anyone in your household smoke?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes, one household member smokes"
+        },
+        {
+          "const": 2,
+          "title": "Yes, more than one household member smokes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Does anyone in your household smoke?"
+    },
+    "SMOKE_PREV_AGE_1_1": {
+      "title": "How old were you when you last smoked on most days?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How old were you when you last smoked on most days?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "SMOKE_PREV_AGE_2_1": {
+      "title": "How old were you when you last smoked on most days?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How old were you when you last smoked on most days?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "SMOKE_PREV_REDUCE_REASON_1_M": {
+      "title": "Why did you stop smoking?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Illness or ill health"
+        },
+        {
+          "const": 2,
+          "title": "Doctor's advice"
+        },
+        {
+          "const": 3,
+          "title": "Health precaution"
+        },
+        {
+          "const": 4,
+          "title": "Financial reasons"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Why did you stop smoking?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "SMOKE_PREV_REDUCE_REASON_2_M": {
+      "title": "Why did you stop or reduce your smoking?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Advice from a GP/Health professional"
+        },
+        {
+          "const": 2,
+          "title": "TV advert for a nicotine replacement product"
+        },
+        {
+          "const": 3,
+          "title": "Government TV/radio/Press advert"
+        },
+        {
+          "const": 4,
+          "title": "Hearing about a new stop smoking treatment"
+        },
+        {
+          "const": 5,
+          "title": "A decision that smoking was too expensive"
+        },
+        {
+          "const": 6,
+          "title": "Being faced with smoking restrictions"
+        },
+        {
+          "const": 7,
+          "title": " I knew someone else who was stopping"
+        },
+        {
+          "const": 8,
+          "title": "Seeing a health warning on a cigarette pack"
+        },
+        {
+          "const": 9,
+          "title": "Being contacted by my local NHS Stop Smoking Services"
+        },
+        {
+          "const": 10,
+          "title": "Health problems I had at the time"
+        },
+        {
+          "const": 11,
+          "title": "A concern about future health problems"
+        },
+        {
+          "const": 12,
+          "title": "Attending a local stop smoking activity or event"
+        },
+        {
+          "const": 13,
+          "title": "Something said by family/friends/children"
+        },
+        {
+          "const": 14,
+          "title": "A significant birthday"
+        },
+        {
+          "const": 15,
+          "title": "The coronavirus outbreak"
+        },
+        {
+          "const": 16,
+          "title": "Restrictions on where I could smoke"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Why did you stop or reduce your smoking?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "SMOKE_PREV_REG_1_1": {
+      "title": "Did you previously smoke cigarettes on most or all days?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Did you previously smoke cigarettes on most or all days?"
+    },
+    "SMOKE_PREV_REG_2_1": {
+      "title": "Did you ever smoke cigarettes on most or all days?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Did you ever smoke cigarettes on most or all days?"
+    },
+    "SMOKE_PREV_TYPE_1_1": {
+      "title": "What type of tobacco did you usually smoke?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Manufactured cigarettes"
+        },
+        {
+          "const": 2,
+          "title": "Hand-rolled cigarettes"
+        },
+        {
+          "const": 3,
+          "title": "Cigars or pipes"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "What type of tobacco did you usually smoke?"
+    },
+    "SMOKE_REG_1_M": {
+      "title": "Have you ever REGULARLY used any of these tobacco products?",
+      "oneOf": [
+        {
+          "const": 0,
+          "title": "Cigarettes (manufactured or hand-rolled)"
+        },
+        {
+          "const": 1,
+          "title": "Electronic delivery devices that can be vaped, such as e-cigarettes (e.g. UWELL, Vype, Vuse, Vapouriz, WizMix)."
+        },
+        {
+          "const": 2,
+          "title": "Cigars, cigarillos, or little filtered cigar (e.g. Montecristo, Romeo Y Julieta, Cohiba, Davidoff, Neos red)"
+        },
+        {
+          "const": 3,
+          "title": "Chewing tobacco, snus, snuff, or dip (e.g. Skruf, Tulsi, Sikandar, conwood, Al Capone Powder)"
+        },
+        {
+          "const": 4,
+          "title": "Shisha, hookah or water pipe"
+        },
+        {
+          "const": 5,
+          "title": "Tobacco pipe"
+        },
+        {
+          "const": 6,
+          "title": "I have not used any of these tobacco products"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you ever REGULARLY used any of these tobacco products?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "SMOKE_REG_DAY_1_1": {
+      "title": "About how many cigarettes do you smoke on average each day?",
+      "oneOf": [
+        {
+          "const": -10,
+          "title": "Less then one a day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "About how many cigarettes do you smoke on average each day?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "SMOKE_REG_DAY_2_1": {
+      "title": "On the days that you smoke, how many cigarettes do you smoke per day on average?",
+      "oneOf": [
+        {
+          "const": -10,
+          "title": "Less then one a day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "On the days that you smoke, how many cigarettes do you smoke per day on average?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "SMOKE_REG_FIRST_AGE_1_1": {
+      "title": "How old were you when you first started smoking on most days?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How old were you when you first started smoking on most days?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "SMOKE_REG_FIRST_AGE_2_1": {
+      "title": "How old were you when you first started smoking on a REGULAR basis?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How old were you when you first started smoking on a REGULAR basis?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "SMOKE_REG_TYPE_1_1": {
+      "title": "What type of tobacco do you mainly smoke?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Manufactured cigarettes"
+        },
+        {
+          "const": 2,
+          "title": "Hand-rolled cigarettes"
+        },
+        {
+          "const": 3,
+          "title": "Cigars or pipes"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "What type of tobacco do you mainly smoke?"
+    },
+    "SMOKE_REG_TYPE_2_1": {
+      "title": "What type of cigarettes have you mainly smoked?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Manufactured cigarettes"
+        },
+        {
+          "const": 2,
+          "title": "Hand-rolled cigarettes"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "What type of cigarettes have you mainly smoked?"
+    },
+    "SMOKE_STATUS_1_1": {
+      "title": "Do you smoke tobacco now?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes, on most or all days"
+        },
+        {
+          "const": 2,
+          "title": "Only occasionally"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you smoke tobacco now?"
+    },
+    "SMOKE_STATUS_2_1": {
+      "title": "Do you smoke cigarettes now?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes, every day"
+        },
+        {
+          "const": 2,
+          "title": "Yes, some days"
+        },
+        {
+          "const": 3,
+          "title": "Yes, but rarely"
+        },
+        {
+          "const": 0,
+          "title": "No, not at all"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you smoke cigarettes now?"
+    },
+    "SMOKE_TOBACCO_AGE_1_1": {
+      "title": "How old were you when you first smoked a cigarette?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/suppressed"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How old were you when you first smoked a cigarette?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "SMOKE_TOBACCO_PREV_1_1": {
+      "title": "In the past, how often have you smoked tobacco?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Smoked on most or all days"
+        },
+        {
+          "const": 2,
+          "title": "Smoked occasionally"
+        },
+        {
+          "const": 3,
+          "title": "Just tried once or twice"
+        },
+        {
+          "const": 4,
+          "title": "I have never smoked"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In the past, how often have you smoked tobacco?"
+    },
+    "SMOKE_TOBACCO_TYPE_1_M": {
+      "title": "Have you ever used any of these tobacco products, even once?",
+      "oneOf": [
+        {
+          "const": 0,
+          "title": "Cigarettes (manufactured or hand-rolled)"
+        },
+        {
+          "const": 1,
+          "title": "Electronic delivery devices that can be vaped, such as e-cigarettes (e.g. UWELL, Vype, Vuse, Vapouriz, WizMix)."
+        },
+        {
+          "const": 2,
+          "title": "Cigars, cigarillos, or little filtered cigar (e.g. Montecristo, Romeo Y Julieta, Cohiba, Davidoff, Neos red)"
+        },
+        {
+          "const": 3,
+          "title": "Chewing tobacco, snus, snuff, or dip (e.g. Skruf, Tulsi, Sikandar, conwood, Al Capone Powder)"
+        },
+        {
+          "const": 4,
+          "title": "Shisha, hookah or water pipe"
+        },
+        {
+          "const": 5,
+          "title": "Tobacco pipe"
+        },
+        {
+          "const": 6,
+          "title": "I have not used any of these tobacco products"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you ever used any of these tobacco products, even once?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "SMOKE_VAPE_1_1": {
+      "title": "Have you ever used an electronic cigarette?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you ever used an electronic cigarette?"
+    },
+    "SMOKE_VAPE_AGE_1_1": {
+      "title": "How old were you when you first used an e-cigarette (vaping)?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How old were you when you first used an e-cigarette (vaping)?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "SMOKE_VAPE_AGE_2_1": {
+      "title": "How old were you when you first used an e-cigarette (vaping)?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How old were you when you first used an e-cigarette (vaping)?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "SMOKE_VAPE_AVG_1_1": {
+      "title": "How often, on average, did you use e-cigarettes (vaping) during the past 12 months?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Never"
+        },
+        {
+          "const": 2,
+          "title": "Less than 1 time/mo"
+        },
+        {
+          "const": 3,
+          "title": "2-3 times/mo"
+        },
+        {
+          "const": 4,
+          "title": "1-2 times/week"
+        },
+        {
+          "const": 5,
+          "title": "3-6 times/week"
+        },
+        {
+          "const": 6,
+          "title": "1-4 times/day"
+        },
+        {
+          "const": 7,
+          "title": "5-14 times/day"
+        },
+        {
+          "const": 8,
+          "title": "15-24 times/day"
+        },
+        {
+          "const": 9,
+          "title": "25-34 times/day"
+        },
+        {
+          "const": 10,
+          "title": "35-44 times/day"
+        },
+        {
+          "const": 11,
+          "title": "More than 45 times/day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How often, on average, did you use e-cigarettes (vaping) during the past 12 months?"
+    },
+    "SMOKE_VAPE_AVG_2_1": {
+      "title": "How often, on average, did you use e-cigarettes (vaping) during the past 12 months?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Never"
+        },
+        {
+          "const": 2,
+          "title": "Less than 1 time/mo"
+        },
+        {
+          "const": 3,
+          "title": "2-3 times/mo"
+        },
+        {
+          "const": 4,
+          "title": "1-2 times/week"
+        },
+        {
+          "const": 5,
+          "title": "3-6 times/week"
+        },
+        {
+          "const": 6,
+          "title": "1-4 times/day"
+        },
+        {
+          "const": 7,
+          "title": "5-14 times/day"
+        },
+        {
+          "const": 8,
+          "title": "15-24 times/day"
+        },
+        {
+          "const": 9,
+          "title": "25-34 times/day"
+        },
+        {
+          "const": 10,
+          "title": "35-44 times/day"
+        },
+        {
+          "const": 11,
+          "title": "More than 45 times/day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How often, on average, did you use e-cigarettes (vaping) during the past 12 months?"
+    },
+    "SMOKE_VAPE_TYPE_1_M": {
+      "title": "What type of e-liquids/cartridges do you or did you use in your e-cigarettes?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Fruit/dessert flavor WITHOUT nicotine"
+        },
+        {
+          "const": 2,
+          "title": "Fruit/dessert flavor WITH nicotine"
+        },
+        {
+          "const": 3,
+          "title": "Menthol flavor WITHOUT nicotine"
+        },
+        {
+          "const": 4,
+          "title": "Menthol flavor WITH nicotine"
+        },
+        {
+          "const": 5,
+          "title": "Tobacco flavor WITHOUT nicotine"
+        },
+        {
+          "const": 6,
+          "title": "Tobacco flavor WITH nicotine"
+        },
+        {
+          "const": 7,
+          "title": "Marijuana or THC concentrate"
+        },
+        {
+          "const": 8,
+          "title": "Alcohol"
+        },
+        {
+          "const": 9,
+          "title": "Other"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "What type of e-liquids/cartridges do you or did you use in your e-cigarettes?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "SMOKE_VAPE_TYPE_2_M": {
+      "title": "What type of e-liquids/cartridges do you or did you use in your e-cigarettes?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Fruit/dessert flavor WITHOUT nicotine"
+        },
+        {
+          "const": 2,
+          "title": "Fruit/dessert flavor WITH nicotine"
+        },
+        {
+          "const": 3,
+          "title": "Menthol flavor WITHOUT nicotine"
+        },
+        {
+          "const": 4,
+          "title": "Menthol flavor WITH nicotine"
+        },
+        {
+          "const": 5,
+          "title": "Tobacco flavor WITHOUT nicotine"
+        },
+        {
+          "const": 6,
+          "title": "Tobacco flavor WITH nicotine"
+        },
+        {
+          "const": 7,
+          "title": "Marijuana or THC concentrate"
+        },
+        {
+          "const": 8,
+          "title": "Alcohol"
+        },
+        {
+          "const": 9,
+          "title": "Other"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "What type of e-liquids/cartridges do you or did you use in your e-cigarettes?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "SMOKE_VAPE_USE_1_1": {
+      "title": "When you used your first e-cigarette (vaping)?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "I had never smoked tobacco cigarettes"
+        },
+        {
+          "const": 2,
+          "title": "I was current smoker of tobacco cigarettes and had no plans to quit"
+        },
+        {
+          "const": 3,
+          "title": "I was current smoker of tobacco cigarettes and was planning to quit"
+        },
+        {
+          "const": 4,
+          "title": "I was a current smoker of tobacco cigarettes and was planning to reduce smoking"
+        },
+        {
+          "const": 5,
+          "title": "I had stopped smoking tobacco cigarettes"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "When you used your first e-cigarette (vaping)?"
+    },
+    "SMOKE_VAPE_USE_2_1": {
+      "title": "When you used your first e-cigarette (vaping)",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "I had never smoked tobacco cigarettes"
+        },
+        {
+          "const": 2,
+          "title": "I was current smoker of tobacco cigarettes and had no plans to quit"
+        },
+        {
+          "const": 3,
+          "title": "I was current smoker of tobacco cigarettes and was planning to quit"
+        },
+        {
+          "const": 4,
+          "title": "I was a current smoker of tobacco cigarettes and was planning to reduce smoking"
+        },
+        {
+          "const": 5,
+          "title": "I had stopped smoking tobacco cigarettes"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "When you used your first e-cigarette (vaping)..."
+    }
+  },
+  "required": [
+    "ACTIVITY_MOD_DAYS_1_1",
+    "ACTIVITY_MOD_DAYS_2_1",
+    "ACTIVITY_MOD_MINS_1_1",
+    "ACTIVITY_MOD_MINS_2_1",
+    "ACTIVITY_STAIRS_1_1",
+    "ACTIVITY_TRANSPORT_1_M",
+    "ACTIVITY_TYPE_1_M",
+    "ACTIVITY_TYPE_DIY_HEAVY_1_1",
+    "ACTIVITY_TYPE_DIY_HEAVY_DUR_1_1",
+    "ACTIVITY_TYPE_DIY_LIGHT_1_1",
+    "ACTIVITY_TYPE_DIY_LIGHT_DUR_1_1",
+    "ACTIVITY_TYPE_EXERCISE_1_1",
+    "ACTIVITY_TYPE_EXERCISE_DUR_1_1",
+    "ACTIVITY_TYPE_STREN_1_1",
+    "ACTIVITY_TYPE_STREN_DUR_1_1",
+    "ACTIVITY_TYPE_WALK_1_1",
+    "ACTIVITY_TYPE_WALK_DUR_1_1",
+    "ACTIVITY_VIG_DAYS_1_1",
+    "ACTIVITY_VIG_DAYS_2_1",
+    "ACTIVITY_VIG_MINS_1_1",
+    "ACTIVITY_VIG_MINS_2_1",
+    "ACTIVITY_WALK_DAYS_1_1",
+    "ACTIVITY_WALK_DAYS_2_1",
+    "ACTIVITY_WALK_MINS_1_1",
+    "ACTIVITY_WALK_MINS_2_1",
+    "ACTIVITY_WALK_PACE_1_1",
+    "ALCOHOL_BEER_MTH_1_1",
+    "ALCOHOL_BEER_MTH_2_1",
+    "ALCOHOL_BEER_WK_1_1",
+    "ALCOHOL_CHG_1_1",
+    "ALCOHOL_CHG_ABST_REASON_1_1",
+    "ALCOHOL_CHG_ABST_REASON_2_M",
+    "ALCOHOL_CHG_REDUCE_REASON_1_1",
+    "ALCOHOL_CHG_REDUCE_REASON_2_M",
+    "ALCOHOL_CURR_1_1",
+    "ALCOHOL_FOOD_1_1",
+    "ALCOHOL_OTHER_MTH_1_1",
+    "ALCOHOL_OTHER_MTH_2_1",
+    "ALCOHOL_OTHER_WK_1_1",
+    "ALCOHOL_PREV_1_1",
+    "ALCOHOL_SPIRITS_MTH_1_1",
+    "ALCOHOL_SPIRITS_MTH_2_1",
+    "ALCOHOL_SPIRITS_WK_1_1",
+    "ALCOHOL_WINE_FORT_MTH_1_1",
+    "ALCOHOL_WINE_FORT_MTH_2_1",
+    "ALCOHOL_WINE_FORT_WK_1_1",
+    "ALCOHOL_WINE_RED_MTH_1_1",
+    "ALCOHOL_WINE_RED_MTH_2_1",
+    "ALCOHOL_WINE_RED_WK_1_1",
+    "ALCOHOL_WINE_WHITE_MTH_1_1",
+    "ALCOHOL_WINE_WHITE_MTH_2_1",
+    "ALCOHOL_WINE_WHITE_WK_1_1",
+    "LIFESTYLE_DRIVE_HRS_1_1",
+    "LIFESTYLE_OUTDOOR_SUM_HRS_1_1",
+    "LIFESTYLE_OUTDOOR_WIN_HRS_1_1",
+    "LIFESTYLE_SCREEN_PC_HRS_1_1",
+    "LIFESTYLE_SCREEN_PC_HRS_2_1",
+    "LIFESTYLE_SCREEN_TV_HRS_1_1",
+    "LIFESTYLE_SCREEN_TV_HRS_2_1",
+    "LIFESTYLE_SOCIAL_REC_1_M",
+    "LIFESTYLE_SOCIAL_VISITS_1_1",
+    "SLEEP_CHRONOTYPE_1_1",
+    "SLEEP_DAYTIME_1_1",
+    "SLEEP_HRS_1_1",
+    "SLEEP_NAPPING_1_1",
+    "SLEEP_SNORING_1_1",
+    "SLEEP_TROUBLE_1_1",
+    "SLEEP_WAKING_1_1",
+    "SMOKE_100_TIMES_1_1",
+    "SMOKE_100_TIMES_2_1",
+    "SMOKE_AVG_1_1",
+    "SMOKE_AVG_2_1",
+    "SMOKE_AVG_PREV_1_1",
+    "SMOKE_CHG_1_1",
+    "SMOKE_CHG_2_1",
+    "SMOKE_CHG_ABST_1_1",
+    "SMOKE_CHG_ABST_2_1",
+    "SMOKE_CHG_ABST_REASON_1_M",
+    "SMOKE_CHG_REDUCE_ABST_1_1",
+    "SMOKE_CHG_REDUCE_ABST_REASON_1_M",
+    "SMOKE_CHG_REDUCE_REASON_1_M",
+    "SMOKE_CHG_REDUCE_REASON_2_M",
+    "SMOKE_EXPOSE_HOUSE_HRS_1_1",
+    "SMOKE_EXPOSE_OUTSIDE_HRS_1_1",
+    "SMOKE_EXPOSURE_1_1",
+    "SMOKE_EXPOSURE_HRS_1_1",
+    "SMOKE_FIRST_AGE_1_1",
+    "SMOKE_FIRST_AGE_2_1",
+    "SMOKE_HOUSE_1_1",
+    "SMOKE_PREV_AGE_1_1",
+    "SMOKE_PREV_AGE_2_1",
+    "SMOKE_PREV_REDUCE_REASON_1_M",
+    "SMOKE_PREV_REDUCE_REASON_2_M",
+    "SMOKE_PREV_REG_1_1",
+    "SMOKE_PREV_REG_2_1",
+    "SMOKE_PREV_TYPE_1_1",
+    "SMOKE_REG_1_M",
+    "SMOKE_REG_DAY_1_1",
+    "SMOKE_REG_DAY_2_1",
+    "SMOKE_REG_FIRST_AGE_1_1",
+    "SMOKE_REG_FIRST_AGE_2_1",
+    "SMOKE_REG_TYPE_1_1",
+    "SMOKE_REG_TYPE_2_1",
+    "SMOKE_STATUS_1_1",
+    "SMOKE_STATUS_2_1",
+    "SMOKE_TOBACCO_AGE_1_1",
+    "SMOKE_TOBACCO_PREV_1_1",
+    "SMOKE_TOBACCO_TYPE_1_M",
+    "SMOKE_VAPE_1_1",
+    "SMOKE_VAPE_AGE_1_1",
+    "SMOKE_VAPE_AGE_2_1",
+    "SMOKE_VAPE_AVG_1_1",
+    "SMOKE_VAPE_AVG_2_1",
+    "SMOKE_VAPE_TYPE_1_M",
+    "SMOKE_VAPE_TYPE_2_M",
+    "SMOKE_VAPE_USE_1_1",
+    "SMOKE_VAPE_USE_2_1"
+  ]
+}

@@ -1,0 +1,304 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cd3-ofh-pilot/participant/categories/participant.json",
+  "title": "PARTICIPANT — Participant",
+  "description": "Core participant registration, consent, birth, blood-sample and demographic fields.",
+  "type": "object",
+  "x-variable-group": "participant",
+  "properties": {
+    "PID": {
+      "title": "Participant ID",
+      "type": "string",
+      "x-role": "primary key",
+      "$comment": "Source gives no coding/nullability signal for this field; treated as always present. Open item -- see DECISIONS.md D004."
+    },
+    "REGISTRATION_YEAR": {
+      "title": "Year of registration",
+      "type": "integer",
+      "minimum": 2020,
+      "maximum": 2035,
+      "x-derivation": "Derived from Date of Registration.",
+      "$comment": "Bounds are an agent-decided plausibility range (OFH is a modern recruitment, dictionary v14); source states no range. Source gives no nullability/coding signal -- treated as always present, unlike BIRTH_YEAR which the source explicitly marks is_sparse_coding with a Suppressed code. Open item -- see DECISIONS.md D004."
+    },
+    "REGISTRATION_MONTH": {
+      "title": "Month of registration",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 12,
+      "x-derivation": "Derived from Date of Registration.",
+      "$comment": "Source gives no nullability/coding signal -- treated as always present. Open item -- see DECISIONS.md D004."
+    },
+    "CONSENT_VERSION": {
+      "title": "Consent version",
+      "type": "string",
+      "x-derivation": "Version identifier of the consent form signed.",
+      "$comment": "Source gives no nullability/coding signal -- treated as always present. Open item -- see DECISIONS.md D004."
+    },
+    "CONSENT_YEAR": {
+      "title": "Year of consent",
+      "type": "integer",
+      "minimum": 2020,
+      "maximum": 2035,
+      "x-derivation": "Derived from Date of Consent.",
+      "$comment": "Bounds are an agent-decided plausibility range; source states no range. Source gives no nullability/coding signal -- treated as always present. Open item -- see DECISIONS.md D004."
+    },
+    "CONSENT_MONTH": {
+      "title": "Month of consent",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 12,
+      "x-derivation": "Derived from Date of Consent.",
+      "$comment": "Source gives no nullability/coding signal -- treated as always present. Open item -- see DECISIONS.md D004."
+    },
+    "BIRTH_YEAR": {
+      "title": "Year of birth",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 1920,
+          "maximum": 2010
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/suppressed"
+        }
+      ],
+      "x-derivation": "Derived from Date of Birth.",
+      "$comment": "Bounds are an agent-decided plausibility range for adult participants; source states no range. is_sparse_coding=yes in the source dictionary, with a documented Suppressed (-999) code -- adopted verbatim, this is disclosure control, not generic missingness."
+    },
+    "BIRTH_MONTH": {
+      "title": "Month of birth",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/suppressed"
+        }
+      ],
+      "x-derivation": "Derived from Date of Birth.",
+      "$comment": "is_sparse_coding=yes in the source dictionary, with a documented Suppressed (-999) code -- adopted verbatim."
+    },
+    "BLOOD_SAMPLE": {
+      "title": "Blood sample quality",
+      "oneOf": [
+        {
+          "const": 0,
+          "title": "Invalid Sample"
+        },
+        {
+          "const": 1,
+          "title": "Valid Sample"
+        }
+      ],
+      "x-derivation": "Blood sample obtained with sufficient condition and volume for extraction of buffy coat, DNA and plasma.",
+      "$comment": "Source coding table defines only 0/1, no missingness code -- treated as always present. Open item -- see DECISIONS.md D004."
+    },
+    "DEMOG_ETHNICITY_1_1": {
+      "title": "Ethnic group",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "White – English / Welsh / Scottish / Northern Irish / British"
+        },
+        {
+          "const": 2,
+          "title": "White – Irish"
+        },
+        {
+          "const": 3,
+          "title": "White – Gypsy or Irish Traveller"
+        },
+        {
+          "const": 4,
+          "title": "White – Polish"
+        },
+        {
+          "const": 5,
+          "title": "Any other white background"
+        },
+        {
+          "const": 6,
+          "title": "Mixed – White and Black Caribbean"
+        },
+        {
+          "const": 7,
+          "title": "Mixed – White and Black African"
+        },
+        {
+          "const": 8,
+          "title": "Mixed – White and Asian"
+        },
+        {
+          "const": 9,
+          "title": "Any other mixed multiple ethnic background"
+        },
+        {
+          "const": 10,
+          "title": "Asian or Asian British – Indian"
+        },
+        {
+          "const": 11,
+          "title": "Asian or Asian British – Pakistani"
+        },
+        {
+          "const": 12,
+          "title": "Asian or Asian British – Bangladeshi"
+        },
+        {
+          "const": 13,
+          "title": "Chinese"
+        },
+        {
+          "const": 14,
+          "title": "Any other Asian/Asian British background"
+        },
+        {
+          "const": 15,
+          "title": "Black or Black British – African"
+        },
+        {
+          "const": 16,
+          "title": "Black or Black British – Caribbean"
+        },
+        {
+          "const": 17,
+          "title": "Any other Black / African / Caribbean background"
+        },
+        {
+          "const": 18,
+          "title": "Arab"
+        },
+        {
+          "const": 19,
+          "title": "Other"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "What is your ethnic group? Choose one option that best describes your ethnic group or background."
+    },
+    "DEMOG_GENDER_1_1": {
+      "title": "Gender identity",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Male"
+        },
+        {
+          "const": 2,
+          "title": "Female"
+        },
+        {
+          "const": 3,
+          "title": "Transgender Male"
+        },
+        {
+          "const": 4,
+          "title": "Transgender Female"
+        },
+        {
+          "const": 5,
+          "title": "Gender variant/non-conforming"
+        },
+        {
+          "const": 6,
+          "title": "Other"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "To which gender identity do you most identify?"
+    },
+    "DEMOG_GENDER_2_1": {
+      "title": "Current gender identity (detailed)",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Man"
+        },
+        {
+          "const": 2,
+          "title": "Woman"
+        },
+        {
+          "const": 3,
+          "title": "Gender fluid"
+        },
+        {
+          "const": 4,
+          "title": "Nonbinary/third gender"
+        },
+        {
+          "const": 5,
+          "title": "I don't identify with any option provided"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Select the option that best describes your current gender identity."
+    },
+    "DEMOG_SEX_1_1": {
+      "title": "Sex assigned at birth",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Male"
+        },
+        {
+          "const": 2,
+          "title": "Female"
+        },
+        {
+          "const": 3,
+          "title": "Other"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "What sex was assigned to you at birth?"
+    },
+    "DEMOG_SEX_2_1": {
+      "title": "Sex registered at birth",
+      "oneOf": [
+        {
+          "const": 2,
+          "title": "Female"
+        },
+        {
+          "const": 1,
+          "title": "Male"
+        },
+        {
+          "const": 3,
+          "title": "Intersex"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "What sex were you registered with at birth?"
+    }
+  },
+  "required": [
+    "PID",
+    "REGISTRATION_YEAR",
+    "REGISTRATION_MONTH",
+    "CONSENT_VERSION",
+    "CONSENT_YEAR",
+    "CONSENT_MONTH",
+    "BIRTH_YEAR",
+    "BIRTH_MONTH",
+    "BLOOD_SAMPLE",
+    "DEMOG_ETHNICITY_1_1",
+    "DEMOG_GENDER_1_1",
+    "DEMOG_GENDER_2_1",
+    "DEMOG_SEX_1_1",
+    "DEMOG_SEX_2_1"
+  ]
+}

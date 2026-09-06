@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cd3-mws-pilot/recruitment/recruitment.schema.json",
+  "title": "Million Women Study \u2014 Recruitment variables table (CD3 schemify pilot)",
+  "description": "Array of MWS recruitment records. One element is one participant's recruitment-questionnaire derived variables. Full pilot: all 38 properties from the 'Recruitment variables' sheet, across 7 categories.",
+  "$comment": "Standard JSON Schema cannot enforce uniqueness of a participant identifier across rows (the source sheet defines no explicit ID field for this table) nor cross-field routing like RSMOKE/RCIGSPD. See the README's 'Documented but not enforced' section.",
+  "type": "array",
+  "minItems": 1,
+  "uniqueItems": true,
+  "items": {
+    "type": "object",
+    "title": "RECRUITMENT record",
+    "allOf": [
+      {
+        "$ref": "categories/body_lifestyle.json"
+      },
+      {
+        "$ref": "categories/reproductive_pregnancy.json"
+      },
+      {
+        "$ref": "categories/breast_health.json"
+      },
+      {
+        "$ref": "categories/gynae_surgery.json"
+      },
+      {
+        "$ref": "categories/contraceptive.json"
+      },
+      {
+        "$ref": "categories/hrt.json"
+      },
+      {
+        "$ref": "categories/menstrual.json"
+      }
+    ],
+    "unevaluatedProperties": false
+  }
+}

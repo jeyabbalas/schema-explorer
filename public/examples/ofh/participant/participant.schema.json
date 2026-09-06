@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cd3-ofh-pilot/participant/participant.schema.json",
+  "title": "Our Future Health \u2014 Participant table (CD3 schemify pilot)",
+  "description": "Array of OFH participant records. One element is one participant's core registration, consent, birth, blood-sample and demographic fields.",
+  "type": "array",
+  "minItems": 1,
+  "uniqueItems": true,
+  "items": {
+    "type": "object",
+    "title": "PARTICIPANT record",
+    "allOf": [
+      {
+        "$ref": "categories/participant.json"
+      }
+    ],
+    "unevaluatedProperties": false
+  }
+}

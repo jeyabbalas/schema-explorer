@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cd3-mws-pilot/recruitment/categories/hrt.json",
+  "title": "RECRUITMENT — Hrt",
+  "type": "object",
+  "x-variable-group": "hrt",
+  "properties": {
+    "RHTNPC": {
+      "title": "HRT status",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Never"
+        },
+        {
+          "const": 2,
+          "title": "Past"
+        },
+        {
+          "const": 3,
+          "title": "Current"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Derived."
+    },
+    "RHRTSTA": {
+      "title": "HRT age start",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 25,
+          "maximum": 100
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "$comment": "Bound is a plausibility range the source does not fully state -- agent-decided."
+    },
+    "RHTDUR": {
+      "title": "HRT total duration (years)",
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 70
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "$comment": "Bound is a plausibility range the source does not fully state -- agent-decided."
+    },
+    "RHRTSTO": {
+      "title": "HRT age last used",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "$comment": "Bound is a plausibility range the source does not fully state -- agent-decided."
+    },
+    "RHRTMP": {
+      "title": "Periods stopped before starting HRT",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 2,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ]
+    },
+    "RHTTYPE": {
+      "title": "HRT type",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Oestrogen only"
+        },
+        {
+          "const": 2,
+          "title": "Oestrogen + progestagen"
+        },
+        {
+          "const": 3,
+          "title": "Progestagen only"
+        },
+        {
+          "const": 4,
+          "title": "Tibolone"
+        },
+        {
+          "const": 5,
+          "title": "Other/mixed"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Derived from reported brand(s) last used."
+    },
+    "RHTLU": {
+      "title": "HRT time since last use (years)",
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 70
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Derived.",
+      "$comment": "Bound is a plausibility range the source does not fully state -- agent-decided."
+    }
+  },
+  "required": [
+    "RHTNPC",
+    "RHRTSTA",
+    "RHTDUR",
+    "RHRTSTO",
+    "RHRTMP",
+    "RHTTYPE",
+    "RHTLU"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cd3-ofh-pilot/questionnaire/questionnaire.schema.json",
+  "title": "Our Future Health \u2014 Questionnaire table (CD3 schemify pilot)",
+  "description": "Array of OFH questionnaire response records. One element is one submitted questionnaire response (ID), linked to a participant via PID (many_to_one -- a participant may have more than one questionnaire response). Full pilot: all 359 properties across 6 categories, matching the source's own folder_path section structure.",
+  "$comment": "Standard JSON Schema cannot enforce that PID references a real participant:PID, nor resolve the is_multi_select ambiguity flagged on 134 properties. See the README's 'Documented but not enforced' section.",
+  "type": "array",
+  "minItems": 1,
+  "uniqueItems": true,
+  "items": {
+    "type": "object",
+    "title": "QUESTIONNAIRE record",
+    "allOf": [
+      {
+        "$ref": "categories/questionnaire_info.json"
+      },
+      {
+        "$ref": "categories/about_you_household.json"
+      },
+      {
+        "$ref": "categories/work_education.json"
+      },
+      {
+        "$ref": "categories/lifestyle.json"
+      },
+      {
+        "$ref": "categories/family_health_history.json"
+      },
+      {
+        "$ref": "categories/health_history.json"
+      }
+    ],
+    "unevaluatedProperties": false
+  }
+}

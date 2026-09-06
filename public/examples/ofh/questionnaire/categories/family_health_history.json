@@ -1,0 +1,3435 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cd3-ofh-pilot/questionnaire/categories/family_health_history.json",
+  "title": "QUESTIONNAIRE — Family Health History",
+  "type": "object",
+  "x-variable-group": "family_health_history",
+  "properties": {
+    "ADOPTION_STATUS_1_1": {
+      "title": "Were you adopted as a child?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Were you adopted as a child?"
+    },
+    "BIRTH_PLACE_1_1": {
+      "title": "Where were you born?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "England"
+        },
+        {
+          "const": 2,
+          "title": "Wales"
+        },
+        {
+          "const": 3,
+          "title": "Scotland"
+        },
+        {
+          "const": 4,
+          "title": "Northern Ireland"
+        },
+        {
+          "const": 5,
+          "title": "UK (don't know country)"
+        },
+        {
+          "const": 6,
+          "title": "Republic of Ireland"
+        },
+        {
+          "const": 7,
+          "title": "India"
+        },
+        {
+          "const": 8,
+          "title": "Pakistan"
+        },
+        {
+          "const": 9,
+          "title": "Poland"
+        },
+        {
+          "const": 10,
+          "title": "Elsewhere"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Where were you born?"
+    },
+    "FATHER_AGE_1_1": {
+      "title": "What is his age now?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "What is his age now?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "FATHER_AGE_DECEASED_1_1": {
+      "title": "What was his age when he died?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "What was his age when he died?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "FATHER_ALIVE_1_1": {
+      "title": "Is your biological father still alive?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Is your biological father still alive?"
+    },
+    "FATHER_DIAG_A_1_M": {
+      "title": "Has/did your biological father ever suffer from?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Heart disease"
+        },
+        {
+          "const": 2,
+          "title": "Stroke"
+        },
+        {
+          "const": 8,
+          "title": "High blood pressure"
+        },
+        {
+          "const": 9,
+          "title": "Diabetes"
+        },
+        {
+          "const": 6,
+          "title": "Chronic bronchitis/emphysema"
+        },
+        {
+          "const": 10,
+          "title": "Alzheimer's disease/dementia"
+        },
+        {
+          "const": 14,
+          "title": "Pancreatitis"
+        },
+        {
+          "const": 15,
+          "title": "Hip fracture"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has/did your biological father ever suffer from?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "FATHER_DIAG_A_2_M": {
+      "title": "Has/did your biological father ever suffer from?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Autoimmune disorder"
+        },
+        {
+          "const": 2,
+          "title": "Blood disorders (Anaemia)"
+        },
+        {
+          "const": 3,
+          "title": "Cancer"
+        },
+        {
+          "const": 4,
+          "title": "Digestive system or liver problems"
+        },
+        {
+          "const": 5,
+          "title": "Endocrine, nutritional and metabolic disorders (e.g. diabetes, thyroid disorder, vitamin deficiencies)"
+        },
+        {
+          "const": 6,
+          "title": "Eye or visual problems"
+        },
+        {
+          "const": 7,
+          "title": "Fractures, breaks, or joint problems"
+        },
+        {
+          "const": 8,
+          "title": "Heart or circulatory disease (e.g. high blood pressure or stroke)"
+        },
+        {
+          "const": 9,
+          "title": "Kidney or urinary system disorders"
+        },
+        {
+          "const": 10,
+          "title": "Lung or respiratory problems"
+        },
+        {
+          "const": 11,
+          "title": "Mental health conditions (e.g. depression, bipolar disorder)"
+        },
+        {
+          "const": 12,
+          "title": "Neurodevelopmental conditions (e.g. Autism spectrum disorder, ADHD)"
+        },
+        {
+          "const": 13,
+          "title": "Neurological disorders (things that affect that brain or nervous system. E.g., Epilepsy)"
+        },
+        {
+          "const": 14,
+          "title": "Reproductive system problems"
+        },
+        {
+          "const": 15,
+          "title": "Other not listed"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has/did your biological father ever suffer from?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "FATHER_DIAG_ANAEMIA_1_M": {
+      "title": "Has/was your father ever diagnosed with any of the following types of anaemia?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "iron deficiency anaemia"
+        },
+        {
+          "const": 2,
+          "title": "Vitamin deficiency anaemia"
+        },
+        {
+          "const": 3,
+          "title": "Sickle cell anaemia"
+        },
+        {
+          "const": 4,
+          "title": "Aplastic anaemia"
+        },
+        {
+          "const": 5,
+          "title": "Thalassaemia"
+        },
+        {
+          "const": 6,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has/was your father ever diagnosed with any of the following types of anaemia?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "FATHER_DIAG_AUTO_1_M": {
+      "title": "Has/was your father ever diagnosed with any of the following autoimmune disorders?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Rheumatoid arthritis"
+        },
+        {
+          "const": 2,
+          "title": "Lupus"
+        },
+        {
+          "const": 3,
+          "title": "Inflammatory Bowel Disease (IBD)"
+        },
+        {
+          "const": 4,
+          "title": "Multiple Sclerosis (MS)"
+        },
+        {
+          "const": 5,
+          "title": "Graves' disease"
+        },
+        {
+          "const": 6,
+          "title": "Guillain-Barre syndrome"
+        },
+        {
+          "const": 7,
+          "title": "Psoriasis"
+        },
+        {
+          "const": 8,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has/was your father ever diagnosed with any of the following autoimmune disorders?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "FATHER_DIAG_B_1_M": {
+      "title": "Has/did your biological father ever suffer from?",
+      "oneOf": [
+        {
+          "const": 11,
+          "title": "Parkinson's disease"
+        },
+        {
+          "const": 12,
+          "title": "Severe depression"
+        },
+        {
+          "const": 3,
+          "title": "Lung cancer"
+        },
+        {
+          "const": 4,
+          "title": "Bowel cancer"
+        },
+        {
+          "const": 13,
+          "title": "Prostate cancer"
+        },
+        {
+          "const": 16,
+          "title": "Gastric cancer"
+        },
+        {
+          "const": 17,
+          "title": "Oesophageal cancer"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has/did your biological father ever suffer from?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "FATHER_DIAG_CANCER_1_M": {
+      "title": "Which type(s) of cancer specifically was your father diagnosed with?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Anal"
+        },
+        {
+          "const": 2,
+          "title": "Bladder"
+        },
+        {
+          "const": 3,
+          "title": "Brain"
+        },
+        {
+          "const": 4,
+          "title": "Breast"
+        },
+        {
+          "const": 6,
+          "title": "Colon/rectal"
+        },
+        {
+          "const": 7,
+          "title": "Oesophageal"
+        },
+        {
+          "const": 8,
+          "title": "Head and neck (Including cancers of the mouth, sinuses, nose, or throat. Not including brain or skin cancers.)"
+        },
+        {
+          "const": 9,
+          "title": "Gastric"
+        },
+        {
+          "const": 10,
+          "title": "Kidney"
+        },
+        {
+          "const": 11,
+          "title": "Leukaemia (blood and bone marrow)"
+        },
+        {
+          "const": 12,
+          "title": "Liver"
+        },
+        {
+          "const": 13,
+          "title": "Lung or bronchial"
+        },
+        {
+          "const": 14,
+          "title": "Lymphoma"
+        },
+        {
+          "const": 16,
+          "title": "Pancreatic"
+        },
+        {
+          "const": 17,
+          "title": "Prostate"
+        },
+        {
+          "const": 18,
+          "title": "Skin"
+        },
+        {
+          "const": 19,
+          "title": "Stomach"
+        },
+        {
+          "const": 20,
+          "title": "Testicular"
+        },
+        {
+          "const": 21,
+          "title": "Thyroid"
+        },
+        {
+          "const": 23,
+          "title": "Another type of cancer"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Which type(s) of cancer specifically was your father diagnosed with?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "FATHER_DIAG_CANCER_SKIN_1_M": {
+      "title": "What type of skin cancer specifically was your father diagnosed with?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Melanoma"
+        },
+        {
+          "const": 2,
+          "title": "Basal cell"
+        },
+        {
+          "const": 3,
+          "title": "Squamous cell"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "What type of skin cancer specifically was your father diagnosed with?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "FATHER_DIAG_CVD_1_M": {
+      "title": "Has/was your father ever diagnosed with any of the following heart or circulatory diseases?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "B-12 Deficiency (Pernicious Anaemia)"
+        },
+        {
+          "const": 2,
+          "title": "Coronary Artery/Coronary Heart Disease"
+        },
+        {
+          "const": 3,
+          "title": "Congestive Heart Failure"
+        },
+        {
+          "const": 4,
+          "title": "High Cholesterol"
+        },
+        {
+          "const": 5,
+          "title": "Heart Attack (Myocardial Infarction)"
+        },
+        {
+          "const": 6,
+          "title": "Abnormal Heart Rhythm (Arrhythmia)"
+        },
+        {
+          "const": 7,
+          "title": "Chest Pain (Angina)"
+        },
+        {
+          "const": 8,
+          "title": "Heart Valve Problems"
+        },
+        {
+          "const": 9,
+          "title": "High Blood Pressure (Hypertension) [Please do not include hypertension during pregnancy.]"
+        },
+        {
+          "const": 10,
+          "title": "Blood Clots (Deep Vein Thrombosis, Pulmonary Embolism)"
+        },
+        {
+          "const": 11,
+          "title": "Stroke"
+        },
+        {
+          "const": 12,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has/was your father ever diagnosed with any of the following heart or circulatory diseases?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "FATHER_DIAG_ENDOCR_1_M": {
+      "title": "Has/was your father ever diagnosed with the following conditions?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Type 1 diabetes"
+        },
+        {
+          "const": 2,
+          "title": "Type 2 diabetes"
+        },
+        {
+          "const": 3,
+          "title": "Overactive thyroid"
+        },
+        {
+          "const": 4,
+          "title": "Underactive thyroid"
+        },
+        {
+          "const": 5,
+          "title": "Cushing syndrome"
+        },
+        {
+          "const": 6,
+          "title": "Lactose intolerance"
+        },
+        {
+          "const": 7,
+          "title": "Vitamin A deficiency"
+        },
+        {
+          "const": 8,
+          "title": "Thiamine deficiency"
+        },
+        {
+          "const": 9,
+          "title": "Vitamin D deficiency"
+        },
+        {
+          "const": 10,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has/was your father ever diagnosed with the following conditions?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "FATHER_DIAG_GASTRO_1_M": {
+      "title": "Has/was your father ever diagnosed with any of the following digestive system or liver problems?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Gastro-oesophageal Acid Reflux (GORD)"
+        },
+        {
+          "const": 2,
+          "title": "Barrett's Oesophagus"
+        },
+        {
+          "const": 3,
+          "title": "Irritable bowel syndrome (IBS)"
+        },
+        {
+          "const": 4,
+          "title": "Inflammatory Bowel Disease (IBD)"
+        },
+        {
+          "const": 5,
+          "title": "Diverticulitis or Diverticulosis"
+        },
+        {
+          "const": 6,
+          "title": "Ulcerative Colitis"
+        },
+        {
+          "const": 7,
+          "title": "Crohn's Disease"
+        },
+        {
+          "const": 8,
+          "title": "Coeliac Disease (also known as Gluten-Sensitive Enteropathy)"
+        },
+        {
+          "const": 9,
+          "title": "Gallstones (Biliary Stones)"
+        },
+        {
+          "const": 10,
+          "title": "Fatty liver disease"
+        },
+        {
+          "const": 11,
+          "title": "Liver Cirrhosis"
+        },
+        {
+          "const": 12,
+          "title": "Hepatitis"
+        },
+        {
+          "const": 13,
+          "title": "Pancreatitis"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has/was your father ever diagnosed with any of the following digestive system or liver problems?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "FATHER_DIAG_NEURO_1_M": {
+      "title": "Has/was your father ever diagnosed with any of the following neurological or brain disorders?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Epilepsy"
+        },
+        {
+          "const": 2,
+          "title": "Parkinson's disease"
+        },
+        {
+          "const": 3,
+          "title": "Alzheimer's disease/dementia"
+        },
+        {
+          "const": 4,
+          "title": "Early onset Alzheimer's disease/dementia"
+        },
+        {
+          "const": 5,
+          "title": "Vascular dementia"
+        },
+        {
+          "const": 6,
+          "title": "Migraine with aura"
+        },
+        {
+          "const": 7,
+          "title": "Migraine without aura"
+        },
+        {
+          "const": 8,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has/was your father ever diagnosed with any of the following neurological or brain disorders?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "FATHER_DIAG_NEURO_DEV_1_M": {
+      "title": "Has/was your father ever been diagnosed with one or more of the following conditions by a professional, even if they don't have it currently?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Autism spectrum disorder"
+        },
+        {
+          "const": 2,
+          "title": "Developmental learning disorders"
+        },
+        {
+          "const": 3,
+          "title": "Attention deficit hyperactivity disorder (ADHD)"
+        },
+        {
+          "const": 4,
+          "title": "Disorder of intellectual development"
+        },
+        {
+          "const": 5,
+          "title": "Developmental motor coordination disorder"
+        },
+        {
+          "const": 6,
+          "title": "Developmental speech or language disorders"
+        },
+        {
+          "const": 7,
+          "title": "Stereotyped movement disorder"
+        },
+        {
+          "const": 8,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has/was your father ever been diagnosed with one or more of the following conditions by a professional, even if they don't have it currently?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "FATHER_DIAG_OPTHAL_1_M": {
+      "title": "Has/was your father ever diagnosed with any of the following eye or visual problems?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Glaucoma"
+        },
+        {
+          "const": 2,
+          "title": "Visual impairment including blindness"
+        },
+        {
+          "const": 3,
+          "title": "Double vision"
+        },
+        {
+          "const": 4,
+          "title": "Night blindness"
+        },
+        {
+          "const": 5,
+          "title": "Colour blindness"
+        },
+        {
+          "const": 6,
+          "title": "Macular degeneration"
+        },
+        {
+          "const": 7,
+          "title": "Cataracts"
+        },
+        {
+          "const": 8,
+          "title": "Retinal detachment"
+        },
+        {
+          "const": 9,
+          "title": "Diabetic retinopathy"
+        },
+        {
+          "const": 10,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has/was your father ever diagnosed with any of the following eye or visual problems?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "FATHER_DIAG_OSTEO_1_M": {
+      "title": "What type of fractures, breaks, joint or bone problems did your father experience?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Hip fracture"
+        },
+        {
+          "const": 2,
+          "title": "Osteoporosis"
+        },
+        {
+          "const": 3,
+          "title": "Osteoarthritis (arthritis)"
+        },
+        {
+          "const": 4,
+          "title": "Gout"
+        },
+        {
+          "const": 5,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "What type of fractures, breaks, joint or bone problems did your father experience?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "FATHER_DIAG_PSYCH_1_M": {
+      "title": "Has/was your father ever diagnosed with one or more of the following conditions by a professional, even if they don't have it currently?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Anxiety"
+        },
+        {
+          "const": 2,
+          "title": "Bipolar disorder"
+        },
+        {
+          "const": 3,
+          "title": "Body dysmorphia"
+        },
+        {
+          "const": 4,
+          "title": "Depression"
+        },
+        {
+          "const": 6,
+          "title": "Post Traumatic Stress Disorder (PTSD)"
+        },
+        {
+          "const": 7,
+          "title": "Obsessive Compulsive Disorder"
+        },
+        {
+          "const": 8,
+          "title": "Eating disorder"
+        },
+        {
+          "const": 9,
+          "title": "Psychosis"
+        },
+        {
+          "const": 10,
+          "title": "Schizophrenia"
+        },
+        {
+          "const": 11,
+          "title": "Schizoaffective disorder"
+        },
+        {
+          "const": 12,
+          "title": "Personality disorder"
+        },
+        {
+          "const": 13,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has/was your father ever diagnosed with one or more of the following conditions by a professional, even if they don't have it currently?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "FATHER_DIAG_PSYCH_ANX_1_M": {
+      "title": "Which anxiety disorder(s) specifically was your father diagnosed with in their lifetime?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Generalised anxiety disorder"
+        },
+        {
+          "const": 2,
+          "title": "Agoraphobia"
+        },
+        {
+          "const": 3,
+          "title": "Social anxiety disorder"
+        },
+        {
+          "const": 4,
+          "title": "Panic disorder"
+        },
+        {
+          "const": 5,
+          "title": "Panic attacks"
+        },
+        {
+          "const": 6,
+          "title": "Specific phobia"
+        },
+        {
+          "const": 7,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Which anxiety disorder(s) specifically was your father diagnosed with in their lifetime?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "FATHER_DIAG_PSYCH_DEPR_1_M": {
+      "title": "Which depressive disorder(s) specifically was your father diagnosed with in their lifetime?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Major Depressive Disorder"
+        },
+        {
+          "const": 2,
+          "title": "Perinatal depression"
+        },
+        {
+          "const": 3,
+          "title": "Postnatal depression"
+        },
+        {
+          "const": 4,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Which depressive disorder(s) specifically was your father diagnosed with in their lifetime?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "FATHER_DIAG_PSYCH_EAT_1_M": {
+      "title": "Which eating disorder(s) specifically was your father diagnosed with in their lifetime?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Anorexia nervosa"
+        },
+        {
+          "const": 2,
+          "title": "Atypical anorexia nervosa"
+        },
+        {
+          "const": 3,
+          "title": "Bulimia nervosa"
+        },
+        {
+          "const": 4,
+          "title": "Binge eating disorder"
+        },
+        {
+          "const": 5,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Which eating disorder(s) specifically was your father diagnosed with in their lifetime?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "FATHER_DIAG_REPRO_1_M": {
+      "title": "Has/was your father ever diagnosed with any of the following conditions?",
+      "oneOf": [
+        {
+          "const": 3,
+          "title": "Enlarged prostate"
+        },
+        {
+          "const": 4,
+          "title": "Fibrocystic Breast, or another Benign Breast Disease (such as proliferative Benign Breast Disease or LCIS)"
+        },
+        {
+          "const": 5,
+          "title": "Ductal Carcinoma in situ (DCIS)"
+        },
+        {
+          "const": 6,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has/was your father ever diagnosed with any of the following conditions?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "FATHER_DIAG_RESP_1_M": {
+      "title": "Has/was your father ever diagnosed with any of the following lung or respiratory conditions?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Chronic Obstructive pulmonary disease, COPD (including emphysema and chronic bronchitis)"
+        },
+        {
+          "const": 2,
+          "title": "Lung fibrosis"
+        },
+        {
+          "const": 3,
+          "title": "Bronchiectasis"
+        },
+        {
+          "const": 4,
+          "title": "Asthma"
+        },
+        {
+          "const": 5,
+          "title": "Hay Fever (Allergic to pollen or Allergic Rhinitis)"
+        },
+        {
+          "const": 6,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has/was your father ever diagnosed with any of the following lung or respiratory conditions?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "FATHER_DIAG_UROL_1_M": {
+      "title": "Has/was your father ever diagnosed with any of the following kidney or urinary tract problems?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Kidney stones"
+        },
+        {
+          "const": 2,
+          "title": "Chronic kidney disease (or chronic kidney failure)"
+        },
+        {
+          "const": 3,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has/was your father ever diagnosed with any of the following kidney or urinary tract problems?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "IMMIGRATE_UK_YR_1_1": {
+      "title": "What year did you first come to live in the United Kingdom?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/suppressed"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "What year did you first come to live in the United Kingdom?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "MOTHER_AGE_1_1": {
+      "title": "What is her age now?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "What is her age now?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "MOTHER_AGE_DECEASED_1_1": {
+      "title": "What was her age when she died?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "What was her age when she died?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "MOTHER_ALIVE_1_1": {
+      "title": "Is your biological mother still alive?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Is your biological mother still alive?"
+    },
+    "MOTHER_DIAG_A_1_M": {
+      "title": "Has/did your biological mother ever suffer from?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Heart disease"
+        },
+        {
+          "const": 2,
+          "title": "Stroke"
+        },
+        {
+          "const": 8,
+          "title": "High blood pressure"
+        },
+        {
+          "const": 9,
+          "title": "Diabetes"
+        },
+        {
+          "const": 6,
+          "title": "Chronic bronchitis/emphysema"
+        },
+        {
+          "const": 10,
+          "title": "Alzheimer's disease/dementia"
+        },
+        {
+          "const": 14,
+          "title": "Pancreatitis"
+        },
+        {
+          "const": 15,
+          "title": "Hip fracture"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has/did your biological mother ever suffer from?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MOTHER_DIAG_A_2_M": {
+      "title": "Has/did your biological mother ever suffer from?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Autoimmune disorder"
+        },
+        {
+          "const": 2,
+          "title": "Blood disorders (Anaemia)"
+        },
+        {
+          "const": 3,
+          "title": "Cancer"
+        },
+        {
+          "const": 4,
+          "title": "Digestive system or liver problems"
+        },
+        {
+          "const": 5,
+          "title": "Endocrine, nutritional and metabolic disorders (e.g. diabetes, thyroid disorder, vitamin deficiencies)"
+        },
+        {
+          "const": 6,
+          "title": "Eye or visual problems"
+        },
+        {
+          "const": 7,
+          "title": "Fractures, breaks, or joint problems"
+        },
+        {
+          "const": 8,
+          "title": "Heart or circulatory disease (e.g. high blood pressure or stroke)"
+        },
+        {
+          "const": 9,
+          "title": "Kidney or urinary system disorders"
+        },
+        {
+          "const": 10,
+          "title": "Lung or respiratory problems"
+        },
+        {
+          "const": 11,
+          "title": "Mental health conditions (e.g. depression, bipolar disorder)"
+        },
+        {
+          "const": 12,
+          "title": "Neurodevelopmental conditions (e.g. Autism spectrum disorder, ADHD)"
+        },
+        {
+          "const": 13,
+          "title": "Neurological disorders (things that affect that brain or nervous system. E.g., Epilepsy)"
+        },
+        {
+          "const": 14,
+          "title": "Reproductive system problems"
+        },
+        {
+          "const": 15,
+          "title": "Other not listed"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has/did your biological mother ever suffer from?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MOTHER_DIAG_ANAEMIA_1_M": {
+      "title": "Has/was your mother ever diagnosed with any of the following types of anaemia?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "iron deficiency anaemia"
+        },
+        {
+          "const": 2,
+          "title": "Vitamin deficiency anaemia"
+        },
+        {
+          "const": 3,
+          "title": "Sickle cell anaemia"
+        },
+        {
+          "const": 4,
+          "title": "Aplastic anaemia"
+        },
+        {
+          "const": 5,
+          "title": "Thalassaemia"
+        },
+        {
+          "const": 6,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has/was your mother ever diagnosed with any of the following types of anaemia?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MOTHER_DIAG_AUTO_1_M": {
+      "title": "Has/was your mother ever been diagnosed with any of the following autoimmune disorders?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Rheumatoid arthritis"
+        },
+        {
+          "const": 2,
+          "title": "Lupus"
+        },
+        {
+          "const": 3,
+          "title": "Inflammatory Bowel Disease (IBD)"
+        },
+        {
+          "const": 4,
+          "title": "Multiple Sclerosis (MS)"
+        },
+        {
+          "const": 5,
+          "title": "Graves' disease"
+        },
+        {
+          "const": 6,
+          "title": "Guillain-Barre syndrome"
+        },
+        {
+          "const": 7,
+          "title": "Psoriasis"
+        },
+        {
+          "const": 8,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has/was your mother ever been diagnosed with any of the following autoimmune disorders?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MOTHER_DIAG_B_1_M": {
+      "title": "Has/did your biological mother ever suffer from?",
+      "oneOf": [
+        {
+          "const": 11,
+          "title": "Parkinson's disease"
+        },
+        {
+          "const": 12,
+          "title": "Severe depression"
+        },
+        {
+          "const": 3,
+          "title": "Lung cancer"
+        },
+        {
+          "const": 4,
+          "title": "Bowel cancer"
+        },
+        {
+          "const": 5,
+          "title": "Breast cancer"
+        },
+        {
+          "const": 18,
+          "title": "Ovarian cancer"
+        },
+        {
+          "const": 16,
+          "title": "Gastric cancer"
+        },
+        {
+          "const": 17,
+          "title": "Oesophageal cancer"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has/did your biological mother ever suffer from?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MOTHER_DIAG_CANCER_1_M": {
+      "title": "Which type(s) of cancer specifically was your mother diagnosed with?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Anal"
+        },
+        {
+          "const": 2,
+          "title": "Bladder"
+        },
+        {
+          "const": 3,
+          "title": "Brain"
+        },
+        {
+          "const": 4,
+          "title": "Breast"
+        },
+        {
+          "const": 5,
+          "title": "Cervical"
+        },
+        {
+          "const": 6,
+          "title": "Colon/rectal"
+        },
+        {
+          "const": 7,
+          "title": "Oesophageal"
+        },
+        {
+          "const": 8,
+          "title": "Head and neck (Including cancers of the mouth, sinuses, nose, or throat. Not including brain or skin cancers.)"
+        },
+        {
+          "const": 9,
+          "title": "Gastric"
+        },
+        {
+          "const": 10,
+          "title": "Kidney"
+        },
+        {
+          "const": 11,
+          "title": "Leukaemia (blood and bone marrow)"
+        },
+        {
+          "const": 12,
+          "title": "Liver"
+        },
+        {
+          "const": 13,
+          "title": "Lung or bronchial"
+        },
+        {
+          "const": 14,
+          "title": "Lymphoma"
+        },
+        {
+          "const": 15,
+          "title": "Ovarian"
+        },
+        {
+          "const": 16,
+          "title": "Pancreatic"
+        },
+        {
+          "const": 18,
+          "title": "Skin"
+        },
+        {
+          "const": 19,
+          "title": "Stomach"
+        },
+        {
+          "const": 21,
+          "title": "Thyroid"
+        },
+        {
+          "const": 22,
+          "title": "Uterine (endometrial)"
+        },
+        {
+          "const": 23,
+          "title": "Another type of cancer"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Which type(s) of cancer specifically was your mother diagnosed with?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MOTHER_DIAG_CANCER_SKIN_1_M": {
+      "title": "What type of skin cancer specifically was your mother diagnosed with?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Melanoma"
+        },
+        {
+          "const": 2,
+          "title": "Basal cell"
+        },
+        {
+          "const": 3,
+          "title": "Squamous cell"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "What type of skin cancer specifically was your mother diagnosed with?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MOTHER_DIAG_CVD_1_M": {
+      "title": "Has/was your mother ever diagnosed with any of the following heart or circulatory diseases?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "B-12 Deficiency (Pernicious Anaemia)"
+        },
+        {
+          "const": 2,
+          "title": "Coronary Artery/Coronary Heart Disease"
+        },
+        {
+          "const": 3,
+          "title": "Congestive Heart Failure"
+        },
+        {
+          "const": 4,
+          "title": "High Cholesterol"
+        },
+        {
+          "const": 5,
+          "title": "Heart Attack (Myocardial Infarction)"
+        },
+        {
+          "const": 6,
+          "title": "Abnormal Heart Rhythm (Arrhythmia)"
+        },
+        {
+          "const": 7,
+          "title": "Chest Pain (Angina)"
+        },
+        {
+          "const": 8,
+          "title": "Heart Valve Problems"
+        },
+        {
+          "const": 9,
+          "title": "High Blood Pressure (Hypertension) [Please do not include hypertension during pregnancy.]"
+        },
+        {
+          "const": 10,
+          "title": "Blood Clots (Deep Vein Thrombosis, Pulmonary Embolism)"
+        },
+        {
+          "const": 11,
+          "title": "Stroke"
+        },
+        {
+          "const": 12,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has/was your mother ever diagnosed with any of the following heart or circulatory diseases?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MOTHER_DIAG_ENDOCR_1_M": {
+      "title": "Has/was your mother ever diagnosed with the following conditions?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Type 1 diabetes"
+        },
+        {
+          "const": 2,
+          "title": "Type 2 diabetes"
+        },
+        {
+          "const": 3,
+          "title": "Overactive thyroid"
+        },
+        {
+          "const": 4,
+          "title": "Underactive thyroid"
+        },
+        {
+          "const": 5,
+          "title": "Cushing syndrome"
+        },
+        {
+          "const": 6,
+          "title": "Lactose intolerance"
+        },
+        {
+          "const": 7,
+          "title": "Vitamin A deficiency"
+        },
+        {
+          "const": 8,
+          "title": "Thiamine deficiency"
+        },
+        {
+          "const": 9,
+          "title": "Vitamin D deficiency"
+        },
+        {
+          "const": 10,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has/was your mother ever diagnosed with the following conditions?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MOTHER_DIAG_GASTRO_1_M": {
+      "title": "Has/was your mother ever diagnosed with any of the following digestive system or liver problems?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Gastro-oesophageal Acid Reflux (GORD)"
+        },
+        {
+          "const": 2,
+          "title": "Barrett's Oesophagus"
+        },
+        {
+          "const": 3,
+          "title": "Irritable bowel syndrome (IBS)"
+        },
+        {
+          "const": 4,
+          "title": "Inflammatory Bowel Disease (IBD)"
+        },
+        {
+          "const": 5,
+          "title": "Diverticulitis or Diverticulosis"
+        },
+        {
+          "const": 6,
+          "title": "Ulcerative Colitis"
+        },
+        {
+          "const": 7,
+          "title": "Crohn's Disease"
+        },
+        {
+          "const": 8,
+          "title": "Coeliac Disease (also known as Gluten-Sensitive Enteropathy)"
+        },
+        {
+          "const": 9,
+          "title": "Gallstones (Biliary Stones)"
+        },
+        {
+          "const": 10,
+          "title": "Fatty liver disease"
+        },
+        {
+          "const": 11,
+          "title": "Liver Cirrhosis"
+        },
+        {
+          "const": 12,
+          "title": "Hepatitis"
+        },
+        {
+          "const": 13,
+          "title": "Pancreatitis"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has/was your mother ever diagnosed with any of the following digestive system or liver problems?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MOTHER_DIAG_NEURO_1_M": {
+      "title": "Has/was your mother ever diagnosed with any of the following neurological or brain disorders?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Epilepsy"
+        },
+        {
+          "const": 2,
+          "title": "Parkinson's disease"
+        },
+        {
+          "const": 3,
+          "title": "Alzheimer's disease/dementia"
+        },
+        {
+          "const": 4,
+          "title": "Early onset Alzheimer's disease/dementia"
+        },
+        {
+          "const": 5,
+          "title": "Vascular dementia"
+        },
+        {
+          "const": 6,
+          "title": "Migraine with aura"
+        },
+        {
+          "const": 7,
+          "title": "Migraine without aura"
+        },
+        {
+          "const": 8,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has/was your mother ever diagnosed with any of the following neurological or brain disorders?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MOTHER_DIAG_NEURO_DEV_1_M": {
+      "title": "Has/was your mother ever diagnosed with one or more of the following conditions by a professional, even if they don't have it currently?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Autism spectrum disorder"
+        },
+        {
+          "const": 2,
+          "title": "Developmental learning disorders"
+        },
+        {
+          "const": 3,
+          "title": "Attention deficit hyperactivity disorder (ADHD)"
+        },
+        {
+          "const": 4,
+          "title": "Disorder of intellectual development"
+        },
+        {
+          "const": 5,
+          "title": "Developmental motor coordination disorder"
+        },
+        {
+          "const": 6,
+          "title": "Developmental speech or language disorders"
+        },
+        {
+          "const": 7,
+          "title": "Stereotyped movement disorder"
+        },
+        {
+          "const": 8,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has/was your mother ever diagnosed with one or more of the following conditions by a professional, even if they don't have it currently?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MOTHER_DIAG_OPTHAL_1_M": {
+      "title": "Has/was your mother ever diagnosed with any of the following eye or visual problems?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Glaucoma"
+        },
+        {
+          "const": 2,
+          "title": "Visual impairment including blindness"
+        },
+        {
+          "const": 3,
+          "title": "Double vision"
+        },
+        {
+          "const": 4,
+          "title": "Night blindness"
+        },
+        {
+          "const": 5,
+          "title": "Colour blindness"
+        },
+        {
+          "const": 6,
+          "title": "Macular degeneration"
+        },
+        {
+          "const": 7,
+          "title": "Cataracts"
+        },
+        {
+          "const": 8,
+          "title": "Retinal detachment"
+        },
+        {
+          "const": 9,
+          "title": "Diabetic retinopathy"
+        },
+        {
+          "const": 10,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has/was your mother ever diagnosed with any of the following eye or visual problems?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MOTHER_DIAG_OSTEO_1_M": {
+      "title": "What type of fractures, breaks, joint or bone problems did your mother experience?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Hip fracture"
+        },
+        {
+          "const": 2,
+          "title": "Osteoporosis"
+        },
+        {
+          "const": 3,
+          "title": "Osteoarthritis (arthritis)"
+        },
+        {
+          "const": 4,
+          "title": "Gout"
+        },
+        {
+          "const": 5,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "What type of fractures, breaks, joint or bone problems did your mother experience?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MOTHER_DIAG_PSYCH_1_M": {
+      "title": "Has/was your mother ever diagnosed with one or more of the following conditions by a professional, even if they don't have it currently?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Anxiety"
+        },
+        {
+          "const": 2,
+          "title": "Bipolar disorder"
+        },
+        {
+          "const": 3,
+          "title": "Body dysmorphia"
+        },
+        {
+          "const": 4,
+          "title": "Depression"
+        },
+        {
+          "const": 5,
+          "title": "Premenstrual dysphoric disorder"
+        },
+        {
+          "const": 6,
+          "title": "Post Traumatic Stress Disorder (PTSD)"
+        },
+        {
+          "const": 7,
+          "title": "Obsessive Compulsive Disorder"
+        },
+        {
+          "const": 8,
+          "title": "Eating disorder"
+        },
+        {
+          "const": 9,
+          "title": "Psychosis"
+        },
+        {
+          "const": 10,
+          "title": "Schizophrenia"
+        },
+        {
+          "const": 11,
+          "title": "Schizoaffective disorder"
+        },
+        {
+          "const": 12,
+          "title": "Personality disorder"
+        },
+        {
+          "const": 13,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has/was your mother ever diagnosed with one or more of the following conditions by a professional, even if they don't have it currently?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MOTHER_DIAG_PSYCH_ANX_1_M": {
+      "title": "Which anxiety disorder(s) specifically was your mother diagnosed with in their lifetime?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Generalised anxiety disorder"
+        },
+        {
+          "const": 2,
+          "title": "Agoraphobia"
+        },
+        {
+          "const": 3,
+          "title": "Social anxiety disorder"
+        },
+        {
+          "const": 4,
+          "title": "Panic disorder"
+        },
+        {
+          "const": 5,
+          "title": "Panic attacks"
+        },
+        {
+          "const": 6,
+          "title": "Specific phobia"
+        },
+        {
+          "const": 7,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Which anxiety disorder(s) specifically was your mother diagnosed with in their lifetime?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MOTHER_DIAG_PSYCH_DEPR_1_M": {
+      "title": "Which depressive disorder(s) specifically was your mother diagnosed with in their lifetime?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Major Depressive Disorder"
+        },
+        {
+          "const": 2,
+          "title": "Perinatal depression"
+        },
+        {
+          "const": 3,
+          "title": "Postnatal depression"
+        },
+        {
+          "const": 4,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Which depressive disorder(s) specifically was your mother diagnosed with in their lifetime?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MOTHER_DIAG_PSYCH_EAT_1_M": {
+      "title": "Which eating disorder(s) specifically was your mother diagnosed with in their lifetime?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Anorexia nervosa"
+        },
+        {
+          "const": 2,
+          "title": "Atypical anorexia nervosa"
+        },
+        {
+          "const": 3,
+          "title": "Bulimia nervosa"
+        },
+        {
+          "const": 4,
+          "title": "Binge eating disorder"
+        },
+        {
+          "const": 5,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Which eating disorder(s) specifically was your mother diagnosed with in their lifetime?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MOTHER_DIAG_REPRO_1_M": {
+      "title": "Has/was your mother ever diagnosed with any of the following conditions?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Endometriosis"
+        },
+        {
+          "const": 2,
+          "title": "Polycystic Ovary Syndrome (PCOS)"
+        },
+        {
+          "const": 4,
+          "title": "Fibrocystic Breast, or another Benign Breast Disease (such as proliferative Benign Breast Disease or LCIS)"
+        },
+        {
+          "const": 5,
+          "title": "Ductal Carcinoma in situ (DCIS)"
+        },
+        {
+          "const": 6,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has/was your mother ever diagnosed with any of the following conditions?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MOTHER_DIAG_RESP_1_M": {
+      "title": "Has/was your mother ever diagnosed with any of the following lung or respiratory conditions?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Chronic Obstructive pulmonary disease, COPD (including emphysema and chronic bronchitis)"
+        },
+        {
+          "const": 2,
+          "title": "Lung fibrosis"
+        },
+        {
+          "const": 3,
+          "title": "Bronchiectasis"
+        },
+        {
+          "const": 4,
+          "title": "Asthma"
+        },
+        {
+          "const": 5,
+          "title": "Hay Fever (Allergic to pollen or Allergic Rhinitis)"
+        },
+        {
+          "const": 6,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has/was your mother ever diagnosed with any of the following lung or respiratory conditions?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MOTHER_DIAG_UROL_1_M": {
+      "title": "Has/was your mother ever diagnosed with any of the following kidney or urinary tract problems?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Kidney stones"
+        },
+        {
+          "const": 2,
+          "title": "Chronic kidney disease (or chronic kidney failure)"
+        },
+        {
+          "const": 3,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has/was your mother ever diagnosed with any of the following kidney or urinary tract problems?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "SIBLING_DIAG_A_1_M": {
+      "title": "Have any of your brothers or sisters suffered from any of the following illnesses?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Heart disease"
+        },
+        {
+          "const": 2,
+          "title": "Stroke"
+        },
+        {
+          "const": 8,
+          "title": "High blood pressure"
+        },
+        {
+          "const": 9,
+          "title": "Diabetes"
+        },
+        {
+          "const": 6,
+          "title": "Chronic bronchitis/emphysema"
+        },
+        {
+          "const": 10,
+          "title": "Alzheimer's disease/dementia"
+        },
+        {
+          "const": 14,
+          "title": "Pancreatitis"
+        },
+        {
+          "const": 15,
+          "title": "Hip fracture"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have any of your brothers or sisters suffered from any of the following illnesses?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "SIBLING_DIAG_A_2_M": {
+      "title": "Has/did any of your biological brother/s or sister/s ever suffer from?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Autoimmune disorder"
+        },
+        {
+          "const": 2,
+          "title": "Blood disorders (Anaemia)"
+        },
+        {
+          "const": 3,
+          "title": "Cancer"
+        },
+        {
+          "const": 4,
+          "title": "Digestive system or liver problems"
+        },
+        {
+          "const": 5,
+          "title": "Endocrine, nutritional and metabolic disorders (e.g. diabetes, thyroid disorder, vitamin deficiencies)"
+        },
+        {
+          "const": 6,
+          "title": "Eye or visual problems"
+        },
+        {
+          "const": 7,
+          "title": "Fractures, breaks, or joint problems"
+        },
+        {
+          "const": 8,
+          "title": "Heart or circulatory disease (e.g. high blood pressure or stroke)"
+        },
+        {
+          "const": 9,
+          "title": "Kidney or urinary system disorders"
+        },
+        {
+          "const": 10,
+          "title": "Lung or respiratory problems"
+        },
+        {
+          "const": 11,
+          "title": "Mental health conditions (e.g. depression, bipolar disorder)"
+        },
+        {
+          "const": 12,
+          "title": "Neurodevelopmental conditions (e.g. Autism spectrum disorder, ADHD)"
+        },
+        {
+          "const": 13,
+          "title": "Neurological disorders (things that affect that brain or nervous system. E.g., Epilepsy)"
+        },
+        {
+          "const": 14,
+          "title": "Reproductive system problems"
+        },
+        {
+          "const": 15,
+          "title": "Other not listed"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has/did any of your biological brother/s or sister/s ever suffer from?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "SIBLING_DIAG_ANAEMIA_1_M": {
+      "title": "Has your brother or sister ever been diagnosed with any of the following types of anaemia?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "iron deficiency anaemia"
+        },
+        {
+          "const": 2,
+          "title": "Vitamin deficiency anaemia"
+        },
+        {
+          "const": 3,
+          "title": "Sickle cell anaemia"
+        },
+        {
+          "const": 4,
+          "title": "Aplastic anaemia"
+        },
+        {
+          "const": 5,
+          "title": "Thalassaemia"
+        },
+        {
+          "const": 6,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has your brother or sister ever been diagnosed with any of the following types of anaemia?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "SIBLING_DIAG_AUTO_1_M": {
+      "title": "Has your brother or sister ever been diagnosed with any of the following autoimmune disorders?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Rheumatoid arthritis"
+        },
+        {
+          "const": 2,
+          "title": "Lupus"
+        },
+        {
+          "const": 3,
+          "title": "Inflammatory Bowel Disease (IBD)"
+        },
+        {
+          "const": 4,
+          "title": "Multiple Sclerosis (MS)"
+        },
+        {
+          "const": 5,
+          "title": "Graves' disease"
+        },
+        {
+          "const": 6,
+          "title": "Guillain-Barre syndrome"
+        },
+        {
+          "const": 7,
+          "title": "Psoriasis"
+        },
+        {
+          "const": 8,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has your brother or sister ever been diagnosed with any of the following autoimmune disorders?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "SIBLING_DIAG_B_1_M": {
+      "title": "Have any or your brothers or sisters suffered from any of the following illnesses?",
+      "oneOf": [
+        {
+          "const": 11,
+          "title": "Parkinson's disease"
+        },
+        {
+          "const": 12,
+          "title": "Severe depression"
+        },
+        {
+          "const": 13,
+          "title": "Prostate cancer"
+        },
+        {
+          "const": 3,
+          "title": "Lung cancer"
+        },
+        {
+          "const": 4,
+          "title": "Bowel cancer"
+        },
+        {
+          "const": 5,
+          "title": "Breast cancer"
+        },
+        {
+          "const": 18,
+          "title": "Ovarian cancer"
+        },
+        {
+          "const": 16,
+          "title": "Gastric cancer"
+        },
+        {
+          "const": 17,
+          "title": "Oesophageal cancer"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have any or your brothers or sisters suffered from any of the following illnesses?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "SIBLING_DIAG_CANCER_1_M": {
+      "title": "Which type(s) of cancer specifically was your brother or sister diagnosed with?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Anal"
+        },
+        {
+          "const": 2,
+          "title": "Bladder"
+        },
+        {
+          "const": 3,
+          "title": "Brain"
+        },
+        {
+          "const": 4,
+          "title": "Breast"
+        },
+        {
+          "const": 5,
+          "title": "Cervical"
+        },
+        {
+          "const": 6,
+          "title": "Colon/rectal"
+        },
+        {
+          "const": 7,
+          "title": "Oesophageal"
+        },
+        {
+          "const": 8,
+          "title": "Head and neck (Including cancers of the mouth, sinuses, nose, or throat. Not including brain or skin cancers.)"
+        },
+        {
+          "const": 9,
+          "title": "Gastric"
+        },
+        {
+          "const": 10,
+          "title": "Kidney"
+        },
+        {
+          "const": 11,
+          "title": "Leukaemia (blood and bone marrow)"
+        },
+        {
+          "const": 12,
+          "title": "Liver"
+        },
+        {
+          "const": 13,
+          "title": "Lung or bronchial"
+        },
+        {
+          "const": 14,
+          "title": "Lymphoma"
+        },
+        {
+          "const": 15,
+          "title": "Ovarian"
+        },
+        {
+          "const": 16,
+          "title": "Pancreatic"
+        },
+        {
+          "const": 17,
+          "title": "Prostate"
+        },
+        {
+          "const": 18,
+          "title": "Skin"
+        },
+        {
+          "const": 19,
+          "title": "Stomach"
+        },
+        {
+          "const": 20,
+          "title": "Testicular"
+        },
+        {
+          "const": 21,
+          "title": "Thyroid"
+        },
+        {
+          "const": 22,
+          "title": "Uterine (endometrial)"
+        },
+        {
+          "const": 23,
+          "title": "Another type of cancer"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Which type(s) of cancer specifically was your brother or sister diagnosed with?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "SIBLING_DIAG_CANCER_SKIN_1_M": {
+      "title": "What type of skin cancer specifically was your brother or sister diagnosed with?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Melanoma"
+        },
+        {
+          "const": 2,
+          "title": "Basal cell"
+        },
+        {
+          "const": 3,
+          "title": "Squamous cell"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "What type of skin cancer specifically was your brother or sister diagnosed with?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "SIBLING_DIAG_CVD_1_M": {
+      "title": "Has your brother or sister ever been diagnosed with any of the following heart or circulatory diseases?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "B-12 Deficiency (Pernicious Anaemia)"
+        },
+        {
+          "const": 2,
+          "title": "Coronary Artery/Coronary Heart Disease"
+        },
+        {
+          "const": 3,
+          "title": "Congestive Heart Failure"
+        },
+        {
+          "const": 4,
+          "title": "High Cholesterol"
+        },
+        {
+          "const": 5,
+          "title": "Heart Attack (Myocardial Infarction)"
+        },
+        {
+          "const": 6,
+          "title": "Abnormal Heart Rhythm (Arrhythmia)"
+        },
+        {
+          "const": 7,
+          "title": "Chest Pain (Angina)"
+        },
+        {
+          "const": 8,
+          "title": "Heart Valve Problems"
+        },
+        {
+          "const": 9,
+          "title": "High Blood Pressure (Hypertension) [Please do not include hypertension during pregnancy.]"
+        },
+        {
+          "const": 10,
+          "title": "Blood Clots (Deep Vein Thrombosis, Pulmonary Embolism)"
+        },
+        {
+          "const": 11,
+          "title": "Stroke"
+        },
+        {
+          "const": 12,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has your brother or sister ever been diagnosed with any of the following heart or circulatory diseases?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "SIBLING_DIAG_ENDOCR_1_M": {
+      "title": "Has your brother or sister ever been diagnosed with the following conditions?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Type 1 diabetes"
+        },
+        {
+          "const": 2,
+          "title": "Type 2 diabetes"
+        },
+        {
+          "const": 3,
+          "title": "Overactive thyroid"
+        },
+        {
+          "const": 4,
+          "title": "Underactive thyroid"
+        },
+        {
+          "const": 5,
+          "title": "Cushing syndrome"
+        },
+        {
+          "const": 6,
+          "title": "Lactose intolerance"
+        },
+        {
+          "const": 7,
+          "title": "Vitamin A deficiency"
+        },
+        {
+          "const": 8,
+          "title": "Thiamine deficiency"
+        },
+        {
+          "const": 9,
+          "title": "Vitamin D deficiency"
+        },
+        {
+          "const": 10,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has your brother or sister ever been diagnosed with the following conditions?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "SIBLING_DIAG_GASTRO_1_M": {
+      "title": "Has your brother or sister ever been diagnosed with any of the following digestive system or liver problems?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Gastro-oesophageal Acid Reflux (GORD)"
+        },
+        {
+          "const": 2,
+          "title": "Barrett's Oesophagus"
+        },
+        {
+          "const": 3,
+          "title": "Irritable bowel syndrome (IBS)"
+        },
+        {
+          "const": 4,
+          "title": "Inflammatory Bowel Disease (IBD)"
+        },
+        {
+          "const": 5,
+          "title": "Diverticulitis or Diverticulosis"
+        },
+        {
+          "const": 6,
+          "title": "Ulcerative Colitis"
+        },
+        {
+          "const": 7,
+          "title": "Crohn's Disease"
+        },
+        {
+          "const": 8,
+          "title": "Coeliac Disease (also known as Gluten-Sensitive Enteropathy)"
+        },
+        {
+          "const": 9,
+          "title": "Gallstones (Biliary Stones)"
+        },
+        {
+          "const": 10,
+          "title": "Fatty liver disease"
+        },
+        {
+          "const": 11,
+          "title": "Liver Cirrhosis"
+        },
+        {
+          "const": 12,
+          "title": "Hepatitis"
+        },
+        {
+          "const": 13,
+          "title": "Pancreatitis"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has your brother or sister ever been diagnosed with any of the following digestive system or liver problems?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "SIBLING_DIAG_NEURO_1_M": {
+      "title": "Has your brother or sister ever been diagnosed with any of the following neurological or brain disorders?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Epilepsy"
+        },
+        {
+          "const": 2,
+          "title": "Parkinson's disease"
+        },
+        {
+          "const": 3,
+          "title": "Alzheimer's disease/dementia"
+        },
+        {
+          "const": 4,
+          "title": "Early onset Alzheimer's disease/dementia"
+        },
+        {
+          "const": 5,
+          "title": "Vascular dementia"
+        },
+        {
+          "const": 6,
+          "title": "Migraine with aura"
+        },
+        {
+          "const": 7,
+          "title": "Migraine without aura"
+        },
+        {
+          "const": 8,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has your brother or sister ever been diagnosed with any of the following neurological or brain disorders?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "SIBLING_DIAG_NEURO_DEV_1_M": {
+      "title": "Has your brother or sister ever been diagnosed with one or more of the following conditions by a professional, even if they don't have it currently?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Autism spectrum disorder"
+        },
+        {
+          "const": 2,
+          "title": "Developmental learning disorders"
+        },
+        {
+          "const": 3,
+          "title": "Attention deficit hyperactivity disorder (ADHD)"
+        },
+        {
+          "const": 4,
+          "title": "Disorder of intellectual development"
+        },
+        {
+          "const": 5,
+          "title": "Developmental motor coordination disorder"
+        },
+        {
+          "const": 6,
+          "title": "Developmental speech or language disorders"
+        },
+        {
+          "const": 7,
+          "title": "Stereotyped movement disorder"
+        },
+        {
+          "const": 8,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has your brother or sister ever been diagnosed with one or more of the following conditions by a professional, even if they don't have it currently?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "SIBLING_DIAG_OPTHAL_1_M": {
+      "title": "Has your brother or sister ever been diagnosed with any of the following eye or visual problems?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Glaucoma"
+        },
+        {
+          "const": 2,
+          "title": "Visual impairment including blindness"
+        },
+        {
+          "const": 3,
+          "title": "Double vision"
+        },
+        {
+          "const": 4,
+          "title": "Night blindness"
+        },
+        {
+          "const": 5,
+          "title": "Colour blindness"
+        },
+        {
+          "const": 6,
+          "title": "Macular degeneration"
+        },
+        {
+          "const": 7,
+          "title": "Cataracts"
+        },
+        {
+          "const": 8,
+          "title": "Retinal detachment"
+        },
+        {
+          "const": 9,
+          "title": "Diabetic retinopathy"
+        },
+        {
+          "const": 10,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has your brother or sister ever been diagnosed with any of the following eye or visual problems?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "SIBLING_DIAG_OSTEO_1_M": {
+      "title": "What type of fractures, breaks, joint or bone problems have your brother or sister experienced?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Hip fracture"
+        },
+        {
+          "const": 2,
+          "title": "Osteoporosis"
+        },
+        {
+          "const": 3,
+          "title": "Osteoarthritis (arthritis)"
+        },
+        {
+          "const": 4,
+          "title": "Gout"
+        },
+        {
+          "const": 5,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "What type of fractures, breaks, joint or bone problems have your brother or sister experienced?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "SIBLING_DIAG_PSYCH_1_M": {
+      "title": "Has your brother or sister ever been diagnosed with one or more of the following conditions by a professional, even if they don't have it currently?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Anxiety"
+        },
+        {
+          "const": 2,
+          "title": "Bipolar disorder"
+        },
+        {
+          "const": 3,
+          "title": "Body dysmorphia"
+        },
+        {
+          "const": 4,
+          "title": "Depression"
+        },
+        {
+          "const": 5,
+          "title": "Premenstrual dysphoric disorder"
+        },
+        {
+          "const": 6,
+          "title": "Post Traumatic Stress Disorder (PTSD)"
+        },
+        {
+          "const": 7,
+          "title": "Obsessive Compulsive Disorder"
+        },
+        {
+          "const": 8,
+          "title": "Eating disorder"
+        },
+        {
+          "const": 9,
+          "title": "Psychosis"
+        },
+        {
+          "const": 10,
+          "title": "Schizophrenia"
+        },
+        {
+          "const": 11,
+          "title": "Schizoaffective disorder"
+        },
+        {
+          "const": 12,
+          "title": "Personality disorder"
+        },
+        {
+          "const": 13,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has your brother or sister ever been diagnosed with one or more of the following conditions by a professional, even if they don't have it currently?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "SIBLING_DIAG_PSYCH_ANX_1_M": {
+      "title": "Which anxiety disorder(s) specifically has your brother or sister been diagnosed with in their lifetime?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Generalised anxiety disorder"
+        },
+        {
+          "const": 2,
+          "title": "Agoraphobia"
+        },
+        {
+          "const": 3,
+          "title": "Social anxiety disorder"
+        },
+        {
+          "const": 4,
+          "title": "Panic disorder"
+        },
+        {
+          "const": 5,
+          "title": "Panic attacks"
+        },
+        {
+          "const": 6,
+          "title": "Specific phobia"
+        },
+        {
+          "const": 7,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Which anxiety disorder(s) specifically has your brother or sister been diagnosed with in their lifetime?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "SIBLING_DIAG_PSYCH_DEPR_1_M": {
+      "title": "Which depressive disorder(s) specifically has your brother or sister been diagnosed with in their lifetime?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Major Depressive Disorder"
+        },
+        {
+          "const": 2,
+          "title": "Perinatal depression"
+        },
+        {
+          "const": 3,
+          "title": "Postnatal depression"
+        },
+        {
+          "const": 4,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Which depressive disorder(s) specifically has your brother or sister been diagnosed with in their lifetime?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "SIBLING_DIAG_PSYCH_EAT_1_M": {
+      "title": "Which eating disorder(s) specifically has your brother or sister been diagnosed with in their lifetime?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Anorexia nervosa"
+        },
+        {
+          "const": 2,
+          "title": "Atypical anorexia nervosa"
+        },
+        {
+          "const": 3,
+          "title": "Bulimia nervosa"
+        },
+        {
+          "const": 4,
+          "title": "Binge eating disorder"
+        },
+        {
+          "const": 5,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Which eating disorder(s) specifically has your brother or sister been diagnosed with in their lifetime?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "SIBLING_DIAG_REPRO_1_M": {
+      "title": "Has your brother or sister ever been diagnosed with any of the following conditions?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Endometriosis"
+        },
+        {
+          "const": 2,
+          "title": "Polycystic Ovary Syndrome (PCOS)"
+        },
+        {
+          "const": 3,
+          "title": "Enlarged prostate"
+        },
+        {
+          "const": 4,
+          "title": "Fibrocystic Breast, or another Benign Breast Disease (such as proliferative Benign Breast Disease or LCIS)"
+        },
+        {
+          "const": 5,
+          "title": "Ductal Carcinoma in situ (DCIS)"
+        },
+        {
+          "const": 6,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has your brother or sister ever been diagnosed with any of the following conditions?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "SIBLING_DIAG_RESP_1_M": {
+      "title": "Has your brother or sister ever been diagnosed with any of the following lung or respiratory conditions?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Chronic Obstructive pulmonary disease, COPD (including emphysema and chronic bronchitis)"
+        },
+        {
+          "const": 2,
+          "title": "Lung fibrosis"
+        },
+        {
+          "const": 3,
+          "title": "Bronchiectasis"
+        },
+        {
+          "const": 4,
+          "title": "Asthma"
+        },
+        {
+          "const": 5,
+          "title": "Hay Fever (Allergic to pollen or Allergic Rhinitis)"
+        },
+        {
+          "const": 6,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has your brother or sister ever been diagnosed with any of the following lung or respiratory conditions?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "SIBLING_DIAG_UROL_1_M": {
+      "title": "Has your brother or sister ever been diagnosed with any of the following kidney or urinary tract problems?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Kidney stones"
+        },
+        {
+          "const": 2,
+          "title": "Chronic kidney disease (or chronic kidney failure)"
+        },
+        {
+          "const": 3,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has your brother or sister ever been diagnosed with any of the following kidney or urinary tract problems?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "SIBLING_NUM_BROTHERS_1_1": {
+      "title": "How many brothers do you have?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How many brothers do you have?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "SIBLING_NUM_SISTERS_1_1": {
+      "title": "How many sisters do you have?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How many sisters do you have?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    }
+  },
+  "required": [
+    "ADOPTION_STATUS_1_1",
+    "BIRTH_PLACE_1_1",
+    "FATHER_AGE_1_1",
+    "FATHER_AGE_DECEASED_1_1",
+    "FATHER_ALIVE_1_1",
+    "FATHER_DIAG_A_1_M",
+    "FATHER_DIAG_A_2_M",
+    "FATHER_DIAG_ANAEMIA_1_M",
+    "FATHER_DIAG_AUTO_1_M",
+    "FATHER_DIAG_B_1_M",
+    "FATHER_DIAG_CANCER_1_M",
+    "FATHER_DIAG_CANCER_SKIN_1_M",
+    "FATHER_DIAG_CVD_1_M",
+    "FATHER_DIAG_ENDOCR_1_M",
+    "FATHER_DIAG_GASTRO_1_M",
+    "FATHER_DIAG_NEURO_1_M",
+    "FATHER_DIAG_NEURO_DEV_1_M",
+    "FATHER_DIAG_OPTHAL_1_M",
+    "FATHER_DIAG_OSTEO_1_M",
+    "FATHER_DIAG_PSYCH_1_M",
+    "FATHER_DIAG_PSYCH_ANX_1_M",
+    "FATHER_DIAG_PSYCH_DEPR_1_M",
+    "FATHER_DIAG_PSYCH_EAT_1_M",
+    "FATHER_DIAG_REPRO_1_M",
+    "FATHER_DIAG_RESP_1_M",
+    "FATHER_DIAG_UROL_1_M",
+    "IMMIGRATE_UK_YR_1_1",
+    "MOTHER_AGE_1_1",
+    "MOTHER_AGE_DECEASED_1_1",
+    "MOTHER_ALIVE_1_1",
+    "MOTHER_DIAG_A_1_M",
+    "MOTHER_DIAG_A_2_M",
+    "MOTHER_DIAG_ANAEMIA_1_M",
+    "MOTHER_DIAG_AUTO_1_M",
+    "MOTHER_DIAG_B_1_M",
+    "MOTHER_DIAG_CANCER_1_M",
+    "MOTHER_DIAG_CANCER_SKIN_1_M",
+    "MOTHER_DIAG_CVD_1_M",
+    "MOTHER_DIAG_ENDOCR_1_M",
+    "MOTHER_DIAG_GASTRO_1_M",
+    "MOTHER_DIAG_NEURO_1_M",
+    "MOTHER_DIAG_NEURO_DEV_1_M",
+    "MOTHER_DIAG_OPTHAL_1_M",
+    "MOTHER_DIAG_OSTEO_1_M",
+    "MOTHER_DIAG_PSYCH_1_M",
+    "MOTHER_DIAG_PSYCH_ANX_1_M",
+    "MOTHER_DIAG_PSYCH_DEPR_1_M",
+    "MOTHER_DIAG_PSYCH_EAT_1_M",
+    "MOTHER_DIAG_REPRO_1_M",
+    "MOTHER_DIAG_RESP_1_M",
+    "MOTHER_DIAG_UROL_1_M",
+    "SIBLING_DIAG_A_1_M",
+    "SIBLING_DIAG_A_2_M",
+    "SIBLING_DIAG_ANAEMIA_1_M",
+    "SIBLING_DIAG_AUTO_1_M",
+    "SIBLING_DIAG_B_1_M",
+    "SIBLING_DIAG_CANCER_1_M",
+    "SIBLING_DIAG_CANCER_SKIN_1_M",
+    "SIBLING_DIAG_CVD_1_M",
+    "SIBLING_DIAG_ENDOCR_1_M",
+    "SIBLING_DIAG_GASTRO_1_M",
+    "SIBLING_DIAG_NEURO_1_M",
+    "SIBLING_DIAG_NEURO_DEV_1_M",
+    "SIBLING_DIAG_OPTHAL_1_M",
+    "SIBLING_DIAG_OSTEO_1_M",
+    "SIBLING_DIAG_PSYCH_1_M",
+    "SIBLING_DIAG_PSYCH_ANX_1_M",
+    "SIBLING_DIAG_PSYCH_DEPR_1_M",
+    "SIBLING_DIAG_PSYCH_EAT_1_M",
+    "SIBLING_DIAG_REPRO_1_M",
+    "SIBLING_DIAG_RESP_1_M",
+    "SIBLING_DIAG_UROL_1_M",
+    "SIBLING_NUM_BROTHERS_1_1",
+    "SIBLING_NUM_SISTERS_1_1"
+  ]
+}

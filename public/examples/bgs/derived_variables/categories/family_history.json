@@ -1,0 +1,186 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cd3-bgs-pilot/derived_variables/categories/family_history.json",
+  "title": "DERIVED_VARIABLES — Family History",
+  "type": "object",
+  "x-variable-group": "family_history",
+  "properties": {
+    "R0_FamHistCancer": {
+      "title": "Family history of any cancer in first-degree relatives (parents, full siblings, or children)",
+      "oneOf": [
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Set to 1 if any first-degree relative (mother, father, full sibling, or child) has a cancer entry whose coded site equals contains indications of any cancer. Currently derived from legacy SAS scripts. Currently derived from legacy SAS scripts, not yet reimplemented in this pipeline: N:/BrBreakthrough/analysis/riskfactors/SAS/Code/Q14FamhistCancer.sas; N:/BrBreakthrough/analysis/riskfactors/SAS/Code/Q14Famhistory.sas",
+      "$comment": "Legacy name: famca."
+    },
+    "R0_FamHistCancerNum": {
+      "title": "Count of number of first-degree relatives with any cancer",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 20
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Total count of first-degree relatives (mother, father, full sibling, or child) that have cancer entry whose coded site equals contains indications of any cancer. Currently derived from legacy SAS scripts. Currently derived from legacy SAS scripts, not yet reimplemented in this pipeline: N:/BrBreakthrough/analysis/riskfactors/SAS/Code/Q14FamhistCancer.sas; N:/BrBreakthrough/analysis/riskfactors/SAS/Code/Q14Famhistory.sas",
+      "$comment": "Legacy name: famcaN. Upper bound is a plausibility bound the source does not state -- agent-decided."
+    },
+    "R0_FamHistBC": {
+      "title": "Family history of breast cancer in first-degree relatives (parents, full siblings, or children)",
+      "oneOf": [
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Set to 1 if any first-degree relative (mother, father, full sibling, or child) has a cancer entry whose coded site equals contains indications of breast cancer. Currently derived from legacy SAS scripts. Currently derived from legacy SAS scripts, not yet reimplemented in this pipeline: N:/BrBreakthrough/analysis/riskfactors/SAS/Code/Q14FamhistCancer.sas; N:/BrBreakthrough/analysis/riskfactors/SAS/Code/Q14Famhistory.sas",
+      "$comment": "Legacy name: fambrca."
+    },
+    "R0_FamHistBCNum": {
+      "title": "Count of number of first-degree relatives with breast cancer",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 20
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Total count of first-degree relative (mother, father, full sibling, or child) has a cancer entry whose coded site equals contains indications of breast cancer. Currently derived from legacy SAS scripts. Currently derived from legacy SAS scripts, not yet reimplemented in this pipeline: N:/BrBreakthrough/analysis/riskfactors/SAS/Code/Q14FamhistCancer.sas; N:/BrBreakthrough/analysis/riskfactors/SAS/Code/Q14Famhistory.sas",
+      "$comment": "Legacy name: fambrcan. Upper bound is a plausibility bound the source does not state -- agent-decided."
+    },
+    "R0_FamHistOV": {
+      "title": "Family history of ovarian cancer in first-degree relatives (parents, full siblings, or children)",
+      "oneOf": [
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Set to 1 if any first-degree relative (mother, father, full sibling, or child) has a cancer entry whose coded site contains indications of ovarian cancer. Currently derived from legacy SAS scripts. Currently derived from legacy SAS scripts, not yet reimplemented in this pipeline: N:/BrBreakthrough/analysis/riskfactors/SAS/Code/Q14FamhistCancer.sas; N:/BrBreakthrough/analysis/riskfactors/SAS/Code/Q14Famhistory.sas",
+      "$comment": "Legacy name: famovca."
+    },
+    "R0_FamHistOVNum": {
+      "title": "Count of number of first-degree relatives with ovarian cancer",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 20
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Total count of first-degree relative (mother, father, full sibling, or child) has a cancer entry whose coded site contains indications of ovarian cancer. Currently derived from legacy SAS scripts. Currently derived from legacy SAS scripts, not yet reimplemented in this pipeline: N:/BrBreakthrough/analysis/riskfactors/SAS/Code/Q14FamhistCancer.sas; N:/BrBreakthrough/analysis/riskfactors/SAS/Code/Q14Famhistory.sas",
+      "$comment": "Legacy name: famovcan. Upper bound is a plausibility bound the source does not state -- agent-decided."
+    },
+    "R0_FamHistColo": {
+      "title": "Family history of colorectal cancer in first-degree relatives (parents, full siblings, or children)",
+      "oneOf": [
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Set to 1 if any first-degree relative (mother, father, full sibling, or child) has a cancer entry whose coded site contains indications of colorectal cancer. Currently derived from legacy SAS scripts. Currently derived from legacy SAS scripts, not yet reimplemented in this pipeline: N:/BrBreakthrough/analysis/riskfactors/SAS/Code/Q14FamhistCancer.sas; N:/BrBreakthrough/analysis/riskfactors/SAS/Code/Q14Famhistory.sas",
+      "$comment": "Legacy name: famcolorec."
+    },
+    "R0_FamHistColoNum": {
+      "title": "Count of number of first-degree relatives with colorectal cancer",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 20
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Total count of first-degree relative (mother, father, full sibling, or child) has a cancer entry whose coded site contains indications of colorectal cancer. Currently derived from legacy SAS scripts. Currently derived from legacy SAS scripts, not yet reimplemented in this pipeline: N:/BrBreakthrough/analysis/riskfactors/SAS/Code/Q14FamhistCancer.sas; N:/BrBreakthrough/analysis/riskfactors/SAS/Code/Q14Famhistory.sas",
+      "$comment": "Legacy name: famcolorecn. Upper bound is a plausibility bound the source does not state -- agent-decided."
+    },
+    "R0_FamHistProst": {
+      "title": "Family history of prostate cancer in first-degree relatives (parents, full siblings, or children)",
+      "oneOf": [
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Set to 1 if any first-degree relative (mother, father, full sibling, or child) has a cancer entry whose coded site contains indications of prostate cancer. Currently derived from legacy SAS scripts. Currently derived from legacy SAS scripts, not yet reimplemented in this pipeline: N:/BrBreakthrough/analysis/riskfactors/SAS/Code/Q14FamhistCancer.sas; N:/BrBreakthrough/analysis/riskfactors/SAS/Code/Q14Famhistory.sas",
+      "$comment": "Legacy name: famprostate."
+    },
+    "R0_FamHistProstNum": {
+      "title": "Count of number of first-degree relatives with prostate cancer",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 20
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Total count of first-degree relative (mother, father, full sibling, or child) has a cancer entry whose coded site contains indications of prostate cancer. Currently derived from legacy SAS scripts. Currently derived from legacy SAS scripts, not yet reimplemented in this pipeline: N:/BrBreakthrough/analysis/riskfactors/SAS/Code/Q14FamhistCancer.sas; N:/BrBreakthrough/analysis/riskfactors/SAS/Code/Q14Famhistory.sas",
+      "$comment": "Legacy name: famprostaten. Upper bound is a plausibility bound the source does not state -- agent-decided."
+    }
+  },
+  "required": [
+    "R0_FamHistCancer",
+    "R0_FamHistCancerNum",
+    "R0_FamHistBC",
+    "R0_FamHistBCNum",
+    "R0_FamHistOV",
+    "R0_FamHistOVNum",
+    "R0_FamHistColo",
+    "R0_FamHistColoNum",
+    "R0_FamHistProst",
+    "R0_FamHistProstNum"
+  ]
+}

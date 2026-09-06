@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cd3-mws-pilot/recruitment/categories/contraceptive.json",
+  "title": "RECRUITMENT — Contraceptive",
+  "type": "object",
+  "x-variable-group": "contraceptive",
+  "properties": {
+    "ROC": {
+      "title": "Ever used oral contraceptive",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 2,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ]
+    },
+    "ROCSTART": {
+      "title": "Oral contraceptive age start",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 10,
+          "maximum": 60
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "$comment": "Bound is a plausibility range the source does not fully state -- agent-decided."
+    },
+    "ROCSTOP": {
+      "title": "Oral contraceptive age stop",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 10,
+          "maximum": 60
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "$comment": "Bound is a plausibility range the source does not fully state -- agent-decided."
+    },
+    "ROCDUR": {
+      "title": "Oral contraceptive total duration (years)",
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 50
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "$comment": "Bound is a plausibility range the source does not fully state -- agent-decided."
+    }
+  },
+  "required": [
+    "ROC",
+    "ROCSTART",
+    "ROCSTOP",
+    "ROCDUR"
+  ]
+}

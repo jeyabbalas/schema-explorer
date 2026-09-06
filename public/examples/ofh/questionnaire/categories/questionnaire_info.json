@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cd3-ofh-pilot/questionnaire/categories/questionnaire_info.json",
+  "title": "QUESTIONNAIRE — Questionnaire Info",
+  "type": "object",
+  "x-variable-group": "questionnaire_info",
+  "properties": {
+    "ID": {
+      "title": "Questionnaire response ID",
+      "type": "string",
+      "x-role": "primary key"
+    },
+    "PID": {
+      "title": "Participant ID",
+      "type": "string",
+      "x-role": "entity key"
+    },
+    "QUESTIONNAIRE_VERSION": {
+      "title": "Version of questionnaire completed",
+      "type": "string"
+    },
+    "SUBMISSION_DATE": {
+      "title": "Date questionnaire was submitted",
+      "type": "string",
+      "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$",
+      "$comment": "Assumed ISO 8601 (YYYY-MM-DD) -- source dictionary states 'date' type but no explicit format. Agent-decided, open for steward confirmation."
+    }
+  },
+  "required": [
+    "ID",
+    "PID",
+    "QUESTIONNAIRE_VERSION",
+    "SUBMISSION_DATE"
+  ]
+}

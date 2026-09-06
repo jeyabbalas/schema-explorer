@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cd3-bgs-pilot/derived_variables/categories/menarche.json",
+  "title": "DERIVED_VARIABLES — Menarche",
+  "type": "object",
+  "x-variable-group": "menarche",
+  "properties": {
+    "R0_AgeMenarche": {
+      "title": "Age at first period (menarche), in whole years",
+      "anyOf": [
+        {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "exclusiveMaximum": 100
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Logic: (1) If Ever had periods = No (R0_EverHadPeriods=2), set null. (2) Otherwise use the reported first-period age (R0_FirstPeriodAge). Derived from: R0_EverHadPeriods, R0_FirstPeriodAge",
+      "$comment": "Legacy name: menarcheage."
+    }
+  },
+  "required": [
+    "R0_AgeMenarche"
+  ]
+}

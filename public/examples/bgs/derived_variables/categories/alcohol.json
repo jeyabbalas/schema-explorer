@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cd3-bgs-pilot/derived_variables/categories/alcohol.json",
+  "title": "DERIVED_VARIABLES — Alcohol",
+  "type": "object",
+  "x-variable-group": "alcohol",
+  "properties": {
+    "R0_AlcoholStatus": {
+      "title": "Alcohol use status at baseline",
+      "oneOf": [
+        {
+          "const": 0,
+          "title": "Never"
+        },
+        {
+          "const": 1,
+          "title": "Former"
+        },
+        {
+          "const": 2,
+          "title": "Current"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Using questionnaire variables if ever been a regular drinker, and if still drinking at least one glass per week. Derived from: R0_AlcoholRegularUse, R0_AlcoholCurrentUse, R0_AlcoholStartAge, R0_AlcoholStopAge, R0_AlcoholConsumption_Num, R0_AlcoholBeer, R0_AlcoholRedWine, R0_AlcoholWhiteWine, R0_AlcoholSherry, R0_AlcoholSpirits, R0_AlcoholOther, AgeEntry",
+      "$comment": "Legacy name: R1alcoholstatus."
+    },
+    "R0_AgeStartedDrinking": {
+      "title": "Age started regularly drinking alcohol",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Using questionnaire variable at what age did you start drinking. Derived from: R0_AlcoholStartAge",
+      "$comment": "Legacy name: alcoholstartage. Upper bound is a plausibility bound the source does not state -- agent-decided."
+    },
+    "R0_AgeStoppedDrinking": {
+      "title": "Age stopped regularly drinking alcohol",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Using questionnaire variable at what age did you stop drinking. Derived from: R0_AlcoholStopAge",
+      "$comment": "Legacy name: alcoholstopage. Upper bound is a plausibility bound the source does not state -- agent-decided."
+    },
+    "R0_AlcoholUnitsPerWeek": {
+      "title": "Weekly alcohol units among current drinkers",
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 300
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Average of weekly units of all alcohols asked about in age range at baseline. Derived from: R0_AlcoholConsumption_Num, R0_AlcoholBeer, R0_AlcoholRedWine, R0_AlcoholWhiteWine, R0_AlcoholSherry, R0_AlcoholSpirits, R0_AlcoholOther, R0_AlcoholCurrentUse, AgeEntry",
+      "$comment": "Legacy name: R1alcoholunits. Upper bound is a plausibility bound the source does not state -- agent-decided."
+    }
+  },
+  "required": [
+    "R0_AlcoholStatus",
+    "R0_AgeStartedDrinking",
+    "R0_AgeStoppedDrinking",
+    "R0_AlcoholUnitsPerWeek"
+  ]
+}

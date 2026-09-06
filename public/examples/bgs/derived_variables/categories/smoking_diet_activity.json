@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cd3-bgs-pilot/derived_variables/categories/smoking_diet_activity.json",
+  "title": "DERIVED_VARIABLES — Smoking Diet Activity",
+  "type": "object",
+  "x-variable-group": "smoking_diet_activity",
+  "properties": {
+    "R0_SmokingStatus": {
+      "title": "Cigarette smoking status at baseline",
+      "oneOf": [
+        {
+          "const": 0,
+          "title": "Never"
+        },
+        {
+          "const": 1,
+          "title": "Former"
+        },
+        {
+          "const": 2,
+          "title": "Current"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Using questionnaire variables if ever been a regular smoker, and if still smoking regularly at baseline. Derived from: R0_SmokingRegularUse, R0_SmokingCurrentUse, R0_SmokingStartAge, R0_SmokingStopAge, R0_CigaretteConsumption_Num, R0_Cigarettes, AgeEntry",
+      "$comment": "Legacy name: R1smokingstatus."
+    },
+    "R0_AgeStartedSmoking": {
+      "title": "Age started cigarette smoking",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Using questionnaire variable at what age did you start smoking regularly. Derived from: R0_SmokingStartAge",
+      "$comment": "Legacy name: smokingstartage. Upper bound is a plausibility bound the source does not state -- agent-decided."
+    },
+    "R0_AgeStoppedSmoking": {
+      "title": "Age stopped cigarette smoking",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Using questionnaire variable at what age did you stop smoking regularly. Derived from: R0_SmokingStopAge",
+      "$comment": "Legacy name: smokingstopage. Upper bound is a plausibility bound the source does not state -- agent-decided."
+    },
+    "R0_CigsPerDay": {
+      "title": "Cigarettes smoked per day (current smokers)",
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Average of cigarettes per day smoked in age range at baseline. Derived from: R0_CigaretteConsumption_Num, R0_Cigarettes, R0_SmokingCurrentUse, AgeEntry",
+      "$comment": "Legacy name: R1smokingcigs. Upper bound is a plausibility bound the source does not state -- agent-decided."
+    },
+    "R0_PackYears": {
+      "title": "Cigarette smoking exposure (pack-years)",
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 150
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Compute (cigarettes per day/20)*years smoked across smoking episodes; years = (stop - start)/365.25. Merge overlapping episodes; ignore implausible spans. Derived from: R0_SmokingStartAge, R0_SmokingStopAge, R0_CigaretteConsumption_Num, R0_Cigarettes, AgeEntry",
+      "$comment": "Legacy name: R1smokingpackyears. Upper bound is a plausibility bound the source does not state -- agent-decided."
+    },
+    "R0_PhysicalActivity": {
+      "title": "Physical activity (hours/week)",
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 500
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Baseline total physical activity in MET-hours per week. For each baseline domain, the self-reported hours per week are multiplied by a standard MET value derived as the average of selected activities in the 2024 Adult Compendium of Physical Activities: Strenuous sports/training that made you sweat or breathe hard (R0_SportsSweatHours): MET = 7.2, average of basketball (7.5), football (7.0), tennis singles (8.0), leisurely swimming (6.0), and jogging at self-selected pace (7.5). Work that made you sweat or breathe hard (R0_WorkSweatHours): MET = 5.5, average of manual/unskilled labor, moderate (4.5) and vigorous (6.5) effort. Other activities that made you sweat or breathe hard (R0_OtherSweatHours): MET = 5.5, average of yardwork moderate (4.0), yardwork vigorous (6.0), and chopping/splitting wood vigorous (6.5). Active housework (R0_ActiveHouseworkHours): MET = 3.4, average of heavy cleaning (3.5), multiple household tasks moderate (3.3), and general house cleaning moderate (3.3). Manual labour, gardening, decorating, DIY (R0_ManualLaborHours): MET = 3.9, average of yardwork moderate (4.0), gardening general moderate (3.8), and raking leaves (4.0). Walking (R0_WalkingHours): MET = 3.4, average of walking for pleasure at ~2.5 mph (3.0), ~3.0 mph (3.5), and walking 2.8-3.4 mph at a moderate speed (3.8). Cycling (R0_CyclingHours): MET = 5.0, average of bicycling <10 mph leisure (4.0), self-selected easy pace (4.3), and 10-11.9 mph leisure slow/light effort (6.8). Dancing (R0_DancingHours): MET = 4.8, average of ballet/modern/jazz general (5.0), ballroom fast (5.5), folk dancing moderate (5.0), and contemporary dance general (3.8). Other moderate or light exercise (R0_OtherModerateExerciseHours): MET = 3.8, average of yoga general (2.3), power yoga (4.0), calisthenics light/moderate (3.5), home exercise general (3.8), and health club exercise general (5.5). The derived variable equals the sum of MET x hours contributions across all domains with non-missing hours. If all contributing domains are missing, R0_PhysicalActivity is set to null. Derived from: R0_SportsSweatHours, R0_WorkSweatHours, R0_OtherSweatHours, R0_ActiveHouseworkHours, R0_ManualLaborHours, R0_WalkingHours, R0_CyclingHours, R0_DancingHours, R0_OtherModerateExerciseHours",
+      "$comment": "Legacy name: PhysMetWorkTot. Upper bound is a plausibility bound the source does not state -- agent-decided."
+    },
+    "R0_GreenVegDailyServings": {
+      "title": "Average daily green vegetable consumption",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 20
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Cleaned numeric servings/day derived from questionnaire. Derived from: R0_GreenVegDailyServings",
+      "$comment": "Legacy name: dietvegserv. Upper bound is a plausibility bound the source does not state -- agent-decided."
+    },
+    "R0_FruitDailyServings": {
+      "title": "Average daily fruit consumption",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 20
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Cleaned numeric servings/day derived from questionnaire. Derived from: R0_FruitDailyServings",
+      "$comment": "Legacy name: dietfruitserv. Upper bound is a plausibility bound the source does not state -- agent-decided."
+    }
+  },
+  "required": [
+    "R0_SmokingStatus",
+    "R0_AgeStartedSmoking",
+    "R0_AgeStoppedSmoking",
+    "R0_CigsPerDay",
+    "R0_PackYears",
+    "R0_PhysicalActivity",
+    "R0_GreenVegDailyServings",
+    "R0_FruitDailyServings"
+  ]
+}

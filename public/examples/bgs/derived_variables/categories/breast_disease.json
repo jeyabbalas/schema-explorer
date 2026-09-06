@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cd3-bgs-pilot/derived_variables/categories/breast_disease.json",
+  "title": "DERIVED_VARIABLES — Breast Disease",
+  "type": "object",
+  "x-variable-group": "breast_disease",
+  "properties": {
+    "R0_BBD": {
+      "title": "History of benign breast disease",
+      "oneOf": [
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Set to 1 if any of the following are present in the BreastDisease section: (a) the direct question on benign breast disease/abnormality is answered 'Yes' (R0_BBD_Abnormality=1); (b) at least one episode is recorded with a type (R0_BBD_Type) or a coded procedure (R0_BBD_ProcedureType); (c) any 'extra' procedure flags indicate biopsy, part/lump removed, whole breast removed, both breasts removed, or other (R0_BBD_Biopsy/Lump/Mastec/BothRem/Other = 1); (d) 'further' or 'more than 4' boxes are ticked (R0_BBD_Further=1 or R0_BBD_MoreThan4=1). Set to 0 if the direct question is 'No' (R0_BBD_Abnormality=2) and no other evidence is present. Otherwise, null. Derived from: R0_BBD_Abnormality, R0_BBD_Type, R0_BBD_ProcedureType, R0_BBD_Biopsy, R0_BBD_Lump, R0_BBD_Mastec, R0_BBD_BothRem, R0_BBD_Other, R0_BBD_Further, R0_BBD_MoreThan4",
+      "$comment": "Legacy name: brbendis."
+    }
+  },
+  "required": [
+    "R0_BBD"
+  ]
+}

@@ -18,3 +18,11 @@ npm run check      # typecheck, lint, format check, tests, production build
 ## License
 
 MIT © 2026 Jeya Balaji Balasubramanian
+
+## Example datasets
+
+The bundled example datasets (BGS, MWS, OFH, TARGET) are the schema sets of the
+[CD3 schemify pilot](https://github.com/mgarciaclosas/cd3-schemify-pilot), Copyright (c) 2026 mgarciaclosas,
+MIT License; the license text is redistributed at `public/examples/LICENSE`. Regenerate the copies from a
+checkout of that repository with `npm run sync-examples` (`CD3_SOURCE=/path/to/checkout` overrides the
+default sibling-directory location).

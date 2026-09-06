@@ -1,0 +1,4238 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cd3-ofh-pilot/questionnaire/categories/health_history.json",
+  "title": "QUESTIONNAIRE — Health History",
+  "type": "object",
+  "x-variable-group": "health_history",
+  "properties": {
+    "CHILDREN_BIO_FIRST_AGE_1_1": {
+      "title": "How old were you when you had your FIRST child?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/suppressed"
+        },
+        {
+          "const": -4,
+          "title": "Do not remember"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How old were you when you had your FIRST child?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "CHILDREN_BIO_LAST_AGE_1_1": {
+      "title": "How old were you when you had your LAST child?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/suppressed"
+        },
+        {
+          "const": -4,
+          "title": "Do not remember"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How old were you when you had your LAST child?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "CHILDREN_BIO_NUM_1_1": {
+      "title": "How many children have you fathered?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/suppressed"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How many children have you fathered?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "CHILDREN_BIO_NUM_2_1": {
+      "title": "How many biological children have you had?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/suppressed"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How many biological children have you had?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "CHILDREN_BIRTHED_FIRST_AGE_1_1": {
+      "title": "How old were you when you had your FIRST child?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/suppressed"
+        },
+        {
+          "const": -4,
+          "title": "Do not remember"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How old were you when you had your FIRST child?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "CHILDREN_BIRTHED_LAST_AGE_1_1": {
+      "title": "How old were you when you had your LAST child?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/suppressed"
+        },
+        {
+          "const": -4,
+          "title": "Do not remember"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How old were you when you had your LAST child?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "CHILDREN_BIRTHED_NUM_1_1": {
+      "title": "How many children have you given birth to?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/suppressed"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How many children have you given birth to?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "DIAG_1_M": {
+      "title": "Has a doctor ever told you that you have had any of the following condition?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Heart attack"
+        },
+        {
+          "const": 2,
+          "title": "Angina"
+        },
+        {
+          "const": 3,
+          "title": "Stroke"
+        },
+        {
+          "const": 4,
+          "title": "High blood pressure"
+        },
+        {
+          "const": 5,
+          "title": "Cancer"
+        },
+        {
+          "const": 6,
+          "title": "Diabetes"
+        },
+        {
+          "const": 7,
+          "title": "Lung Disease"
+        },
+        {
+          "const": 8,
+          "title": "Other"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Has a doctor ever told you that you have had any of the following condition?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "DIAG_2_M": {
+      "title": "Have you ever been diagnosed with any of the following by a doctor or other health professional?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Autoimmune disorder"
+        },
+        {
+          "const": 2,
+          "title": "Blood disorders (Anaemia)"
+        },
+        {
+          "const": 3,
+          "title": "Cancer"
+        },
+        {
+          "const": 4,
+          "title": "Complications or difficulties in pregnancy or childbirth"
+        },
+        {
+          "const": 5,
+          "title": "Digestive system or liver problems"
+        },
+        {
+          "const": 6,
+          "title": "Endocrine, nutritional and metabolic disorders (e.g. diabetes, thyroid disorder, vitamin deficiencies)"
+        },
+        {
+          "const": 7,
+          "title": "Eye or visual problems"
+        },
+        {
+          "const": 8,
+          "title": "Fractures, breaks, or joint problems"
+        },
+        {
+          "const": 9,
+          "title": "Heart or circulatory disease (e.g. high blood pressure or stroke)"
+        },
+        {
+          "const": 10,
+          "title": "Kidney or urinary system disorders"
+        },
+        {
+          "const": 11,
+          "title": "Lung or respiratory problems"
+        },
+        {
+          "const": 12,
+          "title": "Mental health conditions (e.g. depression, bipolar disorder)"
+        },
+        {
+          "const": 13,
+          "title": "Neurodevelopmental conditions (e.g. Autism spectrum disorder, ADHD)"
+        },
+        {
+          "const": 14,
+          "title": "Neurological disorders (things that affect that brain or nervous system. E.g., Epilepsy)"
+        },
+        {
+          "const": 15,
+          "title": "Reproductive system problems"
+        },
+        {
+          "const": 16,
+          "title": "Other not listed"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you ever been diagnosed with any of the following by a doctor or other health professional?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "DIAG_ANAEMIA_1_M": {
+      "title": "Have you ever been diagnosed with any of the following types of anaemia by a doctor or other health professional?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "iron deficiency anaemia"
+        },
+        {
+          "const": 2,
+          "title": "Vitamin deficiency anaemia"
+        },
+        {
+          "const": 3,
+          "title": "Sickle cell anaemia"
+        },
+        {
+          "const": 4,
+          "title": "Aplastic anaemia"
+        },
+        {
+          "const": 5,
+          "title": "Thalassaemia"
+        },
+        {
+          "const": 6,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you ever been diagnosed with any of the following types of anaemia by a doctor or other health professional?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "DIAG_AUTO_1_M": {
+      "title": "Have you ever been diagnosed with any of the following autoimmune disorders by a doctor or other health professional?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Rheumatoid arthritis"
+        },
+        {
+          "const": 2,
+          "title": "Lupus"
+        },
+        {
+          "const": 3,
+          "title": "Inflammatory Bowel Disease (IBD)"
+        },
+        {
+          "const": 4,
+          "title": "Multiple Sclerosis (MS)"
+        },
+        {
+          "const": 5,
+          "title": "Graves' disease"
+        },
+        {
+          "const": 6,
+          "title": "Guillain-Barre syndrome"
+        },
+        {
+          "const": 7,
+          "title": "Psoriasis"
+        },
+        {
+          "const": 8,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you ever been diagnosed with any of the following autoimmune disorders by a doctor or other health professional?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "DIAG_CANCER_1_M": {
+      "title": "Which type(s) of cancer specifically were you diagnosed with?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Anal"
+        },
+        {
+          "const": 2,
+          "title": "Bladder"
+        },
+        {
+          "const": 3,
+          "title": "Brain"
+        },
+        {
+          "const": 4,
+          "title": "Breast"
+        },
+        {
+          "const": 5,
+          "title": "Cervical"
+        },
+        {
+          "const": 6,
+          "title": "Colon/rectal"
+        },
+        {
+          "const": 7,
+          "title": "Oesophageal"
+        },
+        {
+          "const": 8,
+          "title": "Head and neck (Including cancers of the mouth, sinuses, nose, or throat. Not including brain or skin cancers.)"
+        },
+        {
+          "const": 9,
+          "title": "Gastric"
+        },
+        {
+          "const": 10,
+          "title": "Kidney"
+        },
+        {
+          "const": 11,
+          "title": "Leukaemia (blood and bone marrow)"
+        },
+        {
+          "const": 12,
+          "title": "Liver"
+        },
+        {
+          "const": 13,
+          "title": "Lung or bronchial"
+        },
+        {
+          "const": 14,
+          "title": "Lymphoma"
+        },
+        {
+          "const": 15,
+          "title": "Ovarian"
+        },
+        {
+          "const": 16,
+          "title": "Pancreatic"
+        },
+        {
+          "const": 17,
+          "title": "Prostate"
+        },
+        {
+          "const": 18,
+          "title": "Skin"
+        },
+        {
+          "const": 19,
+          "title": "Stomach"
+        },
+        {
+          "const": 20,
+          "title": "Testicular"
+        },
+        {
+          "const": 21,
+          "title": "Thyroid"
+        },
+        {
+          "const": 22,
+          "title": "Uterine (endometrial)"
+        },
+        {
+          "const": 23,
+          "title": "Another type of cancer"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Which type(s) of cancer specifically were you diagnosed with?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "DIAG_CANCER_SKIN_1_M": {
+      "title": "What type of skin cancer specifically were you diagnosed with?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Melanoma"
+        },
+        {
+          "const": 2,
+          "title": "Basal cell"
+        },
+        {
+          "const": 3,
+          "title": "Squamous cell"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "What type of skin cancer specifically were you diagnosed with?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "DIAG_CVD_1_M": {
+      "title": "Have you ever been diagnosed with any of the following heart or circulatory diseases by a doctor or other health professional?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "B-12 Deficiency (Pernicious Anaemia)"
+        },
+        {
+          "const": 2,
+          "title": "Coronary Artery/Coronary Heart Disease"
+        },
+        {
+          "const": 3,
+          "title": "Congestive Heart Failure"
+        },
+        {
+          "const": 4,
+          "title": "High Cholesterol"
+        },
+        {
+          "const": 5,
+          "title": "Heart Attack (Myocardial Infarction)"
+        },
+        {
+          "const": 6,
+          "title": "Abnormal Heart Rhythm (Arrhythmia)"
+        },
+        {
+          "const": 7,
+          "title": "Chest Pain (Angina)"
+        },
+        {
+          "const": 8,
+          "title": "Heart Valve Problems"
+        },
+        {
+          "const": 9,
+          "title": "High Blood Pressure (Hypertension) [Please do not include hypertension during pregnancy.]"
+        },
+        {
+          "const": 10,
+          "title": "Blood Clots (Deep Vein Thrombosis, Pulmonary Embolism)"
+        },
+        {
+          "const": 11,
+          "title": "Stroke"
+        },
+        {
+          "const": 12,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you ever been diagnosed with any of the following heart or circulatory diseases by a doctor or other health professional?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "DIAG_ENDOCR_1_M": {
+      "title": "Have you ever been diagnosed with the following conditions by a doctor or other health professional?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Type 1 diabetes"
+        },
+        {
+          "const": 2,
+          "title": "Type 2 diabetes"
+        },
+        {
+          "const": 3,
+          "title": "Overactive thyroid"
+        },
+        {
+          "const": 4,
+          "title": "Underactive thyroid"
+        },
+        {
+          "const": 5,
+          "title": "Cushing syndrome"
+        },
+        {
+          "const": 6,
+          "title": "Lactose intolerance"
+        },
+        {
+          "const": 7,
+          "title": "Vitamin A deficiency"
+        },
+        {
+          "const": 8,
+          "title": "Thiamine deficiency"
+        },
+        {
+          "const": 9,
+          "title": "Vitamin D deficiency"
+        },
+        {
+          "const": 10,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you ever been diagnosed with the following conditions by a doctor or other health professional?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "DIAG_GASTRO_1_M": {
+      "title": "Have you ever been diagnosed with any of the following digestive system or liver problems by a doctor or other health professional?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Gastro-oesophageal Acid Reflux (GORD)"
+        },
+        {
+          "const": 2,
+          "title": "Barrett's Oesophagus"
+        },
+        {
+          "const": 3,
+          "title": "Irritable bowel syndrome (IBS)"
+        },
+        {
+          "const": 4,
+          "title": "Inflammatory Bowel Disease (IBD)"
+        },
+        {
+          "const": 5,
+          "title": "Diverticulitis or Diverticulosis"
+        },
+        {
+          "const": 6,
+          "title": "Ulcerative Colitis"
+        },
+        {
+          "const": 7,
+          "title": "Crohn's Disease"
+        },
+        {
+          "const": 8,
+          "title": "Coeliac Disease (also known as Gluten-Sensitive Enteropathy)"
+        },
+        {
+          "const": 9,
+          "title": "Gallstones (Biliary Stones)"
+        },
+        {
+          "const": 10,
+          "title": "Fatty liver disease"
+        },
+        {
+          "const": 11,
+          "title": "Liver Cirrhosis"
+        },
+        {
+          "const": 12,
+          "title": "Hepatitis"
+        },
+        {
+          "const": 13,
+          "title": "Pancreatitis"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you ever been diagnosed with any of the following digestive system or liver problems by a doctor or other health professional?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "DIAG_NEURO_1_M": {
+      "title": "Have you ever been diagnosed with any of the following neurological or brain disorders by a doctor or other health professional?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Epilepsy"
+        },
+        {
+          "const": 2,
+          "title": "Parkinson's disease"
+        },
+        {
+          "const": 3,
+          "title": "Alzheimer's disease/dementia"
+        },
+        {
+          "const": 4,
+          "title": "Early onset Alzheimer's disease/dementia"
+        },
+        {
+          "const": 5,
+          "title": "Vascular dementia"
+        },
+        {
+          "const": 6,
+          "title": "Migraine with aura"
+        },
+        {
+          "const": 7,
+          "title": "Migraine without aura"
+        },
+        {
+          "const": 8,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you ever been diagnosed with any of the following neurological or brain disorders by a doctor or other health professional?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "DIAG_NEURO_DEV_1_M": {
+      "title": "Have you ever been diagnosed with one or more of the following conditions by a professional, even if you don't have it currently?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Autism spectrum disorder"
+        },
+        {
+          "const": 2,
+          "title": "Developmental learning disorders"
+        },
+        {
+          "const": 3,
+          "title": "Attention deficit hyperactivity disorder (ADHD)"
+        },
+        {
+          "const": 4,
+          "title": "Disorder of intellectual development"
+        },
+        {
+          "const": 5,
+          "title": "Developmental motor coordination disorder"
+        },
+        {
+          "const": 6,
+          "title": "Developmental speech or language disorders"
+        },
+        {
+          "const": 7,
+          "title": "Stereotyped movement disorder"
+        },
+        {
+          "const": 8,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you ever been diagnosed with one or more of the following conditions by a professional, even if you don't have it currently?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "DIAG_OB_1_M": {
+      "title": "What type of complication or difficulties with pregnancy or childbirth have you experienced?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Miscarriage (pregnancy loss before 20 weeks)"
+        },
+        {
+          "const": 2,
+          "title": "Stillbirth (pregnancy loss after 20 weeks)"
+        },
+        {
+          "const": 3,
+          "title": "Live birth and still birth (loss of one or more multiples)"
+        },
+        {
+          "const": 4,
+          "title": "Ectopic or tubal pregnancy"
+        },
+        {
+          "const": 5,
+          "title": "Trying to get pregnant for more than a year but not getting pregnant during that time"
+        },
+        {
+          "const": 6,
+          "title": "Hyperemesis gravidarum"
+        },
+        {
+          "const": 7,
+          "title": "Gestational diabetes"
+        },
+        {
+          "const": 8,
+          "title": "Preterm labour and delivery"
+        },
+        {
+          "const": 9,
+          "title": "Complicated labour and delivery"
+        },
+        {
+          "const": 10,
+          "title": "Traumatic labour or delivery"
+        },
+        {
+          "const": 11,
+          "title": "Pre-eclampsia"
+        },
+        {
+          "const": 12,
+          "title": "Eclampsia"
+        },
+        {
+          "const": 13,
+          "title": "Gestational hypertension"
+        },
+        {
+          "const": 14,
+          "title": "Other not listed"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "What type of complication or difficulties with pregnancy or childbirth have you experienced?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "DIAG_OPTHAL_1_M": {
+      "title": "Have you ever been diagnosed with any of the following eye or visual problems by a doctor or other health professional?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Glaucoma"
+        },
+        {
+          "const": 2,
+          "title": "Visual impairment including blindness"
+        },
+        {
+          "const": 3,
+          "title": "Double vision"
+        },
+        {
+          "const": 4,
+          "title": "Night blindness"
+        },
+        {
+          "const": 5,
+          "title": "Colour blindness"
+        },
+        {
+          "const": 6,
+          "title": "Macular degeneration"
+        },
+        {
+          "const": 7,
+          "title": "Cataracts"
+        },
+        {
+          "const": 8,
+          "title": "Retinal detachment"
+        },
+        {
+          "const": 9,
+          "title": "Diabetic retinopathy"
+        },
+        {
+          "const": 10,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you ever been diagnosed with any of the following eye or visual problems by a doctor or other health professional?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "DIAG_OSTEO_1_M": {
+      "title": "What type of fractures, breaks, joint or bone problems have you experienced?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Hip fracture"
+        },
+        {
+          "const": 2,
+          "title": "Osteoporosis"
+        },
+        {
+          "const": 3,
+          "title": "Osteoarthritis (arthritis)"
+        },
+        {
+          "const": 4,
+          "title": "Gout"
+        },
+        {
+          "const": 5,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "What type of fractures, breaks, joint or bone problems have you experienced?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "DIAG_PSYCH_1_M": {
+      "title": "Have you ever been diagnosed with one or more of the following conditions by a professional, even if you don't have it currently?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Anxiety"
+        },
+        {
+          "const": 2,
+          "title": "Bipolar disorder"
+        },
+        {
+          "const": 3,
+          "title": "Body dysmorphia"
+        },
+        {
+          "const": 4,
+          "title": "Depression"
+        },
+        {
+          "const": 5,
+          "title": "Premenstrual dysphoric disorder"
+        },
+        {
+          "const": 6,
+          "title": "Post Traumatic Stress Disorder (PTSD)"
+        },
+        {
+          "const": 7,
+          "title": "Obsessive Compulsive Disorder"
+        },
+        {
+          "const": 8,
+          "title": "Eating disorder"
+        },
+        {
+          "const": 9,
+          "title": "Psychosis"
+        },
+        {
+          "const": 10,
+          "title": "Schizophrenia"
+        },
+        {
+          "const": 11,
+          "title": "Schizoaffective disorder"
+        },
+        {
+          "const": 12,
+          "title": "Personality disorder"
+        },
+        {
+          "const": 13,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you ever been diagnosed with one or more of the following conditions by a professional, even if you don't have it currently?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "DIAG_PSYCH_ANX_1_M": {
+      "title": "Which anxiety disorder(s) specifically have you been diagnosed with in your lifetime?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Generalised anxiety disorder"
+        },
+        {
+          "const": 2,
+          "title": "Agoraphobia"
+        },
+        {
+          "const": 3,
+          "title": "Social anxiety disorder"
+        },
+        {
+          "const": 4,
+          "title": "Panic disorder"
+        },
+        {
+          "const": 5,
+          "title": "Panic attacks"
+        },
+        {
+          "const": 6,
+          "title": "Specific phobia"
+        },
+        {
+          "const": 7,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Which anxiety disorder(s) specifically have you been diagnosed with in your lifetime?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "DIAG_PSYCH_DEPR_1_M": {
+      "title": "Which depressive disorder(s) specifically have you been diagnosed with in your lifetime?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Major Depressive Disorder"
+        },
+        {
+          "const": 2,
+          "title": "Perinatal depression"
+        },
+        {
+          "const": 3,
+          "title": "Postnatal depression"
+        },
+        {
+          "const": 4,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Which depressive disorder(s) specifically have you been diagnosed with in your lifetime?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "DIAG_PSYCH_EAT_1_M": {
+      "title": "Which eating disorder(s) specifically have you been diagnosed with in your lifetime?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Anorexia nervosa"
+        },
+        {
+          "const": 2,
+          "title": "Atypical anorexia nervosa"
+        },
+        {
+          "const": 3,
+          "title": "Bulimia nervosa"
+        },
+        {
+          "const": 4,
+          "title": "Binge eating disorder"
+        },
+        {
+          "const": 5,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Which eating disorder(s) specifically have you been diagnosed with in your lifetime?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "DIAG_REPRO_1_M": {
+      "title": "Have you ever been diagnosed with any of the following conditions by a doctor or other health professional?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Endometriosis"
+        },
+        {
+          "const": 2,
+          "title": "Polycystic Ovary Syndrome (PCOS)"
+        },
+        {
+          "const": 3,
+          "title": "Enlarged prostate"
+        },
+        {
+          "const": 4,
+          "title": "Fibrocystic Breast, or another Benign Breast Disease (such as proliferative Benign Breast Disease or LCIS)"
+        },
+        {
+          "const": 5,
+          "title": "Ductal Carcinoma in situ (DCIS)"
+        },
+        {
+          "const": 6,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you ever been diagnosed with any of the following conditions by a doctor or other health professional?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "DIAG_RESP_1_M": {
+      "title": "Have you ever been diagnosed with any of the following lung or respiratory conditions by a doctor or other health professional?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Chronic Obstructive pulmonary disease, COPD (including emphysema and chronic bronchitis)"
+        },
+        {
+          "const": 2,
+          "title": "Lung fibrosis"
+        },
+        {
+          "const": 3,
+          "title": "Bronchiectasis"
+        },
+        {
+          "const": 4,
+          "title": "Asthma"
+        },
+        {
+          "const": 5,
+          "title": "Hay Fever (Allergic to pollen or Allergic Rhinitis)"
+        },
+        {
+          "const": 6,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you ever been diagnosed with any of the following lung or respiratory conditions by a doctor or other health professional?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "DIAG_UROL_1_M": {
+      "title": "Have you ever been diagnosed with any of the following kidney or urinary tract problems by a doctor or other health professional?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Kidney stones"
+        },
+        {
+          "const": 2,
+          "title": "Chronic kidney disease (or chronic kidney failure)"
+        },
+        {
+          "const": 3,
+          "title": "Other (not listed)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you ever been diagnosed with any of the following kidney or urinary tract problems by a doctor or other health professional?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "GAD7_IMPAIR_1_1": {
+      "title": "How difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?",
+      "oneOf": [
+        {
+          "const": 0,
+          "title": "Not difficult at all"
+        },
+        {
+          "const": 1,
+          "title": "Somewhat difficult"
+        },
+        {
+          "const": 2,
+          "title": "Very difficult"
+        },
+        {
+          "const": 3,
+          "title": "Extremely difficult"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?"
+    },
+    "GAD7_ITEM1_ANX_1_1": {
+      "title": "Feeling nervous, anxious or on edge?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Not at all"
+        },
+        {
+          "const": 2,
+          "title": "Several days"
+        },
+        {
+          "const": 3,
+          "title": "More than half the days"
+        },
+        {
+          "const": 4,
+          "title": "Nearly every day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Feeling nervous, anxious or on edge?"
+    },
+    "GAD7_ITEM2_WORRY_CONTROL_1_1": {
+      "title": "Not being able to stop or control worrying?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Not at all"
+        },
+        {
+          "const": 2,
+          "title": "Several days"
+        },
+        {
+          "const": 3,
+          "title": "More than half the days"
+        },
+        {
+          "const": 4,
+          "title": "Nearly every day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Not being able to stop or control worrying?"
+    },
+    "GAD7_ITEM3_WORRY_AMOUNT_1_1": {
+      "title": "Worrying too much about different things?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Not at all"
+        },
+        {
+          "const": 2,
+          "title": "Several days"
+        },
+        {
+          "const": 3,
+          "title": "More than half the days"
+        },
+        {
+          "const": 4,
+          "title": "Nearly every day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Worrying too much about different things?"
+    },
+    "GAD7_ITEM4_RELAX_1_1": {
+      "title": "Trouble relaxing?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Not at all"
+        },
+        {
+          "const": 2,
+          "title": "Several days"
+        },
+        {
+          "const": 3,
+          "title": "More than half the days"
+        },
+        {
+          "const": 4,
+          "title": "Nearly every day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Trouble relaxing?"
+    },
+    "GAD7_ITEM5_RESTLESS_1_1": {
+      "title": "Being so restless that it is hard to sit still?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Not at all"
+        },
+        {
+          "const": 2,
+          "title": "Several days"
+        },
+        {
+          "const": 3,
+          "title": "More than half the days"
+        },
+        {
+          "const": 4,
+          "title": "Nearly every day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Being so restless that it is hard to sit still?"
+    },
+    "GAD7_ITEM6_ANNOYED_1_1": {
+      "title": "Becoming easily annoyed or irritable?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Not at all"
+        },
+        {
+          "const": 2,
+          "title": "Several days"
+        },
+        {
+          "const": 3,
+          "title": "More than half the days"
+        },
+        {
+          "const": 4,
+          "title": "Nearly every day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Becoming easily annoyed or irritable?"
+    },
+    "GAD7_ITEM7_AFRAID_1_1": {
+      "title": "Feeling afraid as if something awful might happen?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Not at all"
+        },
+        {
+          "const": 2,
+          "title": "Several days"
+        },
+        {
+          "const": 3,
+          "title": "More than half the days"
+        },
+        {
+          "const": 4,
+          "title": "Nearly every day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Feeling afraid as if something awful might happen?"
+    },
+    "GYN_CONTRACEPT_IMPLANT_1_1": {
+      "title": "Have you ever used a medical or implant method of contraception?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you ever used a medical or implant method of contraception?"
+    },
+    "GYN_CONTRACEPT_METHODS_1_M": {
+      "title": "What have you used for contraception?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Combined Pill"
+        },
+        {
+          "const": 2,
+          "title": "Injection"
+        },
+        {
+          "const": 3,
+          "title": "IUD (coil)"
+        },
+        {
+          "const": 4,
+          "title": "IUS (Hormonal coil)"
+        },
+        {
+          "const": 5,
+          "title": "Progesterone only pill (mini pill)"
+        },
+        {
+          "const": 6,
+          "title": "Patch"
+        },
+        {
+          "const": 7,
+          "title": "Vaginal ring"
+        },
+        {
+          "const": 8,
+          "title": "Other not listed"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "What have you used for contraception?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "GYN_CONTRACEPT_PILL_1_1": {
+      "title": "Have you ever taken the contraceptive pill?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you ever taken the contraceptive pill?"
+    },
+    "GYN_CONTRACEPT_PILL_FIRST_AGE_1_1": {
+      "title": "About how old were you when you first went on the contraceptive pill?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "About how old were you when you first went on the contraceptive pill?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "GYN_CONTRACEPT_PILL_LAST_AGE_1_1": {
+      "title": "How old were you when you last used the contraceptive pill?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        },
+        {
+          "const": -11,
+          "title": "Still taking the pill"
+        }
+      ],
+      "x-derivation": "How old were you when you last used the contraceptive pill?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "GYN_HRT_1_1": {
+      "title": "Have you ever used hormone replacement therapy (HRT)?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you ever used hormone replacement therapy (HRT)?"
+    },
+    "GYN_HRT_FIRST_TRT_AGE_1_1": {
+      "title": "How old were you when you first used HRT?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        },
+        {
+          "const": -11,
+          "title": "Still taking HRT"
+        }
+      ],
+      "x-derivation": "How old were you when you first used HRT?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "GYN_HRT_LAST_TRT_AGE_1_1": {
+      "title": "How old were you when you last used HRT?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        },
+        {
+          "const": -11,
+          "title": "Still taking HRT"
+        }
+      ],
+      "x-derivation": "How old were you when you last used HRT?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "GYN_HYST_1_1": {
+      "title": "Have you had a hysterectomy (womb removed)?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "const": -5,
+          "title": "Not sure"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you had a hysterectomy (womb removed)?"
+    },
+    "GYN_HYST_AGE_1_1": {
+      "title": "How old were you when you had your hysterectomy?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How old were you when you had your hysterectomy?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "GYN_MENOPAUSE_1_1": {
+      "title": "Have you had your menopause (periods stopped)?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "const": 2,
+          "title": "Not sure – had a hysterectomy"
+        },
+        {
+          "const": 3,
+          "title": "Not sure – other reason"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you had your menopause (periods stopped)?"
+    },
+    "GYN_MENOPAUSE_2_1": {
+      "title": "Have you had your menopause (periods stopped for more than 12 months)?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "const": 2,
+          "title": "Not sure – had a hysterectomy"
+        },
+        {
+          "const": 3,
+          "title": "Not sure – other reason"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you had your menopause (periods stopped for more than 12 months)?"
+    },
+    "GYN_MENOPAUSE_LAST_PERIOD_AGE_1_1": {
+      "title": "How old were you when your periods stopped?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How old were you when your periods stopped?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "GYN_MENOPAUSE_LAST_PERIOD_AGE_2_1": {
+      "title": "How old were you when you had your last period?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How old were you when you had your last period?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "GYN_MENSTR_AGE_1_1": {
+      "title": "How old were you when your periods started?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How old were you when your periods started?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "GYN_MENSTR_CYCLE_DAYS_1_1": {
+      "title": "How many days is your usual menstrual cycle?",
+      "oneOf": [
+        {
+          "const": -6,
+          "title": "Irregular cycle"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How many days is your usual menstrual cycle?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "GYN_MENSTR_CYCLE_DAYS_2_1": {
+      "title": "How many days are there usually between your periods?",
+      "oneOf": [
+        {
+          "const": -6,
+          "title": "Irregular cycle"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How many days are there usually between your periods?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "GYN_MENSTR_LAST_PERIOD_DAYS_1_1": {
+      "title": "How many days since your last menstrual period?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How many days since your last menstrual period?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "GYN_MENSTR_LAST_PERIOD_DAYS_2_1": {
+      "title": "How many days since your last menstrual period?",
+      "oneOf": [
+        {
+          "const": -10,
+          "title": "More than one year"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How many days since your last menstrual period?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "GYN_OOPH_1_1": {
+      "title": "Have you had BOTH ovaries removed?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "const": -5,
+          "title": "Not sure"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you had BOTH ovaries removed?"
+    },
+    "GYN_OOPH_AGE_1_1": {
+      "title": "How old were you when you had BOTH ovaries removed?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How old were you when you had BOTH ovaries removed?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "HEALTH_AMPUTATION_1_1": {
+      "title": "Have you ever had surgery to remove any of the following?",
+      "oneOf": [
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "const": 1,
+          "title": "Yes, toes"
+        },
+        {
+          "const": 2,
+          "title": "Yes, leg below the knee"
+        },
+        {
+          "const": 3,
+          "title": "Yes, leg above the knee"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you ever had surgery to remove any of the following?"
+    },
+    "HEALTH_CHECK_COLORECTAL_1_1": {
+      "title": "Have you ever had a screening test for bowel (colorectal) cancer? (Please include tests for blood in the stool/faeces or a colonoscopy or a sigmoidoscopy)",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you ever had a screening test for bowel (colorectal) cancer? (Please include tests for blood in the stool/faeces or a colonoscopy or a sigmoidoscopy)"
+    },
+    "HEALTH_CHECK_COLORECTAL_YRS_1_1": {
+      "title": "How many years ago was the most recent one of these tests?",
+      "oneOf": [
+        {
+          "const": -10,
+          "title": "Less than 1 year ago"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How many years ago was the most recent one of these tests?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "HEALTH_CHECK_MAMMOGRAM_1_1": {
+      "title": "Have you ever been for breast cancer screening (a mammogram)?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you ever been for breast cancer screening (a mammogram)?"
+    },
+    "HEALTH_CHECK_MAMMOGRAM_YRS_1_1": {
+      "title": "How many years ago was your last screen?",
+      "oneOf": [
+        {
+          "const": -10,
+          "title": "Less than 1 year ago"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How many years ago was your last screen?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "HEALTH_CHECK_PROSTATE_1_1": {
+      "title": "Have you ever had a blood test for prostate cancer (prostate specific antigen or PSA test)?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you ever had a blood test for prostate cancer (prostate specific antigen or PSA test)?"
+    },
+    "HEALTH_CHECK_PROSTATE_YRS_1_1": {
+      "title": "How many years ago was your last test?",
+      "oneOf": [
+        {
+          "const": -10,
+          "title": "Less than 1 year ago"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How many years ago was your last test?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "HEALTH_CHECK_SMEAR_1_1": {
+      "title": "Have you ever had a cervical smear test?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you ever had a cervical smear test?"
+    },
+    "HEALTH_CHECK_SMEAR_YRS_1_1": {
+      "title": "How many years ago was your last cervical smear test?",
+      "oneOf": [
+        {
+          "const": -10,
+          "title": "Less than 1 year ago"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How many years ago was your last cervical smear test?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "HEALTH_COVID_1_1": {
+      "title": "Do you think that you have or have had COVID-19?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes, confirmed by a positive test"
+        },
+        {
+          "const": 2,
+          "title": "Yes, suspected by a doctor but not tested"
+        },
+        {
+          "const": 3,
+          "title": "Yes, my own suspicious"
+        },
+        {
+          "const": 4,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you think that you have or have had COVID-19?"
+    },
+    "HEALTH_DENTAL_1_M": {
+      "title": "Do you have any of the following?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Mouth ulcers"
+        },
+        {
+          "const": 2,
+          "title": "Painful gums"
+        },
+        {
+          "const": 3,
+          "title": "Bleeding gums"
+        },
+        {
+          "const": 4,
+          "title": "Loose teeth"
+        },
+        {
+          "const": 5,
+          "title": "Toothache"
+        },
+        {
+          "const": 6,
+          "title": "Dentures"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you have any of the following?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "HEALTH_FALLS_1_1": {
+      "title": "In the last year have you had any falls?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "No falls"
+        },
+        {
+          "const": 2,
+          "title": "Only one fall"
+        },
+        {
+          "const": 3,
+          "title": "More than one fall"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In the last year have you had any falls?"
+    },
+    "HEALTH_PAIN_ACUTE_1_M": {
+      "title": "In the last month have you experienced any of the following that interfered with your usual activities?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Headache"
+        },
+        {
+          "const": 2,
+          "title": "Facial pain"
+        },
+        {
+          "const": 3,
+          "title": "Neck or shoulder pain"
+        },
+        {
+          "const": 4,
+          "title": "Back pain"
+        },
+        {
+          "const": 5,
+          "title": "Stomach or abdominal pain"
+        },
+        {
+          "const": 6,
+          "title": "Hip pain"
+        },
+        {
+          "const": 7,
+          "title": "Knee pain"
+        },
+        {
+          "const": 8,
+          "title": "Pain all over the body"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In the last month have you experienced any of the following that interfered with your usual activities?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "HEALTH_PAIN_ACUTE_2_M": {
+      "title": "In the last month have you experienced any of the following that interfered with your usual activities?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Headache"
+        },
+        {
+          "const": 2,
+          "title": "Facial pain"
+        },
+        {
+          "const": 3,
+          "title": "Neck or shoulder pain"
+        },
+        {
+          "const": 4,
+          "title": "Back pain"
+        },
+        {
+          "const": 5,
+          "title": "Stomach or abdominal pain"
+        },
+        {
+          "const": 6,
+          "title": "Hip pain"
+        },
+        {
+          "const": 7,
+          "title": "Knee pain"
+        },
+        {
+          "const": 9,
+          "title": "Premenstrual pain"
+        },
+        {
+          "const": 8,
+          "title": "Pain all over the body"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In the last month have you experienced any of the following that interfered with your usual activities?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "HEALTH_PAIN_CHEST_1_1": {
+      "title": "Do you ever have any pain or discomfort in your chest?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you ever have any pain or discomfort in your chest?"
+    },
+    "HEALTH_PAIN_CHEST_SUBSIDE_1_1": {
+      "title": "Does this chest pain go away when you stand still?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Does this chest pain go away when you stand still?"
+    },
+    "HEALTH_PAIN_CHEST_WALK_1_1": {
+      "title": "Do you get this pain or discomfort when you walk at an ordinary pace on the level?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you get this pain or discomfort when you walk at an ordinary pace on the level?"
+    },
+    "HEALTH_PAIN_CHEST_WALK_UPHILL_1_1": {
+      "title": "Do you get this pain or discomfort when you walk uphill or hurry?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you get this pain or discomfort when you walk uphill or hurry?"
+    },
+    "HEALTH_PAIN_CHRONIC_1_M": {
+      "title": "Have you ever experienced any of the following that interfered with your usual activities regularly for more than 3 months?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Headache"
+        },
+        {
+          "const": 2,
+          "title": "Facial pain"
+        },
+        {
+          "const": 3,
+          "title": "Neck or shoulder pain"
+        },
+        {
+          "const": 4,
+          "title": "Back pain"
+        },
+        {
+          "const": 5,
+          "title": "Stomach or abdominal pain"
+        },
+        {
+          "const": 6,
+          "title": "Hip pain"
+        },
+        {
+          "const": 7,
+          "title": "Knee pain"
+        },
+        {
+          "const": 9,
+          "title": "Premenstrual pain"
+        },
+        {
+          "const": 8,
+          "title": "Pain all over the body"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you ever experienced any of the following that interfered with your usual activities regularly for more than 3 months?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "HEALTH_PAIN_CHRONIC_BACK_1_1": {
+      "title": "Have you had back pains for more than 3 months?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you had back pains for more than 3 months?"
+    },
+    "HEALTH_PAIN_CHRONIC_BODY_1_1": {
+      "title": "Have you had pains all over the body for more than 3 months?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you had pains all over the body for more than 3 months?"
+    },
+    "HEALTH_PAIN_CHRONIC_FACE_1_1": {
+      "title": "Have you had facial pains for more than 3 months?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you had facial pains for more than 3 months?"
+    },
+    "HEALTH_PAIN_CHRONIC_HEADACHE_1_1": {
+      "title": "Have you had headaches for more than 3 months?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you had headaches for more than 3 months?"
+    },
+    "HEALTH_PAIN_CHRONIC_HIP_1_1": {
+      "title": "Have you had hip pains for more than 3 months?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you had hip pains for more than 3 months?"
+    },
+    "HEALTH_PAIN_CHRONIC_KNEE_1_1": {
+      "title": "Have you had knee pains for more than 3 months?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you had knee pains for more than 3 months?"
+    },
+    "HEALTH_PAIN_CHRONIC_SHOULDER_1_1": {
+      "title": "Have you had neck or shoulder pains for more than 3 months?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you had neck or shoulder pains for more than 3 months?"
+    },
+    "HEALTH_PAIN_CHRONIC_STOMACH_1_1": {
+      "title": "Have you had stomach or abdominal pains for more than 3 months?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Have you had stomach or abdominal pains for more than 3 months?"
+    },
+    "HEALTH_PAIN_LEG_1_1": {
+      "title": "Do you get a pain in either leg on walking?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you get a pain in either leg on walking?"
+    },
+    "HEALTH_RESP_SHORT_1_1": {
+      "title": "Do you get short of breath walking with people of your own age on level ground?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you get short of breath walking with people of your own age on level ground?"
+    },
+    "HEALTH_RESP_WHEEZE_1_1": {
+      "title": "In the last year have you ever had wheeze or whistling in the chest?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In the last year have you ever had wheeze or whistling in the chest?"
+    },
+    "HEALTH_STATUS_CHRONIC_1_1": {
+      "title": "Do you have any physical or mental health conditions or illnesses lasting or expected to last 12 months or more?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you have any physical or mental health conditions or illnesses lasting or expected to last 12 months or more?"
+    },
+    "HEALTH_STATUS_CURR_1_1": {
+      "title": "In general how would you rate your overall health?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Excellent"
+        },
+        {
+          "const": 2,
+          "title": "Good"
+        },
+        {
+          "const": 3,
+          "title": "Fair"
+        },
+        {
+          "const": 4,
+          "title": "Poor"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In general how would you rate your overall health?"
+    },
+    "HEALTH_STATUS_DISABILITY_1_1": {
+      "title": "Do you have any long-standing illness, disability or infirmity?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you have any long-standing illness, disability or infirmity?"
+    },
+    "HEALTH_STATUS_DISABILITY_SUPPORT_1_M": {
+      "title": "Do you receive any of the following?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Attendance allowance"
+        },
+        {
+          "const": 2,
+          "title": "Personal independence payment (previously disability living allowance)"
+        },
+        {
+          "const": 3,
+          "title": "Blue badge"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you receive any of the following?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "HEALTH_STATUS_PRIVATE_HEALTHCARE_1_1": {
+      "title": "Do you use private healthcare?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes, all of the time"
+        },
+        {
+          "const": 2,
+          "title": "Yes, most of the time"
+        },
+        {
+          "const": 3,
+          "title": "Yes, sometimes"
+        },
+        {
+          "const": 4,
+          "title": "No, never"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you use private healthcare?"
+    },
+    "HEALTH_SUN_PROTECT_1_1": {
+      "title": "Do you wear sun protection (e.g. sunscreen lotion, hat) when you spend time outdoors in the summer?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Never/rarely"
+        },
+        {
+          "const": 2,
+          "title": "Sometimes"
+        },
+        {
+          "const": 3,
+          "title": "Most of the time"
+        },
+        {
+          "const": 4,
+          "title": "Always"
+        },
+        {
+          "const": 5,
+          "title": "Do not go out in sunshine"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you wear sun protection (e.g. sunscreen lotion, hat) when you spend time outdoors in the summer?"
+    },
+    "HEALTH_SUN_SOLARIUM_1_1": {
+      "title": "How many times a year would you use a solarium or sunlamp?",
+      "oneOf": [
+        {
+          "const": -10,
+          "title": "Less than once a year"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How many times a year would you use a solarium or sunlamp?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "HEALTH_WEIGHT_CHG_1_1": {
+      "title": "Compared with one year ago, has your weight changed?",
+      "oneOf": [
+        {
+          "const": 0,
+          "title": "No – weigh about the same"
+        },
+        {
+          "const": 2,
+          "title": "Yes – gained weight"
+        },
+        {
+          "const": 3,
+          "title": "Yes – lost weight"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Compared with one year ago, has your weight changed?"
+    },
+    "MEDICAT_1_M": {
+      "title": "Do you regularly take medications for any of the following reasons?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Autoimmune disorder"
+        },
+        {
+          "const": 2,
+          "title": "Bone health"
+        },
+        {
+          "const": 3,
+          "title": "Cancer"
+        },
+        {
+          "const": 4,
+          "title": "Diabetic health"
+        },
+        {
+          "const": 5,
+          "title": "Digestive problems (including acid reflux and liver problems)"
+        },
+        {
+          "const": 6,
+          "title": "Endocrine disorder (e.g. under or over-active thyroid)"
+        },
+        {
+          "const": 7,
+          "title": "Heart or circulatory health (e.g. high blood pressure or stroke)"
+        },
+        {
+          "const": 8,
+          "title": "Lung or breathing problems"
+        },
+        {
+          "const": 9,
+          "title": "Mental health conditions or insomnia (e.g. depression, bipolar disorder)"
+        },
+        {
+          "const": 10,
+          "title": "Neurological disorders (e.g. Alzheimers, epilepsy, Parkinson's)"
+        },
+        {
+          "const": 11,
+          "title": "Pain relief"
+        },
+        {
+          "const": 12,
+          "title": "Reproductive or sexual health (including contraception, erectile dysfunction, menopause or hormone medication)"
+        },
+        {
+          "const": 13,
+          "title": "Supplements or nutritional health"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you regularly take medications for any of the following reasons?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MEDICAT_A_1_M": {
+      "title": "Do you regularly take any of the following medications?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Cholesterol lowering medication"
+        },
+        {
+          "const": 2,
+          "title": "Blood pressure medication"
+        },
+        {
+          "const": 3,
+          "title": "Insulin"
+        },
+        {
+          "const": 4,
+          "title": "Hormone replacement therapy"
+        },
+        {
+          "const": 5,
+          "title": "Oral contraceptive pill or minipill"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you regularly take any of the following medications?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MEDICAT_AUTO_1_M": {
+      "title": "Do you regularly take any of the following medication for an autoimmune disorder?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Amino salicylates (5-ASAs, mesalazine)"
+        },
+        {
+          "const": 2,
+          "title": "Azathioprine"
+        },
+        {
+          "const": 3,
+          "title": "Corticosteroids (e.g. prednisolone)"
+        },
+        {
+          "const": 4,
+          "title": "Tacrolimus"
+        },
+        {
+          "const": 5,
+          "title": "JAK inhibitors"
+        },
+        {
+          "const": 6,
+          "title": "Tumour Necrosis Factor (TNF) inhibitors"
+        },
+        {
+          "const": 7,
+          "title": "Tocilizumab"
+        },
+        {
+          "const": 8,
+          "title": "Rituximab"
+        },
+        {
+          "const": 9,
+          "title": "Mycophenolate"
+        },
+        {
+          "const": 10,
+          "title": "Cyclosporine"
+        },
+        {
+          "const": 11,
+          "title": "Other not listed"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you regularly take any of the following medication for an autoimmune disorder?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MEDICAT_B_1_M": {
+      "title": "Do you regularly take any of the following?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Aspirin"
+        },
+        {
+          "const": 2,
+          "title": "Ibuprofen (e.g. Nurofen)"
+        },
+        {
+          "const": 3,
+          "title": "Paracetamol"
+        },
+        {
+          "const": 4,
+          "title": "Ranitidine (e.g. Zantac)"
+        },
+        {
+          "const": 5,
+          "title": "Omeprazole (e.g. Zanprol)"
+        },
+        {
+          "const": 6,
+          "title": "Laxatives (e.g. Dulcolax, Senokot)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you regularly take any of the following?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MEDICAT_C_1_M": {
+      "title": "Do you regularly take any of the following?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Vitamin A"
+        },
+        {
+          "const": 2,
+          "title": "Vitamin B"
+        },
+        {
+          "const": 3,
+          "title": "Vitamin C"
+        },
+        {
+          "const": 4,
+          "title": "Vitamin D"
+        },
+        {
+          "const": 5,
+          "title": "Vitamin E"
+        },
+        {
+          "const": 6,
+          "title": "Folic acid or Folate (Vit B9)"
+        },
+        {
+          "const": 7,
+          "title": "Multivitamins +/- minerals"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you regularly take any of the following?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MEDICAT_CANCER_1_M": {
+      "title": "Are you currently receiving any of the following treatments for cancer?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Chemotherapy"
+        },
+        {
+          "const": 2,
+          "title": "Hormone therapy"
+        },
+        {
+          "const": 3,
+          "title": "Immunotherapy/targeted therapy"
+        },
+        {
+          "const": 4,
+          "title": "Radiotherapy"
+        },
+        {
+          "const": 5,
+          "title": "Other not listed"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Are you currently receiving any of the following treatments for cancer?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MEDICAT_CVD_1_M": {
+      "title": "Do you regularly take any of the following medication for heart or circulatory disorders?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Aspirin (low dose)"
+        },
+        {
+          "const": 2,
+          "title": "Anticoagulant (blood thinners, e.g. warfarin, Rivaroxaban, dabigatran, apixaban and edoxaban)"
+        },
+        {
+          "const": 3,
+          "title": "Antiarrhythmic (e.g. flecainide, digoxin)"
+        },
+        {
+          "const": 4,
+          "title": "Calcium channel blocker (e.g. verapamil, diltiazem)"
+        },
+        {
+          "const": 5,
+          "title": "Cholesterol lowering medication/statins (e.g. atorvastin (Lipitor),fluvastin (Lescol), pravastin (Lipostat), rosuvastin (Crestor), simvastin (Zocor))"
+        },
+        {
+          "const": 6,
+          "title": "Blood pressure medication (e.g. enalapril, lisinopril, perindopril, ramipril, candesartan, irbesartan, losartan, valsartan and Olmesartan)"
+        },
+        {
+          "const": 7,
+          "title": "Beta blocker (e.g. bisoprolol, atenolol)"
+        },
+        {
+          "const": 8,
+          "title": "Diuretic (e.g. Furosemide, Fendroflumethiazide, Amiloride, Bumetanide, Metalozone, Spironolactone)"
+        },
+        {
+          "const": 9,
+          "title": "Glyceryl trinitrate (GTN)"
+        },
+        {
+          "const": 10,
+          "title": "Nicorandil"
+        },
+        {
+          "const": 11,
+          "title": "Anti-platelet (Clopidogrel)"
+        },
+        {
+          "const": 12,
+          "title": "Other not listed"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you regularly take any of the following medication for heart or circulatory disorders?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MEDICAT_D_1_M": {
+      "title": "Do you regularly take any of the following?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Fish oil (including cod liver oil)"
+        },
+        {
+          "const": 2,
+          "title": "Glucosamine"
+        },
+        {
+          "const": 3,
+          "title": "Calcium"
+        },
+        {
+          "const": 4,
+          "title": "Zinc"
+        },
+        {
+          "const": 5,
+          "title": "Iron"
+        },
+        {
+          "const": 6,
+          "title": "Selenium"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you regularly take any of the following?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MEDICAT_DIAB_1_M": {
+      "title": "Do you regularly take any of the following medication for diabetic health?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Acarbose (Glucobay)"
+        },
+        {
+          "const": 2,
+          "title": "DPP-4 Inhibitors (Gliptins, e.g. Sitagliptin, Vildagliptin, Saxagliptin, Alogliptin)"
+        },
+        {
+          "const": 3,
+          "title": "GLP-1 (incretin memetics, e.g. Exenatide, Liraglutide, Lixisenatide)"
+        },
+        {
+          "const": 4,
+          "title": "Insulin"
+        },
+        {
+          "const": 5,
+          "title": "Metformin"
+        },
+        {
+          "const": 6,
+          "title": "Prandial glucose regulator (e.g. Repaglinide, Nateglinide)"
+        },
+        {
+          "const": 7,
+          "title": "SGLT2 inhibitors (e.g. Dapagliflozin, Canagliflozin, Empagliflozin, Ertuglflozin)"
+        },
+        {
+          "const": 8,
+          "title": "Statins"
+        },
+        {
+          "const": 9,
+          "title": "Sulphonylureas (e.g. Glibenclamide, Gliclazide, Glipizide Tolbutamide)"
+        },
+        {
+          "const": 10,
+          "title": "Thiazolidinediones (e.g. Pioglitazone; Actos)"
+        },
+        {
+          "const": 11,
+          "title": "Other not listed"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you regularly take any of the following medication for diabetic health?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MEDICAT_ENDOCR_1_M": {
+      "title": "Do you regularly take any of the following medication for endocrine disorders?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Levothyroxine"
+        },
+        {
+          "const": 2,
+          "title": "Carbimazole"
+        },
+        {
+          "const": 3,
+          "title": "Propylthiouracil"
+        },
+        {
+          "const": 4,
+          "title": "Beta Blocker"
+        },
+        {
+          "const": 5,
+          "title": "Hydrocortisone"
+        },
+        {
+          "const": 6,
+          "title": "Prednisolone"
+        },
+        {
+          "const": 7,
+          "title": "Growth hormone"
+        },
+        {
+          "const": 8,
+          "title": "Desmopressin"
+        },
+        {
+          "const": 9,
+          "title": "Dopamine agonists (cabergoline, bromocriptine)"
+        },
+        {
+          "const": 10,
+          "title": "Other not listed"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you regularly take any of the following medication for endocrine disorders?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MEDICAT_GASTRO_1_M": {
+      "title": "Do you regularly take any of the following medication for digestive problems, acid reflux or liver problems?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Proton pump inhibitors (e.g. omeprazole, esomeprazole, lansoprazole, rabeprazole, pantoprazole, dexlansoprazole)"
+        },
+        {
+          "const": 2,
+          "title": "Other indigestion medicine (e.g. ranitidine, famotidine, nizatidine, cimetidine)"
+        },
+        {
+          "const": 3,
+          "title": "Laxatives (e.g. Dulcolax, Senokat)"
+        },
+        {
+          "const": 4,
+          "title": "Aminosalicylates (5-ASAs, mesalazine)"
+        },
+        {
+          "const": 5,
+          "title": "Azathioprine"
+        },
+        {
+          "const": 6,
+          "title": "Corticosteroids (e.g. prednisolone)"
+        },
+        {
+          "const": 7,
+          "title": "Mercaptopurine"
+        },
+        {
+          "const": 8,
+          "title": "Methotrexate"
+        },
+        {
+          "const": 9,
+          "title": "JAK inhibitors"
+        },
+        {
+          "const": 10,
+          "title": "Tumour Necrosis Factor (TNF) inhibitors"
+        },
+        {
+          "const": 11,
+          "title": "Pancreatin (e.g. Creon, Pancrex)"
+        },
+        {
+          "const": 12,
+          "title": "Other not listed"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you regularly take any of the following medication for digestive problems, acid reflux or liver problems?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MEDICAT_NEURO_1_M": {
+      "title": "Do you regularly take any of the following medication for neurological disorders?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Anti-epileptic drugs (AEDs, e.g. Sodium valproate, carbamazepine, lamotrigine, levetiracetam, topiramate)"
+        },
+        {
+          "const": 2,
+          "title": "Acetylcholinesterase (AChE) inhibitors (e.g. Donepezil, galantamine, rivastigmine)"
+        },
+        {
+          "const": 3,
+          "title": "Amantadine"
+        },
+        {
+          "const": 4,
+          "title": "Amitriptyline for migraines"
+        },
+        {
+          "const": 5,
+          "title": "Catechol-O-methyltransferase (COMT) inhibitors (e.g. entacapone, opicapone)"
+        },
+        {
+          "const": 6,
+          "title": "Levodopa (e.g. co-beneldopa, co-careldopa)"
+        },
+        {
+          "const": 7,
+          "title": "Dopamine agonists (e.g. pramipexole, ropinirole)"
+        },
+        {
+          "const": 8,
+          "title": "Memantine"
+        },
+        {
+          "const": 9,
+          "title": "Monoamine oxidase-B inhibitors (e.g. selegiline, rasagiline, safinamide)"
+        },
+        {
+          "const": 10,
+          "title": "Pregabalin or Gabapentin"
+        },
+        {
+          "const": 11,
+          "title": "Propranolol for migraines"
+        },
+        {
+          "const": 12,
+          "title": "Riluzole"
+        },
+        {
+          "const": 13,
+          "title": "Triptans"
+        },
+        {
+          "const": 14,
+          "title": "Other not listed"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you regularly take any of the following medication for neurological disorders?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MEDICAT_OSTEO_1_M": {
+      "title": "Do you regularly take any of the following medication for bone health?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Bisphosphonates (e.g. alendronic acid, ibandronic acid, risendronic acid, zoledronic acid)"
+        },
+        {
+          "const": 2,
+          "title": "Selective oestrogen receptor modulators (SERMs, Raloxifene)"
+        },
+        {
+          "const": 3,
+          "title": "Strontium Ranelate"
+        },
+        {
+          "const": 4,
+          "title": "Monoclonal antibodies (Denosumab, Romosozumab)"
+        },
+        {
+          "const": 5,
+          "title": "Parathyroid hormone (e.g. teriparatide)"
+        },
+        {
+          "const": 6,
+          "title": "Vitamin D and/or Calcium supplements"
+        },
+        {
+          "const": 7,
+          "title": "Hormone Replacement Therapy (HRT)"
+        },
+        {
+          "const": 8,
+          "title": "Testosterone treatment"
+        },
+        {
+          "const": 9,
+          "title": "Other not listed"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you regularly take any of the following medication for bone health?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MEDICAT_PAIN_1_M": {
+      "title": "Do you regularly take any of the following medication for pain relief?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Aspirin"
+        },
+        {
+          "const": 2,
+          "title": "Ibuprofen (e.g. Neurofen)"
+        },
+        {
+          "const": 3,
+          "title": "Paracetamol"
+        },
+        {
+          "const": 4,
+          "title": "Naproxen (e.g. Naprosyn, Stirlescent, Feminax Ultra, Period Pain Reliever, Boots Period Pain Relief)"
+        },
+        {
+          "const": 5,
+          "title": "Diclofenac"
+        },
+        {
+          "const": 6,
+          "title": "Opioids (e.g. codeine, tramadol, morphine, fentanyl, oxycodone, buprenorphine diamorphine)"
+        },
+        {
+          "const": 7,
+          "title": "Other not listed"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you regularly take any of the following medication for pain relief?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MEDICAT_PRESCRIPT_1_M": {
+      "title": "Do you regularly take any other PRESCRIPTION medications?",
+      "oneOf": [
+        {
+          "const": 2,
+          "title": "Glucocorticoids or steroids"
+        },
+        {
+          "const": 3,
+          "title": "Atypical antipsychotics"
+        },
+        {
+          "const": 4,
+          "title": "Other"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you regularly take any other PRESCRIPTION medications?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MEDICAT_PSYCH_1_M": {
+      "title": "Do you regularly take any of the following medication for mental health conditions or insomnia?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Antidepressant (e.g. fluoxetine, amitriptyline, sertraline, mirtazapine)"
+        },
+        {
+          "const": 2,
+          "title": "Antipsychotic medication (e.g. haloperidol, amisulpiride, aripiprazole, clozapine)"
+        },
+        {
+          "const": 3,
+          "title": "Beta-blocker (e.g. atenolol, bisoprolol, metoprolol, propranolol)"
+        },
+        {
+          "const": 4,
+          "title": "Benzodiazepine (e.g. alprazolam, diazepam, halazepam, prazepam, clonazepam, clorazepate)"
+        },
+        {
+          "const": 5,
+          "title": "Lithium"
+        },
+        {
+          "const": 6,
+          "title": "Sleeping pills (e.g. Antihistamines, melatonin, zopiclone, barbituates)"
+        },
+        {
+          "const": 7,
+          "title": "Pregabalin"
+        },
+        {
+          "const": 8,
+          "title": "Valproic acid/Sodium valproate"
+        },
+        {
+          "const": 9,
+          "title": "Other mood stabilising medication (e.g. Depakote, carbamezapine)"
+        },
+        {
+          "const": 10,
+          "title": "Other not listed"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you regularly take any of the following medication for mental health conditions or insomnia?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MEDICAT_PSYCH_ANTIDEPR_1_M": {
+      "title": "What type of antidepressant medication do you regularly take?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Selective serotonin reuptake inhibitor (SSRI, e.g. fluoxetine, citalopram, escitalopram, paroxetine, sertraline)"
+        },
+        {
+          "const": 2,
+          "title": "Tricyclic a (e.g. amitriptyline, clomipramine)"
+        },
+        {
+          "const": 3,
+          "title": "other (e.g. mirtazapine, venlafaxine, duloxetine)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "What type of antidepressant medication do you regularly take?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MEDICAT_PSYCH_ANTIPSYCH_1_M": {
+      "title": "What type of antipsychotic medication do you regularly take?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Typical' Antipsychotic (e.g. chlorpromazine, haloperidol, promazine, sulpride)"
+        },
+        {
+          "const": 2,
+          "title": "Atypical' Antipsychotic (e.g. amisulpiride, aripiprazole, clozapine, risperidone, olanzapine, quetiapine)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "What type of antipsychotic medication do you regularly take?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MEDICAT_REPRO_1_M": {
+      "title": "Do you regularly take any of the following medication for reproductive or sexual health?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Contraceptive medication, coil, implant or patch"
+        },
+        {
+          "const": 2,
+          "title": "Medication to treat erectile dysfunction (e.g. Sildenafil (Viagra), Tadalafil (Cialis), Vardenafil (Levitra), Avanafil (Spedra))"
+        },
+        {
+          "const": 3,
+          "title": "Combined Hormone Replacement Therapy (HRT)"
+        },
+        {
+          "const": 4,
+          "title": "Oestrogen-only HRT"
+        },
+        {
+          "const": 5,
+          "title": "Oestrogen treatment (Pessary, cream or vaginal ring)"
+        },
+        {
+          "const": 6,
+          "title": "Testosterone HRT"
+        },
+        {
+          "const": 7,
+          "title": "Oestrogen or testosterone blockers (e.g. clomifene)"
+        },
+        {
+          "const": 8,
+          "title": "Other not listed"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you regularly take any of the following medication for reproductive or sexual health?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MEDICAT_REPRO_CONTRACEPT_1_M": {
+      "title": "What do you regularly or currently use for contraception?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Combined pill"
+        },
+        {
+          "const": 2,
+          "title": "Injection"
+        },
+        {
+          "const": 3,
+          "title": "Implant"
+        },
+        {
+          "const": 4,
+          "title": "IUD (coil)"
+        },
+        {
+          "const": 5,
+          "title": "IUS (Hormonal coil)"
+        },
+        {
+          "const": 6,
+          "title": "Progesterone only pill (mini pill)"
+        },
+        {
+          "const": 7,
+          "title": "Patch"
+        },
+        {
+          "const": 8,
+          "title": "Vaginal ring"
+        },
+        {
+          "const": 9,
+          "title": "Other not listed"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "What do you regularly or currently use for contraception?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MEDICAT_RESP_1_M": {
+      "title": "Do you regularly take any of the following medication for lung or breathing problems?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Asthma reliever inhaler (usually blue)"
+        },
+        {
+          "const": 2,
+          "title": "Asthma preventer inhaler (containing steroid medicine)"
+        },
+        {
+          "const": 3,
+          "title": "Asthma combination inhaler"
+        },
+        {
+          "const": 4,
+          "title": "Anticholinergic inhaler (for COPD or asthma, e.g. Tiotropium or Spiriva)"
+        },
+        {
+          "const": 5,
+          "title": "Leukotriene receptor antagonist (LTRAs) tablets (e.g. Montelukast)"
+        },
+        {
+          "const": 6,
+          "title": "Tablet bronchodilator (e.g. theophylline)"
+        },
+        {
+          "const": 7,
+          "title": "Corticosteroids (e.g. prednisolone)"
+        },
+        {
+          "const": 8,
+          "title": "Other not listed"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you regularly take any of the following medication for lung or breathing problems?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "MEDICAT_SUPPL_1_M": {
+      "title": "Do you regularly take any of the following as supplements or for nutritional health?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Vitamin A"
+        },
+        {
+          "const": 2,
+          "title": "Vitamin B"
+        },
+        {
+          "const": 3,
+          "title": "Vitamin C"
+        },
+        {
+          "const": 4,
+          "title": "Vitamin D"
+        },
+        {
+          "const": 5,
+          "title": "Vitamin E"
+        },
+        {
+          "const": 6,
+          "title": "Folic acid or Folate (Vitamin B9)"
+        },
+        {
+          "const": 7,
+          "title": "Multivitamins +/- minerals"
+        },
+        {
+          "const": 8,
+          "title": "Fish oil (including cod liver oil)"
+        },
+        {
+          "const": 9,
+          "title": "Glucosamine"
+        },
+        {
+          "const": 10,
+          "title": "Calcium"
+        },
+        {
+          "const": 11,
+          "title": "Zinc"
+        },
+        {
+          "const": 12,
+          "title": "Iron"
+        },
+        {
+          "const": 13,
+          "title": "Selenium"
+        },
+        {
+          "const": 14,
+          "title": "St John's wort"
+        },
+        {
+          "const": 15,
+          "title": "Other not listed"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you regularly take any of the following as supplements or for nutritional health?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "PHQ9_IMPAIR_1_1": {
+      "title": "How difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?",
+      "oneOf": [
+        {
+          "const": 0,
+          "title": "Not difficult at all"
+        },
+        {
+          "const": 1,
+          "title": "Somewhat difficult"
+        },
+        {
+          "const": 2,
+          "title": "Very difficult"
+        },
+        {
+          "const": 3,
+          "title": "Extremely difficult"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?"
+    },
+    "PHQ9_ITEM1_INTEREST_1_1": {
+      "title": "Little interest or pleasure in doing things",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Not at all"
+        },
+        {
+          "const": 2,
+          "title": "Several days"
+        },
+        {
+          "const": 3,
+          "title": "More than half the days"
+        },
+        {
+          "const": 4,
+          "title": "Nearly every day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Little interest or pleasure in doing things"
+    },
+    "PHQ9_ITEM2_DOWN_1_1": {
+      "title": "Feeling down, depressed, or hopeless?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Not at all"
+        },
+        {
+          "const": 2,
+          "title": "Several days"
+        },
+        {
+          "const": 3,
+          "title": "More than half the days"
+        },
+        {
+          "const": 4,
+          "title": "Nearly every day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Feeling down, depressed, or hopeless?"
+    },
+    "PHQ9_ITEM3_SLEEP_1_1": {
+      "title": "Trouble falling or staying asleep, or sleeping too much?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Not at all"
+        },
+        {
+          "const": 2,
+          "title": "Several days"
+        },
+        {
+          "const": 3,
+          "title": "More than half the days"
+        },
+        {
+          "const": 4,
+          "title": "Nearly every day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Trouble falling or staying asleep, or sleeping too much?"
+    },
+    "PHQ9_ITEM4_ENERGY_1_1": {
+      "title": "Feeling tired or having little energy?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Not at all"
+        },
+        {
+          "const": 2,
+          "title": "Several days"
+        },
+        {
+          "const": 3,
+          "title": "More than half the days"
+        },
+        {
+          "const": 4,
+          "title": "Nearly every day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Feeling tired or having little energy?"
+    },
+    "PHQ9_ITEM5_APPETITE_1_1": {
+      "title": "Poor appetite or overeating?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Not at all"
+        },
+        {
+          "const": 2,
+          "title": "Several days"
+        },
+        {
+          "const": 3,
+          "title": "More than half the days"
+        },
+        {
+          "const": 4,
+          "title": "Nearly every day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Poor appetite or overeating?"
+    },
+    "PHQ9_ITEM6_BAD_1_1": {
+      "title": "Feeling bad about yourself – or that you are a failure or have let yourself or your family down?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Not at all"
+        },
+        {
+          "const": 2,
+          "title": "Several days"
+        },
+        {
+          "const": 3,
+          "title": "More than half the days"
+        },
+        {
+          "const": 4,
+          "title": "Nearly every day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Feeling bad about yourself – or that you are a failure or have let yourself or your family down?"
+    },
+    "PHQ9_ITEM7_CONCENTR_1_1": {
+      "title": "Trouble concentrating on things, such as reading the newspaper or watching television?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Not at all"
+        },
+        {
+          "const": 2,
+          "title": "Several days"
+        },
+        {
+          "const": 3,
+          "title": "More than half the days"
+        },
+        {
+          "const": 4,
+          "title": "Nearly every day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Trouble concentrating on things, such as reading the newspaper or watching television?"
+    },
+    "PHQ9_ITEM8_MOVEMENT_1_1": {
+      "title": "Moving or speaking so slowly that other people could have noticed? Or the opposite – being so fidgety or restless that you have been moving around a lot more than usual?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Not at all"
+        },
+        {
+          "const": 2,
+          "title": "Several days"
+        },
+        {
+          "const": 3,
+          "title": "More than half the days"
+        },
+        {
+          "const": 4,
+          "title": "Nearly every day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Moving or speaking so slowly that other people could have noticed? Or the opposite – being so fidgety or restless that you have been moving around a lot more than usual?"
+    },
+    "PHQ9_ITEM9_HARM_1_1": {
+      "title": "Thoughts that you would be better off dead or of hurting yourself in some way",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Not at all"
+        },
+        {
+          "const": 2,
+          "title": "Several days"
+        },
+        {
+          "const": 3,
+          "title": "More than half the days"
+        },
+        {
+          "const": 4,
+          "title": "Nearly every day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Thoughts that you would be better off dead or of hurting yourself in some way"
+    },
+    "SKIP_PHQ9_GAD7_1_1": {
+      "title": "Do you want to skip PHQ and GAD questions?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        }
+      ],
+      "x-derivation": "Do you want to skip PHQ and GAD questions?"
+    }
+  },
+  "required": [
+    "CHILDREN_BIO_FIRST_AGE_1_1",
+    "CHILDREN_BIO_LAST_AGE_1_1",
+    "CHILDREN_BIO_NUM_1_1",
+    "CHILDREN_BIO_NUM_2_1",
+    "CHILDREN_BIRTHED_FIRST_AGE_1_1",
+    "CHILDREN_BIRTHED_LAST_AGE_1_1",
+    "CHILDREN_BIRTHED_NUM_1_1",
+    "DIAG_1_M",
+    "DIAG_2_M",
+    "DIAG_ANAEMIA_1_M",
+    "DIAG_AUTO_1_M",
+    "DIAG_CANCER_1_M",
+    "DIAG_CANCER_SKIN_1_M",
+    "DIAG_CVD_1_M",
+    "DIAG_ENDOCR_1_M",
+    "DIAG_GASTRO_1_M",
+    "DIAG_NEURO_1_M",
+    "DIAG_NEURO_DEV_1_M",
+    "DIAG_OB_1_M",
+    "DIAG_OPTHAL_1_M",
+    "DIAG_OSTEO_1_M",
+    "DIAG_PSYCH_1_M",
+    "DIAG_PSYCH_ANX_1_M",
+    "DIAG_PSYCH_DEPR_1_M",
+    "DIAG_PSYCH_EAT_1_M",
+    "DIAG_REPRO_1_M",
+    "DIAG_RESP_1_M",
+    "DIAG_UROL_1_M",
+    "GAD7_IMPAIR_1_1",
+    "GAD7_ITEM1_ANX_1_1",
+    "GAD7_ITEM2_WORRY_CONTROL_1_1",
+    "GAD7_ITEM3_WORRY_AMOUNT_1_1",
+    "GAD7_ITEM4_RELAX_1_1",
+    "GAD7_ITEM5_RESTLESS_1_1",
+    "GAD7_ITEM6_ANNOYED_1_1",
+    "GAD7_ITEM7_AFRAID_1_1",
+    "GYN_CONTRACEPT_IMPLANT_1_1",
+    "GYN_CONTRACEPT_METHODS_1_M",
+    "GYN_CONTRACEPT_PILL_1_1",
+    "GYN_CONTRACEPT_PILL_FIRST_AGE_1_1",
+    "GYN_CONTRACEPT_PILL_LAST_AGE_1_1",
+    "GYN_HRT_1_1",
+    "GYN_HRT_FIRST_TRT_AGE_1_1",
+    "GYN_HRT_LAST_TRT_AGE_1_1",
+    "GYN_HYST_1_1",
+    "GYN_HYST_AGE_1_1",
+    "GYN_MENOPAUSE_1_1",
+    "GYN_MENOPAUSE_2_1",
+    "GYN_MENOPAUSE_LAST_PERIOD_AGE_1_1",
+    "GYN_MENOPAUSE_LAST_PERIOD_AGE_2_1",
+    "GYN_MENSTR_AGE_1_1",
+    "GYN_MENSTR_CYCLE_DAYS_1_1",
+    "GYN_MENSTR_CYCLE_DAYS_2_1",
+    "GYN_MENSTR_LAST_PERIOD_DAYS_1_1",
+    "GYN_MENSTR_LAST_PERIOD_DAYS_2_1",
+    "GYN_OOPH_1_1",
+    "GYN_OOPH_AGE_1_1",
+    "HEALTH_AMPUTATION_1_1",
+    "HEALTH_CHECK_COLORECTAL_1_1",
+    "HEALTH_CHECK_COLORECTAL_YRS_1_1",
+    "HEALTH_CHECK_MAMMOGRAM_1_1",
+    "HEALTH_CHECK_MAMMOGRAM_YRS_1_1",
+    "HEALTH_CHECK_PROSTATE_1_1",
+    "HEALTH_CHECK_PROSTATE_YRS_1_1",
+    "HEALTH_CHECK_SMEAR_1_1",
+    "HEALTH_CHECK_SMEAR_YRS_1_1",
+    "HEALTH_COVID_1_1",
+    "HEALTH_DENTAL_1_M",
+    "HEALTH_FALLS_1_1",
+    "HEALTH_PAIN_ACUTE_1_M",
+    "HEALTH_PAIN_ACUTE_2_M",
+    "HEALTH_PAIN_CHEST_1_1",
+    "HEALTH_PAIN_CHEST_SUBSIDE_1_1",
+    "HEALTH_PAIN_CHEST_WALK_1_1",
+    "HEALTH_PAIN_CHEST_WALK_UPHILL_1_1",
+    "HEALTH_PAIN_CHRONIC_1_M",
+    "HEALTH_PAIN_CHRONIC_BACK_1_1",
+    "HEALTH_PAIN_CHRONIC_BODY_1_1",
+    "HEALTH_PAIN_CHRONIC_FACE_1_1",
+    "HEALTH_PAIN_CHRONIC_HEADACHE_1_1",
+    "HEALTH_PAIN_CHRONIC_HIP_1_1",
+    "HEALTH_PAIN_CHRONIC_KNEE_1_1",
+    "HEALTH_PAIN_CHRONIC_SHOULDER_1_1",
+    "HEALTH_PAIN_CHRONIC_STOMACH_1_1",
+    "HEALTH_PAIN_LEG_1_1",
+    "HEALTH_RESP_SHORT_1_1",
+    "HEALTH_RESP_WHEEZE_1_1",
+    "HEALTH_STATUS_CHRONIC_1_1",
+    "HEALTH_STATUS_CURR_1_1",
+    "HEALTH_STATUS_DISABILITY_1_1",
+    "HEALTH_STATUS_DISABILITY_SUPPORT_1_M",
+    "HEALTH_STATUS_PRIVATE_HEALTHCARE_1_1",
+    "HEALTH_SUN_PROTECT_1_1",
+    "HEALTH_SUN_SOLARIUM_1_1",
+    "HEALTH_WEIGHT_CHG_1_1",
+    "MEDICAT_1_M",
+    "MEDICAT_A_1_M",
+    "MEDICAT_AUTO_1_M",
+    "MEDICAT_B_1_M",
+    "MEDICAT_C_1_M",
+    "MEDICAT_CANCER_1_M",
+    "MEDICAT_CVD_1_M",
+    "MEDICAT_D_1_M",
+    "MEDICAT_DIAB_1_M",
+    "MEDICAT_ENDOCR_1_M",
+    "MEDICAT_GASTRO_1_M",
+    "MEDICAT_NEURO_1_M",
+    "MEDICAT_OSTEO_1_M",
+    "MEDICAT_PAIN_1_M",
+    "MEDICAT_PRESCRIPT_1_M",
+    "MEDICAT_PSYCH_1_M",
+    "MEDICAT_PSYCH_ANTIDEPR_1_M",
+    "MEDICAT_PSYCH_ANTIPSYCH_1_M",
+    "MEDICAT_REPRO_1_M",
+    "MEDICAT_REPRO_CONTRACEPT_1_M",
+    "MEDICAT_RESP_1_M",
+    "MEDICAT_SUPPL_1_M",
+    "PHQ9_IMPAIR_1_1",
+    "PHQ9_ITEM1_INTEREST_1_1",
+    "PHQ9_ITEM2_DOWN_1_1",
+    "PHQ9_ITEM3_SLEEP_1_1",
+    "PHQ9_ITEM4_ENERGY_1_1",
+    "PHQ9_ITEM5_APPETITE_1_1",
+    "PHQ9_ITEM6_BAD_1_1",
+    "PHQ9_ITEM7_CONCENTR_1_1",
+    "PHQ9_ITEM8_MOVEMENT_1_1",
+    "PHQ9_ITEM9_HARM_1_1",
+    "SKIP_PHQ9_GAD7_1_1"
+  ]
+}

@@ -1,0 +1,235 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cd3-mws-pilot/recruitment/categories/body_lifestyle.json",
+  "title": "RECRUITMENT — Body Lifestyle",
+  "type": "object",
+  "x-variable-group": "body_lifestyle",
+  "properties": {
+    "REDUC": {
+      "title": "Highest educational attainment",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Tertiary (college or university)"
+        },
+        {
+          "const": 2,
+          "title": "Secondary (O levels or A levels)"
+        },
+        {
+          "const": 3,
+          "title": "Technical qualifications (nursing, teaching, clerical or commercial)"
+        },
+        {
+          "const": 4,
+          "title": "None; left at/after compulsory school leaving age"
+        },
+        {
+          "const": 5,
+          "title": "None; left before compulsory school leaving age/no school"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Derived from age left school, compulsory school leaving age and qualifications."
+    },
+    "RHEIGHT": {
+      "title": "Height now (cm)",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 120,
+          "maximum": 200
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Calculated from feet/inches."
+    },
+    "RWGT": {
+      "title": "Weight now (kg)",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 35,
+          "maximum": 150
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Calculated from stones/pounds."
+    },
+    "RBMI": {
+      "title": "Body mass index (kg/m2)",
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 10,
+          "maximum": 80
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Body mass index.",
+      "$comment": "Bound is a plausibility range the source does not fully state -- agent-decided."
+    },
+    "RSMOKE": {
+      "title": "Smoking status",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Never"
+        },
+        {
+          "const": 2,
+          "title": "Past"
+        },
+        {
+          "const": 3,
+          "title": "Current"
+        },
+        {
+          "const": 4,
+          "title": "Not current"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ]
+    },
+    "RCIGSPD": {
+      "title": "Cigarettes per day (current smokers)",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "None"
+        },
+        {
+          "const": 2,
+          "title": "Less than 5"
+        },
+        {
+          "const": 3,
+          "title": "5-9"
+        },
+        {
+          "const": 4,
+          "title": "10-14"
+        },
+        {
+          "const": 5,
+          "title": "15-19"
+        },
+        {
+          "const": 6,
+          "title": "20-24"
+        },
+        {
+          "const": 7,
+          "title": "25 or more"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "In current smokers (R_SMOKING_STATUS=3). No explicit source code for non-smokers -- treated as generic missing_numeric; see DECISIONS.md for the open routing question."
+    },
+    "RALCNUM": {
+      "title": "Alcoholic drinks per week",
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 150
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Derived from reported weekly drinks of wine, lager, cider, beer and spirits.",
+      "$comment": "Bound is a plausibility range the source does not fully state -- agent-decided."
+    },
+    "REXANY": {
+      "title": "Exercise: any (times per week)",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Rarely/never"
+        },
+        {
+          "const": 2,
+          "title": "Less than once a week"
+        },
+        {
+          "const": 3,
+          "title": "Once a week"
+        },
+        {
+          "const": 4,
+          "title": "2-3 times a week"
+        },
+        {
+          "const": 5,
+          "title": "4-6 times a week"
+        },
+        {
+          "const": 6,
+          "title": "Every day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/not_on_questionnaire"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ]
+    },
+    "REXSTREN": {
+      "title": "Exercise: strenuous (times per week)",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Rarely/never"
+        },
+        {
+          "const": 2,
+          "title": "Less than once a week"
+        },
+        {
+          "const": 3,
+          "title": "Once a week"
+        },
+        {
+          "const": 4,
+          "title": "2-3 times a week"
+        },
+        {
+          "const": 5,
+          "title": "4-6 times a week"
+        },
+        {
+          "const": 6,
+          "title": "Every day"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ]
+    }
+  },
+  "required": [
+    "REDUC",
+    "RHEIGHT",
+    "RWGT",
+    "RBMI",
+    "RSMOKE",
+    "RCIGSPD",
+    "RALCNUM",
+    "REXANY",
+    "REXSTREN"
+  ]
+}

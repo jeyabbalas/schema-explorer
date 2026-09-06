@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cd3-bgs-pilot/common/defs.json",
+  "title": "CD3 / BGS (Breast Cancer Now Generations Study) — derived variables (schemify pilot) — shared definitions",
+  "description": "Only invariant tokens are centralised here; context-specific sentinels are inlined per field because their meanings differ by variable.",
+  "$defs": {
+    "missing_numeric": {
+      "const": -999,
+      "title": "Missing or not recorded",
+      "description": "The derivation logic could not determine a value and no more specific sentinel applies -- agent-decided, since the source schema used bare null with no distinguishing code. Open for steward confirmation at review."
+    },
+    "missing_string": {
+      "const": "MISSING",
+      "title": "Missing or not recorded",
+      "description": "String-typed equivalent of missing_numeric, for the (rare) string-valued fields in this table."
+    },
+    "not_applicable": {
+      "const": 9999,
+      "title": "Not applicable",
+      "description": "The derivation logic determined the field is structurally not applicable to this participant (e.g. too young at baseline, no live birth, currently pregnant) -- adopted verbatim from the source schema, which already used 9999 for this meaning consistently across ~12 properties (distinct from bare null, which meant genuinely missing information)."
+    }
+  }
+}

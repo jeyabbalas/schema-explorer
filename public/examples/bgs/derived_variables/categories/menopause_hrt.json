@@ -1,0 +1,216 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cd3-bgs-pilot/derived_variables/categories/menopause_hrt.json",
+  "title": "DERIVED_VARIABLES — Menopause Hrt",
+  "type": "object",
+  "x-variable-group": "menopause_hrt",
+  "properties": {
+    "R0_Menopause": {
+      "title": "Menopausal status at baseline",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Postmenopausal"
+        },
+        {
+          "const": 2,
+          "title": "Premenopausal"
+        },
+        {
+          "const": 3,
+          "title": "Assumed postmenopausal"
+        },
+        {
+          "const": 4,
+          "title": "Assumed premenopausal"
+        },
+        {
+          "const": 9,
+          "title": "Never had periods"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Variable uses questionnaire variable. Derived from: AgeEntry, R0_EverHadPeriods, R0_PeriodsStoppedPerm, R0_HRTPeriodsUnclear, R0_MenopauseAge, R0_PeriodsStoppedReason, R0_OvaryOp_BothOvaries, R0_OvaryOp_Uterus, R0_OvaryOp_Age, R0_OvaryOp_FromAge, R0_OvaryOp_ToAge",
+      "$comment": "Legacy name: R1menopause."
+    },
+    "R0_AgeMenopause": {
+      "title": "Age at menopause (years)",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Uses questionnaire variable as best answer, or if no answer available, variable takes into account reported operations, cancer treatments, HRT and OC use. Assumed age 51 years when menopause is masked by hysterectomy or HRT use. Derived from: AgeEntry, R0_EverHadPeriods, R0_PeriodsStoppedPerm, R0_HRTPeriodsUnclear, R0_MenopauseAge, R0_PeriodsStoppedReason, R0_OvaryOp_BothOvaries, R0_OvaryOp_Uterus, R0_OvaryOp_Age, R0_OvaryOp_FromAge, R0_OvaryOp_ToAge",
+      "$comment": "Legacy name: age_menopause. Upper bound is a plausibility bound the source does not state -- agent-decided."
+    },
+    "R0_MenopauseReason": {
+      "title": "Reason periods stopped",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Natural"
+        },
+        {
+          "const": 2,
+          "title": "Surgery (bilateral oophorectomy)"
+        },
+        {
+          "const": 3,
+          "title": "Surgery (hysterectomy only)"
+        },
+        {
+          "const": 4,
+          "title": "Surgery (type not known)"
+        },
+        {
+          "const": 5,
+          "title": "Chemotherapy, radiotherapy, or other cancer treatment"
+        },
+        {
+          "const": 6,
+          "title": "Does not know reason for stopping"
+        },
+        {
+          "const": 7,
+          "title": "Other reported reason"
+        },
+        {
+          "const": 8,
+          "title": "Not known: on hormones"
+        },
+        {
+          "const": 9,
+          "title": "Not known: on HRT"
+        },
+        {
+          "const": 10,
+          "title": "Not known: stress"
+        },
+        {
+          "const": 11,
+          "title": "Premenopausal: breastfeeding or pregnant"
+        },
+        {
+          "const": 12,
+          "title": "Perimenopausal"
+        },
+        {
+          "const": 13,
+          "title": "Natural menopause while on HRT or OC"
+        },
+        {
+          "const": 14,
+          "title": "Eating disorder or low weight"
+        },
+        {
+          "const": 15,
+          "title": "Illness"
+        },
+        {
+          "const": 16,
+          "title": "Premenopausal"
+        },
+        {
+          "const": 17,
+          "title": "Status not known"
+        },
+        {
+          "const": 18,
+          "title": "Surgery, but not oophorectomy or hysterectomy"
+        },
+        {
+          "const": 19,
+          "title": "Never had periods"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Uses questionnaire variable. If no other information given then answer unknown. Derived from: AgeEntry, R0_EverHadPeriods, R0_PeriodsStoppedPerm, R0_HRTPeriodsUnclear, R0_MenopauseAge, R0_PeriodsStoppedReason, R0_OvaryOp_BothOvaries, R0_OvaryOp_Uterus, R0_OvaryOp_Age, R0_OvaryOp_FromAge, R0_OvaryOp_ToAge",
+      "$comment": "Legacy name: menopause_reason."
+    },
+    "R0_HRTStatus": {
+      "title": "Menopausal hormone treatment status at baseline",
+      "oneOf": [
+        {
+          "const": 0,
+          "title": "Never"
+        },
+        {
+          "const": 1,
+          "title": "Former"
+        },
+        {
+          "const": 2,
+          "title": "Current"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "From HRT episode array: any prior but stopped = Former; active at R0 (stop missing or after EntryDate) = Current; none = Never. Derived from: R0_HRT_Use, R0_HRT_StartAge, R0_HRT_StopAge, R0_HRT_CurrentUse, AgeEntry",
+      "$comment": "Legacy name: hrtstatus."
+    },
+    "R0_HRTStartAge": {
+      "title": "Age started menopausal hormone treatment",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Earliest HRT start across episodes as given in the questionnaire. Derived from: R0_HRT_StartAge",
+      "$comment": "Legacy name: hrt1age. Upper bound is a plausibility bound the source does not state -- agent-decided."
+    },
+    "R0_HRTStopAge": {
+      "title": "Age stopped menopausal hormone treatment",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Latest HRT stop across episodes as given in the questionnaire. Derived from: R0_HRT_StopAge",
+      "$comment": "Legacy name: hrtlage. Upper bound is a plausibility bound the source does not state -- agent-decided."
+    },
+    "R0_HRTDuration": {
+      "title": "Total duration of menopausal hormone treatment (years)",
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 70
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Sum merged HRT episodes (stop - start)/365.25. If overlapping, does not duplicate overlapping time. Only includes periods before recruitment, not estimating open ended times occurring during entry date. Derived from: R0_HRTStartAge, R0_HRTStopAge",
+      "$comment": "Legacy name: hrtlength. Upper bound is a plausibility bound the source does not state -- agent-decided."
+    }
+  },
+  "required": [
+    "R0_Menopause",
+    "R0_AgeMenopause",
+    "R0_MenopauseReason",
+    "R0_HRTStatus",
+    "R0_HRTStartAge",
+    "R0_HRTStopAge",
+    "R0_HRTDuration"
+  ]
+}

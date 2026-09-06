@@ -1,0 +1,436 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cd3-ofh-pilot/questionnaire/categories/work_education.json",
+  "title": "QUESTIONNAIRE — Work Education",
+  "type": "object",
+  "x-variable-group": "work_education",
+  "properties": {
+    "EDU_COMP_AGE_1_1": {
+      "title": "At what age did you complete your continuous full time education?",
+      "oneOf": [
+        {
+          "const": 0,
+          "title": "Still in full time education"
+        },
+        {
+          "const": -2,
+          "title": "Never went to school"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "At what age did you complete your continuous full time education?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "EDU_COMP_AGE_2_1": {
+      "title": "At what age did you complete your continuous full-time education?",
+      "oneOf": [
+        {
+          "const": 0,
+          "title": "Still in full time education"
+        },
+        {
+          "const": -2,
+          "title": "Never went to school"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "At what age did you complete your continuous full-time education?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "EDU_QUAL_1_M": {
+      "title": "Which of the following qualifications do you have?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "College or University degree"
+        },
+        {
+          "const": 2,
+          "title": "A levels/AS levels or equivalent"
+        },
+        {
+          "const": 3,
+          "title": "O levels/GCSEs or equivalent"
+        },
+        {
+          "const": 4,
+          "title": "CSEs or equivalent"
+        },
+        {
+          "const": 5,
+          "title": "NVQ or HND or HNC or equivalent"
+        },
+        {
+          "const": 6,
+          "title": "Other professional qualifications eg: nursing, teaching"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Which of the following qualifications do you have?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "HOUSING_INCOME_1_1": {
+      "title": "What is the average total income before tax received by your HOUSEHOLD?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Less than £18,000"
+        },
+        {
+          "const": 2,
+          "title": "£18,000 to £30,999"
+        },
+        {
+          "const": 3,
+          "title": "£31,000 to £51,999"
+        },
+        {
+          "const": 4,
+          "title": "£52,000 to £100,000"
+        },
+        {
+          "const": 5,
+          "title": "Greater than £100,000"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "What is the average total income before tax received by your HOUSEHOLD?"
+    },
+    "WORK_DISTANCE_1_1": {
+      "title": "About how many miles is it between your home and your work?",
+      "oneOf": [
+        {
+          "const": -10,
+          "title": "Less than one mile"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "About how many miles is it between your home and your work?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "WORK_MANUAL_LABOUR_1_1": {
+      "title": "Does your work involve heavy manual or physical work?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Never/rarely"
+        },
+        {
+          "const": 2,
+          "title": "Sometimes"
+        },
+        {
+          "const": 3,
+          "title": "Usually"
+        },
+        {
+          "const": 4,
+          "title": "Always"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Does your work involve heavy manual or physical work?"
+    },
+    "WORK_NIGHTS_1_1": {
+      "title": "Does your work involve night shifts?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Never/rarely"
+        },
+        {
+          "const": 2,
+          "title": "Sometimes"
+        },
+        {
+          "const": 3,
+          "title": "Usually"
+        },
+        {
+          "const": 4,
+          "title": "Always"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Does your work involve night shifts?"
+    },
+    "WORK_SHIFTS_1_1": {
+      "title": "Does your work involve shift work?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Never/rarely"
+        },
+        {
+          "const": 2,
+          "title": "Sometimes"
+        },
+        {
+          "const": 3,
+          "title": "Usually"
+        },
+        {
+          "const": 4,
+          "title": "Always"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Does your work involve shift work?"
+    },
+    "WORK_STATUS_1_M": {
+      "title": "Which of the following describes your current situation?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "In paid employment or self-employed"
+        },
+        {
+          "const": 2,
+          "title": "Retired"
+        },
+        {
+          "const": 3,
+          "title": "Looking after home and/or family"
+        },
+        {
+          "const": 4,
+          "title": "Unable to work because of sickness or disability"
+        },
+        {
+          "const": 8,
+          "title": "On paid leave (furlough)"
+        },
+        {
+          "const": 6,
+          "title": "Doing unpaid or voluntary work"
+        },
+        {
+          "const": 7,
+          "title": "Full or part-time student"
+        },
+        {
+          "const": 5,
+          "title": "Unemployed"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Which of the following describes your current situation?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "WORK_STATUS_2_M": {
+      "title": "Which of the following describes your current situation?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "In paid employment or self-employed"
+        },
+        {
+          "const": 2,
+          "title": "Retired"
+        },
+        {
+          "const": 3,
+          "title": "Looking after home and/or family"
+        },
+        {
+          "const": 4,
+          "title": "Unable to work because of sickness or disability"
+        },
+        {
+          "const": 8,
+          "title": "On paid leave (e.g. parental leave, long term sick leave, furlough)"
+        },
+        {
+          "const": 6,
+          "title": "Doing unpaid or voluntary work"
+        },
+        {
+          "const": 7,
+          "title": "Full or part-time student"
+        },
+        {
+          "const": 9,
+          "title": "Unpaid carer"
+        },
+        {
+          "const": -5,
+          "title": "Unemployed"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Which of the following describes your current situation?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "WORK_TRANSPORT_1_M": {
+      "title": "What types of transport do you use to get to and from work?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Car/motor vehicle"
+        },
+        {
+          "const": 2,
+          "title": "Walk"
+        },
+        {
+          "const": 3,
+          "title": "Public transport"
+        },
+        {
+          "const": 4,
+          "title": "Cycle"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "What types of transport do you use to get to and from work?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "WORK_WALK_STAND_1_1": {
+      "title": "Does your work involve walking or standing for most of the time?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Never/rarely"
+        },
+        {
+          "const": 2,
+          "title": "Sometimes"
+        },
+        {
+          "const": 3,
+          "title": "Usually"
+        },
+        {
+          "const": 4,
+          "title": "Always"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Does your work involve walking or standing for most of the time?"
+    },
+    "WORK_WK_HRS_1_1": {
+      "title": "In a typical WEEK, how many hours do you spend at work?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "In a typical WEEK, how many hours do you spend at work?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "WORK_WK_TRAVEL_1_1": {
+      "title": "How many times a WEEK do you travel from home to your main work?",
+      "oneOf": [
+        {
+          "const": -10,
+          "title": "Less than once a week"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How many times a WEEK do you travel from home to your main work?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "WORK_YRS_1_1": {
+      "title": "How many years have you worked in your current job?",
+      "oneOf": [
+        {
+          "const": -10,
+          "title": "Less than a year"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How many years have you worked in your current job?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    }
+  },
+  "required": [
+    "EDU_COMP_AGE_1_1",
+    "EDU_COMP_AGE_2_1",
+    "EDU_QUAL_1_M",
+    "HOUSING_INCOME_1_1",
+    "WORK_DISTANCE_1_1",
+    "WORK_MANUAL_LABOUR_1_1",
+    "WORK_NIGHTS_1_1",
+    "WORK_SHIFTS_1_1",
+    "WORK_STATUS_1_M",
+    "WORK_STATUS_2_M",
+    "WORK_TRANSPORT_1_M",
+    "WORK_WALK_STAND_1_1",
+    "WORK_WK_HRS_1_1",
+    "WORK_WK_TRAVEL_1_1",
+    "WORK_YRS_1_1"
+  ]
+}

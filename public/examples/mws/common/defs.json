@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cd3-mws-pilot/common/defs.json",
+  "title": "CD3 / Million Women Study — recruitment variables (schemify pilot) — shared definitions",
+  "description": "Only invariant tokens are centralised here; context-specific sentinels are inlined per field because their meanings differ by variable.",
+  "$defs": {
+    "not_on_questionnaire": {
+      "const": -1,
+      "title": "Not on questionnaire",
+      "description": "Adopted verbatim from the source's own code lists (millionwomenstudydatadictionary-v1-21.xlsx, 'Recruitment variables' sheet), where -1 documents that the question was not asked in a given questionnaire version. Confirmed against the sheet's own Availability columns (Aqua/Blue/Other): every field carrying this code shows 'No' availability for exactly one version (Blue)."
+    },
+    "missing_numeric": {
+      "const": -999,
+      "title": "Missing or not recorded",
+      "description": "The source lists no distinguishing code for why a value is absent -- agent-decided, mirroring the sibling Generations and OFH pilot packages' policy for genuinely undifferentiated missingness. Open for steward confirmation at review."
+    }
+  }
+}

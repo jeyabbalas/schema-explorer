@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cd3-bgs-pilot/derived_variables/derived_variables.schema.json",
+  "title": "BGS (Breast Cancer Now Generations Study) — Derived Variables table (CD3 schemify pilot)",
+  "description": "Array of R0 derived-variable records. One element is one participant's analysis-ready derived variables at baseline. Full pilot: all 60 properties from DerivedVariables_Schema.json converted, across 12 categories.",
+  "$comment": "Standard JSON Schema cannot enforce uniqueness of TCode across rows, nor cross-field arithmetic identities (e.g. R0_BMI = R0_Weight / (R0_Height/100)^2). See the README's 'Documented but not enforced' section.",
+  "type": "array",
+  "minItems": 1,
+  "uniqueItems": true,
+  "items": {
+    "type": "object",
+    "title": "DERIVED_VARIABLES record",
+    "allOf": [
+      {
+        "$ref": "categories/identity.json"
+      },
+      {
+        "$ref": "categories/ethnicity.json"
+      },
+      {
+        "$ref": "categories/body_size.json"
+      },
+      {
+        "$ref": "categories/menarche.json"
+      },
+      {
+        "$ref": "categories/contraceptive_use.json"
+      },
+      {
+        "$ref": "categories/pregnancy_parity.json"
+      },
+      {
+        "$ref": "categories/breast_disease.json"
+      },
+      {
+        "$ref": "categories/diabetes.json"
+      },
+      {
+        "$ref": "categories/menopause_hrt.json"
+      },
+      {
+        "$ref": "categories/alcohol.json"
+      },
+      {
+        "$ref": "categories/smoking_diet_activity.json"
+      },
+      {
+        "$ref": "categories/family_history.json"
+      }
+    ],
+    "unevaluatedProperties": false
+  }
+}

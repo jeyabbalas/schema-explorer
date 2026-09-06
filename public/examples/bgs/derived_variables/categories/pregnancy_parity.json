@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cd3-bgs-pilot/derived_variables/categories/pregnancy_parity.json",
+  "title": "DERIVED_VARIABLES — Pregnancy Parity",
+  "type": "object",
+  "x-variable-group": "pregnancy_parity",
+  "properties": {
+    "R0_PregAt20": {
+      "title": "Whether the participant was pregnant at any point while 20 years old",
+      "oneOf": [
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/not_applicable"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Derived on the shifted timeline using mailing DOB (shifted) and pregnancy episodes. Compute the age-20 window as [DOB+20y, DOB+21y). For each pregnancy episode, form an interval [end - duration, end] where end = R0_PregnancyEndDate (shifted). Duration comes from R0_Preg_DurationWks when present; if missing and outcome indicates a term pregnancy (e.g., live birth / stillbirth categories), assume 40 weeks; otherwise skip the episode. If any episode overlaps the age-20 window, set 1. If AgeEntry < 20, set 9999 (NA). If R0_CurrentPreg == 1 and AgeEntry == 20, set 1. Value is 9999 (NA) if participant was not yet 20 at baseline. Derived from: DOB_Shifted, R0_PregnancyEndDate_Shifted, R0_Preg_DurationWks, R0_Preg_Outcome, AgeEntry, R0_CurrentPreg"
+    },
+    "R0_PregAtEntry": {
+      "title": "Flag whether the participant was pregnant at baseline",
+      "oneOf": [
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Using questionnaire question R0_CurrentPreg to flag if participant was pregnant at baseline. Derived from: R0_CurrentPreg"
+    },
+    "R0_Parous": {
+      "title": "Parity status at baseline",
+      "oneOf": [
+        {
+          "const": -1,
+          "title": "Never pregnant"
+        },
+        {
+          "const": 0,
+          "title": "Nulliparous (ever pregnant but no live birth before entry)"
+        },
+        {
+          "const": 1,
+          "title": "Parous (at least one pregnancy with a live birth before entry)"
+        },
+        {
+          "const": 9,
+          "title": "Ever pregnant but parity unknown (e.g. only pregnancies with unknown outcome or incomplete episode data)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Using questionnaire responses (R0_EverPregnant and R0_TotalPregnancies) and the pregnancy episodes table: (1) Parous (1) if any pregnancy has a live-birth outcome (e.g. singleton live, multiple with ≥1 liveborn; outcome codes 1, 2, 3, 5, 10). (2) Nulliparous (0) if there is evidence of pregnancies but no live-birth outcomes and no pregnancies with unknown outcome (14). (3) Never pregnant (-1) if questionnaire data indicate no pregnancies and there are no pregnancy episodes. (4) Ever pregnant, parity unknown (9) if there is evidence of pregnancies but no live-birth outcomes and at least one pregnancy with unknown outcome or if the pregnancy table is empty but the questionnaire suggests pregnancies. Null if pregnancy information is entirely missing or internally inconsistent. Derived from: R0_EverPregnant, R0_TotalPregnancies, R0_Preg_Outcome"
+    },
+    "R0_Parity": {
+      "title": "Number of live-birth pregnancies at baseline",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 20
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Count of pregnancies with a live-birth outcome (each pregnancy counts once; multiple births still count as 1 pregnancy). Excludes miscarriages, terminations, ectopic, stillbirth, molar, and unknown outcomes. Derived from: R0_Preg_Outcome",
+      "$comment": "Upper bound is a plausibility bound the source does not state -- agent-decided."
+    },
+    "R0_AgeFFTP": {
+      "title": "Age at first full term pregnancy (years)",
+      "anyOf": [
+        {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "exclusiveMaximum": 120
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/not_applicable"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Computed from the participant's DOB and the earliest pregnancy end date among live-birth pregnancies: whole years at the date of that birth (subtract 1 if the birthday in that calendar year had not yet occurred). 9999 (NA) if no live-birth pregnancies or dates. Derived from: DOB, R0_PregnancyEndDate, R0_Preg_Outcome",
+      "$comment": "Legacy name: preg1birthage."
+    },
+    "R0_AgeLFTP": {
+      "title": "Age at last full term pregnancy (years)",
+      "anyOf": [
+        {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "exclusiveMaximum": 120
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/not_applicable"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Same calculation as age at first birth, but using the latest pregnancy end date among live-birth pregnancies. 9999 (NA) if no live-birth pregnancies or dates. Derived from: DOB, R0_PregnancyEndDate, R0_Preg_Outcome",
+      "$comment": "Legacy name: pregLbirthage."
+    },
+    "R0_BreastfeedingDuration": {
+      "title": "Total weeks of breastfeeding across live-birth pregnancies",
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0,
+          "exclusiveMaximum": 1300
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/not_applicable"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Sum breastfeeding duration reported per live-birth pregnancy (weeks). 9999 (NA) non-live-birth pregnancies. Null if no breastfeeding information is available. Derived from: R0_Preg_BreastfeedingWks, R0_Preg_Outcome",
+      "$comment": "Legacy name: pregbfwks."
+    },
+    "R0_Breastfed": {
+      "title": "Whether the participant has ever breastfed",
+      "oneOf": [
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/not_applicable"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "x-derivation": "Set to 1 if the summed breastfeeding duration across live-birth pregnancies is > 0 months; 0 if explicitly reported as 0 weeks across all live-birth pregnancies; null if there is no breastfeeding information: 9999 (NA) if never a live-birth. Derived from: R0_Preg_BreastfeedingWks, R0_Preg_Outcome",
+      "$comment": "Legacy name: pregbf."
+    }
+  },
+  "required": [
+    "R0_PregAt20",
+    "R0_PregAtEntry",
+    "R0_Parous",
+    "R0_Parity",
+    "R0_AgeFFTP",
+    "R0_AgeLFTP",
+    "R0_BreastfeedingDuration",
+    "R0_Breastfed"
+  ]
+}

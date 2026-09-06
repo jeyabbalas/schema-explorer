@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cd3-bgs-pilot/derived_variables/categories/identity.json",
+  "title": "DERIVED_VARIABLES — Identity",
+  "type": "object",
+  "x-variable-group": "identity",
+  "properties": {
+    "TCode": {
+      "title": "Study identifier",
+      "type": "string",
+      "pattern": "^[A-Z0-9]{8}$",
+      "x-role": "primary key"
+    }
+  },
+  "required": [
+    "TCode"
+  ]
+}

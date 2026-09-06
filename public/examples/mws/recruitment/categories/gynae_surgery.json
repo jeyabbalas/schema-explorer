@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cd3-mws-pilot/recruitment/categories/gynae_surgery.json",
+  "title": "RECRUITMENT — Gynae Surgery",
+  "type": "object",
+  "x-variable-group": "gynae_surgery",
+  "properties": {
+    "RHYST": {
+      "title": "Hysterectomy",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 2,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ]
+    },
+    "RHYSTAG": {
+      "title": "Hysterectomy age",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 10,
+          "maximum": 100
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "$comment": "Bound is a plausibility range the source does not fully state -- agent-decided."
+    },
+    "ROOPH": {
+      "title": "Bilateral oophorectomy",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 2,
+          "title": "No"
+        },
+        {
+          "const": 3,
+          "title": "Not sure"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ]
+    },
+    "ROOPHAGE": {
+      "title": "Bilateral oophorectomy age",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 10,
+          "maximum": 100
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "$comment": "Bound is a plausibility range the source does not fully state -- agent-decided."
+    },
+    "RSTER": {
+      "title": "Sterilised",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 2,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ]
+    },
+    "RSTERAGE": {
+      "title": "Age sterilised",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 10,
+          "maximum": 100
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ],
+      "$comment": "Bound is a plausibility range the source does not fully state -- agent-decided."
+    }
+  },
+  "required": [
+    "RHYST",
+    "RHYSTAG",
+    "ROOPH",
+    "ROOPHAGE",
+    "RSTER",
+    "RSTERAGE"
+  ]
+}

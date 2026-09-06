@@ -1,0 +1,618 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cd3-ofh-pilot/questionnaire/categories/about_you_household.json",
+  "title": "QUESTIONNAIRE — About You Household",
+  "type": "object",
+  "x-variable-group": "about_you_household",
+  "properties": {
+    "DEMOG_HEIGHT_1_1": {
+      "title": "What is your height?",
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 300
+        }
+      ],
+      "$comment": "Bound is a wide agent-decided placeholder, not a real plausibility range: this field is paired with a unit-selector field (e.g. DEMOG_HEIGHT_ENTER_UNIT_1_1), so the raw value's unit (metric vs imperial) may vary by participant and isn't resolved by this schema. Open item for steward input."
+    },
+    "DEMOG_HEIGHT_ENTER_UNIT_1_1": {
+      "title": "How would you prefer to enter your height?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Feet and inches"
+        },
+        {
+          "const": 2,
+          "title": "Centimeters"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How would you prefer to enter your height?"
+    },
+    "DEMOG_LANGUAGE_1_1": {
+      "title": "What is your main language?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "English"
+        },
+        {
+          "const": 2,
+          "title": "Welsh"
+        },
+        {
+          "const": 3,
+          "title": "(Scottish) Gaelic"
+        },
+        {
+          "const": 4,
+          "title": "Punjabi"
+        },
+        {
+          "const": 5,
+          "title": "Gujarati"
+        },
+        {
+          "const": 6,
+          "title": "Bengali"
+        },
+        {
+          "const": 7,
+          "title": "Urdu"
+        },
+        {
+          "const": 8,
+          "title": "Hindi"
+        },
+        {
+          "const": 9,
+          "title": "Cantonese"
+        },
+        {
+          "const": 10,
+          "title": "Mandarin"
+        },
+        {
+          "const": 11,
+          "title": "Polish"
+        },
+        {
+          "const": 12,
+          "title": "Arabic"
+        },
+        {
+          "const": 13,
+          "title": "Other (Including British Sign Language)"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "What is your main language?"
+    },
+    "DEMOG_RELATSH_CIVIL_CURR_1_1": {
+      "title": "Who is your registered civil partnership to?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Someone of the opposite gender"
+        },
+        {
+          "const": 2,
+          "title": "Someone of the same gender"
+        },
+        {
+          "const": 3,
+          "title": "Other"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Who is your registered civil partnership to?"
+    },
+    "DEMOG_RELATSH_CIVIL_PREV_1_1": {
+      "title": "Who was your registered civil partnership to?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Someone of the opposite gender"
+        },
+        {
+          "const": 2,
+          "title": "Someone of the same gender"
+        },
+        {
+          "const": 3,
+          "title": "Other"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Who was your registered civil partnership to?"
+    },
+    "DEMOG_RELATSH_MARR_CURR_1_1": {
+      "title": "Who is your legal marriage to?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Someone of the opposite gender"
+        },
+        {
+          "const": 2,
+          "title": "Someone of the same gender"
+        },
+        {
+          "const": 3,
+          "title": "Other"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Who is your legal marriage to?"
+    },
+    "DEMOG_RELATSH_MARR_PREV_1_1": {
+      "title": "Who was your legal marriage to?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Someone of the opposite gender"
+        },
+        {
+          "const": 2,
+          "title": "Someone of the same gender"
+        },
+        {
+          "const": 3,
+          "title": "Other"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Who was your legal marriage to?"
+    },
+    "DEMOG_RELATSH_STATUS_1_1": {
+      "title": "What is your marital status?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Single, that is never married"
+        },
+        {
+          "const": 2,
+          "title": "Married and living with your husband/wife"
+        },
+        {
+          "const": 6,
+          "title": "A Civil Partner in a legally-recognised Civil Partnership"
+        },
+        {
+          "const": 3,
+          "title": "Married and separated from your husband/wife"
+        },
+        {
+          "const": 4,
+          "title": "Divorced"
+        },
+        {
+          "const": 5,
+          "title": "Widowed or widower"
+        },
+        {
+          "const": 7,
+          "title": "Other"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "What is your marital status?"
+    },
+    "DEMOG_RELATSH_STATUS_2_1": {
+      "title": "What is your current legal marital or registered civil partnership status?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Never married and never registered a civil partnership"
+        },
+        {
+          "const": 2,
+          "title": "Married"
+        },
+        {
+          "const": 3,
+          "title": "In a registered civil partnership"
+        },
+        {
+          "const": 4,
+          "title": "Separated, but still legally married"
+        },
+        {
+          "const": 5,
+          "title": "Separated, but still legally in a civil partnership"
+        },
+        {
+          "const": 6,
+          "title": "Divorced"
+        },
+        {
+          "const": 7,
+          "title": "Formerly in a civil partnership which is now legally dissolved"
+        },
+        {
+          "const": 8,
+          "title": "Widowed"
+        },
+        {
+          "const": 9,
+          "title": "Surviving partner for a registered civil partnership"
+        },
+        {
+          "const": 10,
+          "title": "Other"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "What is your current legal marital or registered civil partnership status?"
+    },
+    "DEMOG_SEXUAL_ORIENTATION_1_1": {
+      "title": "Which of the following best describes your sexual orientation?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Straight/heterosexual"
+        },
+        {
+          "const": 2,
+          "title": "Gay or lesbian"
+        },
+        {
+          "const": 3,
+          "title": "Bisexual"
+        },
+        {
+          "const": 4,
+          "title": "Asexual"
+        },
+        {
+          "const": 5,
+          "title": "Pansexual"
+        },
+        {
+          "const": 6,
+          "title": "Other sexual orientation not listed"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Which of the following best describes your sexual orientation?"
+    },
+    "DEMOG_TRANSGENDER_1_1": {
+      "title": "Do you identify as trans or do you have a trans history?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 0,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you identify as trans or do you have a trans history?"
+    },
+    "DEMOG_WEIGHT_1_1": {
+      "title": "What is your weight?",
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 300
+        }
+      ],
+      "$comment": "Bound is a wide agent-decided placeholder, not a real plausibility range: this field is paired with a unit-selector field (e.g. DEMOG_HEIGHT_ENTER_UNIT_1_1), so the raw value's unit (metric vs imperial) may vary by participant and isn't resolved by this schema. Open item for steward input."
+    },
+    "DEMOG_WEIGHT_ENTER_UNIT_1_1": {
+      "title": "How would you prefer to enter your weight?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Stones and pounds"
+        },
+        {
+          "const": 2,
+          "title": "Kilograms"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How would you prefer to enter your weight?"
+    },
+    "HOUSING_CURR_ADD_YRS_1_1": {
+      "title": "How many years have you lived at your current address?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/suppressed"
+        },
+        {
+          "const": -10,
+          "title": "Less than a year"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How many years have you lived at your current address?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "HOUSING_ENERGY_1_M": {
+      "title": "Do you have any of the following in your home?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "A gas hob or gas cooker"
+        },
+        {
+          "const": 2,
+          "title": "A gas fire that you use regularly in winter time"
+        },
+        {
+          "const": 3,
+          "title": "An open solid fuel fire that you use regularly in winter time"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you have any of the following in your home?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "HOUSING_HEAT_1_M": {
+      "title": "How is your home mainly heated?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Gas central heating"
+        },
+        {
+          "const": 2,
+          "title": "Electric storage heaters"
+        },
+        {
+          "const": 3,
+          "title": "Oil (kerosene) central heating"
+        },
+        {
+          "const": 4,
+          "title": "Portable gas or paraffin heaters"
+        },
+        {
+          "const": 5,
+          "title": "Solid fuel central heating"
+        },
+        {
+          "const": 6,
+          "title": "Open fire without central heating"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How is your home mainly heated?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "HOUSING_PEOPLE_1_1": {
+      "title": "Including yourself, how many people are living together in your household?",
+      "oneOf": [
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Including yourself, how many people are living together in your household?",
+      "$comment": "is_sparse_coding=yes: this coding table likely documents only sentinel/special values, not an exhaustive enumeration -- treated as fully categorical here since no numeric bound is stated in the source; open item if a continuous interpretation turns out to be more accurate."
+    },
+    "HOUSING_PEOPLE_RELATE_1_M": {
+      "title": "How are the other people who live with you related to you?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Husband, wife or partner"
+        },
+        {
+          "const": 2,
+          "title": "Son and/or daughter (include step-children)"
+        },
+        {
+          "const": 3,
+          "title": "Brother and/or sister"
+        },
+        {
+          "const": 4,
+          "title": "Mother and/or father"
+        },
+        {
+          "const": 5,
+          "title": "Grandparent"
+        },
+        {
+          "const": 6,
+          "title": "Grandchild"
+        },
+        {
+          "const": 7,
+          "title": "Other related"
+        },
+        {
+          "const": 8,
+          "title": "Other unrelated"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How are the other people who live with you related to you?",
+      "$comment": "SOURCE AMBIGUITY: dictionary flags is_multi_select=yes, meaning this question allows multiple selections, but the declared type is plain 'integer' with no array/multi-value shape -- how multiple selections are actually represented in real data (array, delimited string, or separate long-format rows) is not resolved by the dictionary alone. Encoded here as if single-valued; open item for steward input before trusting this field's shape."
+    },
+    "HOUSING_TENURE_1_1": {
+      "title": "Do you own or rent the accommodation that you live in?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Own outright (by you or someone in your household)"
+        },
+        {
+          "const": 2,
+          "title": "Own with a mortgage"
+        },
+        {
+          "const": 3,
+          "title": "Rent – from local authority, local council, housing association, student accomodation"
+        },
+        {
+          "const": 4,
+          "title": "Rent – from private landlord or letting agency"
+        },
+        {
+          "const": 5,
+          "title": "Pay part rent and part mortgage (shared ownership)"
+        },
+        {
+          "const": 6,
+          "title": "Live in accommodation rent free"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "Do you own or rent the accommodation that you live in?"
+    },
+    "HOUSING_TYPE_1_1": {
+      "title": "What type of accommodation do you live in?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "A house or bungalow"
+        },
+        {
+          "const": 2,
+          "title": "A flat, maisonette or apartment"
+        },
+        {
+          "const": 3,
+          "title": "Mobile or temporary structure (i.e. caravan)"
+        },
+        {
+          "const": 4,
+          "title": "Sheltered accommodation"
+        },
+        {
+          "const": 5,
+          "title": "Care home"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/none_of_the_above"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "What type of accommodation do you live in?"
+    },
+    "HOUSING_VEHICLES_1_1": {
+      "title": "How many cars or vans are owned, or available for use, by you or members of your household?",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "None"
+        },
+        {
+          "const": 2,
+          "title": "One"
+        },
+        {
+          "const": 3,
+          "title": "Two"
+        },
+        {
+          "const": 4,
+          "title": "Three"
+        },
+        {
+          "const": 5,
+          "title": "Four or more"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/dont_know"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/prefer_not_to_answer"
+        }
+      ],
+      "x-derivation": "How many cars or vans are owned, or available for use, by you or members of your household?"
+    }
+  },
+  "required": [
+    "DEMOG_HEIGHT_1_1",
+    "DEMOG_HEIGHT_ENTER_UNIT_1_1",
+    "DEMOG_LANGUAGE_1_1",
+    "DEMOG_RELATSH_CIVIL_CURR_1_1",
+    "DEMOG_RELATSH_CIVIL_PREV_1_1",
+    "DEMOG_RELATSH_MARR_CURR_1_1",
+    "DEMOG_RELATSH_MARR_PREV_1_1",
+    "DEMOG_RELATSH_STATUS_1_1",
+    "DEMOG_RELATSH_STATUS_2_1",
+    "DEMOG_SEXUAL_ORIENTATION_1_1",
+    "DEMOG_TRANSGENDER_1_1",
+    "DEMOG_WEIGHT_1_1",
+    "DEMOG_WEIGHT_ENTER_UNIT_1_1",
+    "HOUSING_CURR_ADD_YRS_1_1",
+    "HOUSING_ENERGY_1_M",
+    "HOUSING_HEAT_1_M",
+    "HOUSING_PEOPLE_1_1",
+    "HOUSING_PEOPLE_RELATE_1_M",
+    "HOUSING_TENURE_1_1",
+    "HOUSING_TYPE_1_1",
+    "HOUSING_VEHICLES_1_1"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cd3-mws-pilot/recruitment/categories/breast_health.json",
+  "title": "RECRUITMENT — Breast Health",
+  "type": "object",
+  "x-variable-group": "breast_health",
+  "properties": {
+    "RMAMM": {
+      "title": "Previously attended breast screening",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 2,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ]
+    },
+    "RFHBC": {
+      "title": "Mother or sister with breast cancer",
+      "oneOf": [
+        {
+          "const": 1,
+          "title": "Yes"
+        },
+        {
+          "const": 2,
+          "title": "No"
+        },
+        {
+          "$ref": "../../common/defs.json#/$defs/missing_numeric"
+        }
+      ]
+    }
+  },
+  "required": [
+    "RMAMM",
+    "RFHBC"
+  ]
+}
