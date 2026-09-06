@@ -196,6 +196,7 @@ export async function buildDatasets(input: BuildInput, ctx: BuildContext): Promi
     const dataset: Dataset = {
       id: safeId(textKey(`${input.batchId}|${root.uri}`)),
       batchId: input.batchId,
+      source: input.source,
       rootUri: root.uri,
       rootPath,
       label,

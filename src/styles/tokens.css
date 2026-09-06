@@ -1,0 +1,223 @@
+/*
+ * Design tokens. Light values live on :root, dark on :root[data-theme="dark"] (set before first
+ * paint by the inline head script), with a prefers-color-scheme fallback for a root that carries
+ * no explicit theme. App chrome is monochrome; chroma is reserved for dataset identity (the 8-hue
+ * palette below) and the warn / danger status pair.
+ */
+:root {
+  color-scheme: light;
+
+  --se-font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --se-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  --se-fs-xs: 0.75rem;
+  --se-fs-sm: 0.8125rem;
+  --se-fs-md: 0.875rem;
+  --se-fs-lg: 1rem;
+  --se-fs-xl: 1.25rem;
+  --se-fs-2xl: 1.5rem;
+  --se-lh: 1.5;
+  --se-tracking-caps: 0.04em;
+
+  --se-sp-1: 4px;
+  --se-sp-2: 8px;
+  --se-sp-3: 12px;
+  --se-sp-4: 16px;
+  --se-sp-5: 20px;
+  --se-sp-6: 24px;
+  --se-sp-8: 32px;
+  --se-sp-10: 40px;
+  --se-sp-12: 48px;
+  --se-sp-16: 64px;
+
+  --se-r-sm: 6px;
+  --se-r-md: 10px;
+  --se-r-lg: 14px;
+  --se-r-pill: 999px;
+
+  --se-z-sticky: 20;
+  --se-z-menu: 30;
+  --se-z-dropover: 40;
+  --se-z-toast: 50;
+
+  --se-dur-fast: 120ms;
+  --se-dur: 160ms;
+  --se-dur-slow: 240ms;
+  --se-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  --se-max-w: 1440px;
+  --se-gutter: clamp(16px, 3vw, 32px);
+  /* Height of the sticky search bar; JS keeps it in sync so scroll-margin-top stays correct. */
+  --se-sticky-h: 64px;
+
+  --se-bg: #f7f8fa;
+  --se-surface: #ffffff;
+  --se-surface-2: #f1f3f6;
+  --se-surface-3: #e9ecf1;
+  --se-fg: #1b2330;
+  --se-fg-muted: #5c6675;
+  --se-fg-faint: #6b7583;
+  --se-border: #e4e8ef;
+  --se-border-strong: #cfd5de;
+  --se-code-bg: #eef1f6;
+  --se-mark: #ffe9a8;
+  --se-ink: #1b2330;
+  --se-ink-fg: #ffffff;
+  --se-focus: #1b2330;
+  --se-ok: #137333;
+  --se-ok-bg: #e4f3e9;
+  --se-warn: #94470b;
+  --se-warn-bg: #fbf0e4;
+  --se-danger: #b42318;
+  --se-danger-bg: #fdecec;
+  --se-shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.06), 0 1px 3px rgba(16, 24, 40, 0.08);
+  --se-shadow-md: 0 4px 12px rgba(16, 24, 40, 0.08), 0 1px 3px rgba(16, 24, 40, 0.06);
+  --se-shadow-sticky: 0 1px 0 var(--se-border), 0 6px 16px -8px rgba(16, 24, 40, 0.18);
+
+  /* Dataset palette: accent >= 4.9:1 on its tint and >= 5.7:1 on the surface. */
+  --se-ds-1-accent: #0b6f59; /* teal */
+  --se-ds-1-tint: #e3f3ec;
+  --se-ds-2-accent: #2457c5; /* blue */
+  --se-ds-2-tint: #e6edfb;
+  --se-ds-3-accent: #6b3fc2; /* violet */
+  --se-ds-3-tint: #efe9fa;
+  --se-ds-4-accent: #b8305a; /* rose */
+  --se-ds-4-tint: #fbe7ee;
+  --se-ds-5-accent: #4f6b0f; /* olive */
+  --se-ds-5-tint: #ecf2da;
+  --se-ds-6-accent: #a4278a; /* magenta */
+  --se-ds-6-tint: #f8e6f4;
+  --se-ds-7-accent: #0b6d9c; /* sky */
+  --se-ds-7-tint: #e2f1fa;
+  --se-ds-8-accent: #4b5563; /* slate */
+  --se-ds-8-tint: #eceff3;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --se-bg: #0f1319;
+  --se-surface: #161c26;
+  --se-surface-2: #1d2530;
+  --se-surface-3: #242e3b;
+  --se-fg: #e7ecf3;
+  --se-fg-muted: #9aa6b6;
+  --se-fg-faint: #7d8797;
+  --se-border: #28303d;
+  --se-border-strong: #364052;
+  --se-code-bg: #222b38;
+  --se-mark: #5b4f1f;
+  --se-ink: #e7ecf3;
+  --se-ink-fg: #10141b;
+  --se-focus: #e7ecf3;
+  --se-ok: #57d39a;
+  --se-ok-bg: #12291c;
+  --se-warn: #f0a35e;
+  --se-warn-bg: #2a2016;
+  --se-danger: #ff8f85;
+  --se-danger-bg: #3a1d1d;
+  --se-shadow-sm: none;
+  --se-shadow-md: none;
+  --se-shadow-sticky: 0 1px 0 var(--se-border);
+
+  --se-ds-1-accent: #54d6ad;
+  --se-ds-1-tint: #12302a;
+  --se-ds-2-accent: #8ab4ff;
+  --se-ds-2-tint: #16274a;
+  --se-ds-3-accent: #b79dff;
+  --se-ds-3-tint: #271c45;
+  --se-ds-4-accent: #f58fb0;
+  --se-ds-4-tint: #3c1a28;
+  --se-ds-5-accent: #b5d155;
+  --se-ds-5-tint: #1f2a10;
+  --se-ds-6-accent: #ec8fd8;
+  --se-ds-6-tint: #36162f;
+  --se-ds-7-accent: #6cc4ee;
+  --se-ds-7-tint: #112a3a;
+  --se-ds-8-accent: #aab4c3;
+  --se-ds-8-tint: #232a35;
+}
+
+/* No-JS / no-preference fallback: follow the system when the root carries no explicit theme. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+
+    --se-bg: #0f1319;
+    --se-surface: #161c26;
+    --se-surface-2: #1d2530;
+    --se-surface-3: #242e3b;
+    --se-fg: #e7ecf3;
+    --se-fg-muted: #9aa6b6;
+    --se-fg-faint: #7d8797;
+    --se-border: #28303d;
+    --se-border-strong: #364052;
+    --se-code-bg: #222b38;
+    --se-mark: #5b4f1f;
+    --se-ink: #e7ecf3;
+    --se-ink-fg: #10141b;
+    --se-focus: #e7ecf3;
+    --se-ok: #57d39a;
+    --se-ok-bg: #12291c;
+    --se-warn: #f0a35e;
+    --se-warn-bg: #2a2016;
+    --se-danger: #ff8f85;
+    --se-danger-bg: #3a1d1d;
+    --se-shadow-sm: none;
+    --se-shadow-md: none;
+    --se-shadow-sticky: 0 1px 0 var(--se-border);
+
+    --se-ds-1-accent: #54d6ad;
+    --se-ds-1-tint: #12302a;
+    --se-ds-2-accent: #8ab4ff;
+    --se-ds-2-tint: #16274a;
+    --se-ds-3-accent: #b79dff;
+    --se-ds-3-tint: #271c45;
+    --se-ds-4-accent: #f58fb0;
+    --se-ds-4-tint: #3c1a28;
+    --se-ds-5-accent: #b5d155;
+    --se-ds-5-tint: #1f2a10;
+    --se-ds-6-accent: #ec8fd8;
+    --se-ds-6-tint: #36162f;
+    --se-ds-7-accent: #6cc4ee;
+    --se-ds-7-tint: #112a3a;
+    --se-ds-8-accent: #aab4c3;
+    --se-ds-8-tint: #232a35;
+  }
+}
+
+/* Dataset identity: every element carrying data-ds="n" resolves its own accent / tint pair. */
+[data-ds="1"] {
+  --ds-accent: var(--se-ds-1-accent);
+  --ds-tint: var(--se-ds-1-tint);
+}
+[data-ds="2"] {
+  --ds-accent: var(--se-ds-2-accent);
+  --ds-tint: var(--se-ds-2-tint);
+}
+[data-ds="3"] {
+  --ds-accent: var(--se-ds-3-accent);
+  --ds-tint: var(--se-ds-3-tint);
+}
+[data-ds="4"] {
+  --ds-accent: var(--se-ds-4-accent);
+  --ds-tint: var(--se-ds-4-tint);
+}
+[data-ds="5"] {
+  --ds-accent: var(--se-ds-5-accent);
+  --ds-tint: var(--se-ds-5-tint);
+}
+[data-ds="6"] {
+  --ds-accent: var(--se-ds-6-accent);
+  --ds-tint: var(--se-ds-6-tint);
+}
+[data-ds="7"] {
+  --ds-accent: var(--se-ds-7-accent);
+  --ds-tint: var(--se-ds-7-tint);
+}
+[data-ds="8"] {
+  --ds-accent: var(--se-ds-8-accent);
+  --ds-tint: var(--se-ds-8-tint);
+}
+[data-ds] {
+  --ds-ink: var(--ds-accent);
+}

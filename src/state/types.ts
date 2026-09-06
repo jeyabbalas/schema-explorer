@@ -37,6 +37,7 @@ export interface Dataset {
   /** Stable across reloads: derived from the batch id and the root URI. */
   id: string;
   batchId: string;
+  source: BatchSource;
   rootUri: string;
   /** Path of the root document within the batch. */
   rootPath: string;
@@ -65,6 +66,8 @@ export interface Notice {
   /** Optional list shown behind a disclosure (ignored files, warnings, …). */
   details?: string[] | undefined;
   datasetId?: string | undefined;
+  /** An optional button on the toast (e.g. "Undo"); the handler is registered by the actions layer. */
+  action?: { label: string } | undefined;
   createdAt: number;
 }
 

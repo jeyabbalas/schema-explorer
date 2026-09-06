@@ -1,0 +1,141 @@
+/* Reset and document defaults. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scrollbar-gutter: stable;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font: var(--se-fs-md) / var(--se-lh) var(--se-font);
+  font-feature-settings: "tnum";
+  background: var(--se-bg);
+  color: var(--se-fg);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+code,
+kbd,
+pre {
+  font-family: var(--se-mono);
+}
+
+svg {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+/* Views toggle visibility with the hidden attribute; it must beat any display rule below. */
+[hidden] {
+  display: none !important;
+}
+
+mark,
+.se-mark {
+  background: var(--se-mark);
+  color: inherit;
+  border-radius: 2px;
+  padding: 0 1px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--se-focus);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.se-muted {
+  color: var(--se-fg-muted);
+}
+
+.se-visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip link: off-screen until focused, then a pill at the top-left. */
+.se-skip {
+  position: absolute;
+  left: var(--se-sp-2);
+  top: var(--se-sp-2);
+  z-index: 100;
+  padding: var(--se-sp-2) var(--se-sp-3);
+  border-radius: var(--se-r-pill);
+  background: var(--se-ink);
+  color: var(--se-ink-fg);
+  font-weight: 600;
+  text-decoration: none;
+  transform: translateY(-200%);
+  transition: transform var(--se-dur) var(--se-ease);
+}
+
+.se-skip:focus {
+  transform: none;
+}
+
+.se-spin {
+  animation: se-spin 0.9s linear infinite;
+}
+
+@keyframes se-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
