@@ -854,6 +854,37 @@ a.se-strip__cell:hover {
   color: var(--se-warn);
 }
 
+/* The schema author's $comments: a variable's note under its description, and -- under a value
+   or a rule -- why it is so. */
+.se-note {
+  display: block;
+  margin-top: 4px;
+  padding-left: 8px;
+  border-left: 2px solid var(--se-border);
+  color: var(--se-fg-muted);
+  font-size: var(--se-fs-xs);
+}
+
+.se-note__tag {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: var(--se-tracking-caps);
+  text-transform: uppercase;
+}
+
+.se-why {
+  display: block;
+  color: var(--se-fg-muted);
+  font-size: var(--se-fs-xs);
+  font-style: italic;
+}
+
+/* A skip pattern that sets the value. */
+.se-vals__when {
+  display: block;
+  font-size: var(--se-fs-xs);
+}
+
 @media (max-width: 639px) {
   .se-table-wrap {
     min-width: auto;

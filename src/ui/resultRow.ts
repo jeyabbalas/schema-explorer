@@ -2,9 +2,10 @@ import { splitVariableName } from "json-schema-data-dictionary";
 import type { AppActions } from "../app/actions";
 import type { Hit } from "../search/types";
 import type { Dataset } from "../state/types";
-import { renderConstraintsCell, renderValuesCell } from "./compactCells";
+import { renderConstraintsCell, renderDescriptionCell, renderValuesCell } from "./compactCells";
 import { el, highlightInto } from "./dom";
 import { icon } from "./icons";
+import { rowView } from "./rowView";
 
 function isMixedType(type: string): boolean {
   return /\+| or /.test(type);
@@ -54,9 +55,21 @@ export function renderResultRow(
     );
   }
 
+  const view = rowView(dataset.table, hit.localRow);
+  const marked = hit.exact ? terms : [];
   const description = el("td", { class: "se-row__desc", "data-label": "Description" });
-  if (hit.row["Description"]) highlightInto(description, hit.row["Description"], hit.exact ? terms : []);
-  else description.appendChild(el("span", { class: "se-muted" }, "—"));
+  const values = el("td", { class: "se-row__vals", "data-label": "Valid values" });
+  const constraints = el("td", { class: "se-row__cons", "data-label": "Constraints" });
+  if (view) {
+    renderDescriptionCell(description, view, marked);
+    renderValuesCell(values, view, marked);
+    renderConstraintsCell(constraints, view, marked);
+  } else {
+    // Every row has a view; the raw description is a safe floor should one ever be missing.
+    description.textContent = hit.row["Description"] || "—";
+    values.textContent = "—";
+    constraints.textContent = "—";
+  }
 
   const type = el(
     "td",
@@ -70,10 +83,6 @@ export function renderResultRow(
       : el("span", { class: "se-muted" }, "—"),
     hit.row["Format"] ? el("span", { class: "se-row__format" }, hit.row["Format"]) : null
   );
-  const values = el("td", { class: "se-row__vals", "data-label": "Valid values" });
-  renderValuesCell(values, hit.row["Valid values"], hit.exact ? terms : []);
-  const constraints = el("td", { class: "se-row__cons", "data-label": "Constraints" });
-  renderConstraintsCell(constraints, hit.row["Constraints"]);
 
   return el(
     "tr",

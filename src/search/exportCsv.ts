@@ -1,4 +1,4 @@
-import { constraintsText, validValuesText } from "json-schema-data-dictionary";
+import { constraintsCell, validValuesCell } from "json-schema-data-dictionary";
 import type { Dataset } from "../state/types";
 import { slugify } from "../util/text";
 import type { CatalogSearchResult } from "./types";
@@ -17,7 +17,12 @@ export const RESULT_CSV_COLUMNS = [
   "Similarity"
 ] as const;
 
-/** Header plus one row per hit, in dataset order (exact matches before related ones). */
+/**
+ * Header plus one row per hit, in dataset order (exact matches before related ones). Cells read
+ * like the library's own CSV: one value or constraint per line, the special codes after a
+ * "Special codes:" line, and the schema author's notes kept (the description's last lines, a
+ * rule's comment after its constraint).
+ */
 export function resultsToCsvRows(result: CatalogSearchResult, datasets: readonly Dataset[]): string[][] {
   const labels = new Map(datasets.map((dataset) => [dataset.id, dataset.label]));
   const rows: string[][] = [[...RESULT_CSV_COLUMNS]];
@@ -29,8 +34,8 @@ export function resultsToCsvRows(result: CatalogSearchResult, datasets: readonly
         hit.row["Description"],
         hit.row["Data type"],
         hit.row["Format"],
-        validValuesText(hit.row["Valid values"]),
-        constraintsText(hit.row["Constraints"]),
+        validValuesCell(hit.row["Valid values"]),
+        constraintsCell(hit.row["Constraints"]),
         hit.categoryTitle,
         hit.exact ? "exact" : "related",
         hit.score.toFixed(4),
