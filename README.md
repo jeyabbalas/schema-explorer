@@ -14,13 +14,17 @@ renders a JSON Schema for an array of records as a flat, searchable data diction
 ## Features
 
 - **Several dictionaries side by side.** Each loaded table becomes a colour-coded card with its own data
-  dictionary (categories, valid values, special codes, constraints, CSV export) and its own search box.
+  dictionary and search box: categories, valid values, special codes, constraints, the schema author's
+  `$comment` notes, and skip patterns you can follow from either end. The table scrolls under a sticky
+  column header, columns resize (the widths are remembered per dataset), and **Excel** downloads a
+  formatted workbook with _Data dictionary_, _Skip logic_ and _About_ sheets (_Copy_ copies CSV).
 - **One search across every dataset.** The availability strip answers "which datasets have this concept?"
-  at a glance; matches are grouped per dataset with highlighted terms, and any row can be opened in its
-  dictionary. Export the results as CSV.
+  at a glance; matches are grouped per dataset with highlighted terms, notes, and the skip patterns
+  that set each code, and any row can be opened in its dictionary. Export the results as CSV.
 - **Keyword + semantic search.** Keyword search (BM25F) is instant. An opt-in switch adds semantic search:
-  variables that are related by meaning appear as "related" rows with a similarity score. Two on-device
-  embedding models are offered: a small default and Jina v5 nano for the best results (WebGPU only).
+  variables that are related by meaning appear as "related" rows with a similarity score. Three on-device
+  embedding models are offered: a small default that runs everywhere, and EmbeddingGemma 2 and Jina v5
+  nano for better results (WebGPU only).
 - **Load schemas however you keep them.** Drop files or a whole folder (relative `$ref`s resolve by path),
   use the file or folder picker, or load the bundled example datasets with one click.
 - **Everything stays in your browser.** Schemas are parsed on your device and kept in IndexedDB so a reload
@@ -52,19 +56,23 @@ huggingface.co.
 
 ## Semantic search notes
 
-Both models run in the browser with Transformers.js (ONNX Runtime); the picker next to the switch
-chooses between them and the choice is remembered.
+All three models run in the browser with Transformers.js 4.3.1 (ONNX Runtime); the picker next to the
+switch chooses between them and the choice is remembered.
 
-| Model                                                                                                                                | Params | Download     | Licence                                    | Runs on        | Notes                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------------------ | ------ | ------------ | ------------------------------------------ | -------------- | ---------------------------------------------------------------------------------- |
-| [MongoDB/mdbr-leaf-ir](https://huggingface.co/MongoDB/mdbr-leaf-ir) (LEAF-IR, default)                                               | 23M    | 23–46 MB     | Apache-2.0                                 | WebGPU or WASM | Small and quick to index; good results.                                            |
-| [jinaai/jina-embeddings-v5-text-nano-retrieval](https://huggingface.co/jinaai/jina-embeddings-v5-text-nano-retrieval) (Jina v5 nano) | 239M   | 124 MB q4f16 | **CC BY-NC 4.0** (non-commercial use only) | WebGPU only    | Highest retrieval quality (best MRR in the library's evaluation); slower to index. |
+| Model                                                                                                                                | Params | Download     | Licence                                    | Runs on        | Notes                                                                               |
+| ------------------------------------------------------------------------------------------------------------------------------------ | ------ | ------------ | ------------------------------------------ | -------------- | ----------------------------------------------------------------------------------- |
+| [MongoDB/mdbr-leaf-ir](https://huggingface.co/MongoDB/mdbr-leaf-ir) (LEAF-IR, default)                                               | 23M    | 23–46 MB     | Apache-2.0                                 | WebGPU or WASM | Small and quick to index; good results.                                             |
+| [onnx-community/embeddinggemma-2-ONNX](https://huggingface.co/onnx-community/embeddinggemma-2-ONNX) (EmbeddingGemma 2)               | 270M   | 190 MB q4f16 | Apache-2.0                                 | WebGPU only    | Strong retrieval in 100+ languages; the text model alone (no vision/audio weights). |
+| [jinaai/jina-embeddings-v5-text-nano-retrieval](https://huggingface.co/jinaai/jina-embeddings-v5-text-nano-retrieval) (Jina v5 nano) | 239M   | 124 MB q4f16 | **CC BY-NC 4.0** (non-commercial use only) | WebGPU only    | Highest retrieval quality (best MRR in the library's evaluation); slower to index.  |
 
 - WebGPU is used when the browser exposes it (Chrome/Edge 113+, Safari 26, Firefox on Windows); otherwise
-  LEAF-IR runs on single-threaded WASM, which is slower to index but works everywhere. Jina v5 nano is far
-  too large for WASM, so the picker disables it in browsers without WebGPU, and a saved Jina preference falls
-  back to LEAF-IR there (with a notice).
+  LEAF-IR runs on single-threaded WASM, which is slower to index but works everywhere. EmbeddingGemma 2
+  and Jina v5 nano are far too large for WASM, so the picker disables them in browsers without WebGPU, and
+  a saved preference for either falls back to LEAF-IR there (with a notice).
+- On the library's labelled query set, hybrid ranking reaches MRR 0.90 with LEAF-IR, 0.92 with
+  EmbeddingGemma 2 and 0.94 with Jina v5 nano (0.82 for keyword search alone).
 - Jina v5 nano's weights are licensed for **non-commercial use only**; pick it only when that applies to you.
+  EmbeddingGemma 2 is Apache-2.0.
 - The model weights are cached by the browser (Cache API) and the row vectors in IndexedDB, one vector cache
   per model, so later visits and switching back and forth are fast. **Before a live demo, open the site once
   on the demo machine, load your datasets, switch semantic search on and pick the model you will present
