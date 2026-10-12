@@ -560,6 +560,7 @@
 
   .se-card__body {
     display: block !important;
+    max-height: none;
   }
 }
 

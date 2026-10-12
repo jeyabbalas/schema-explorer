@@ -66,7 +66,11 @@ export function mountShelf(container: HTMLElement, store: Store<AppState>, actio
     for (const dataset of datasets) {
       let card = cards.get(dataset.id);
       if (!card) {
-        card = createCard(dataset, actions, { theme, collapsed: collapsedOf(state, dataset.id) });
+        card = createCard(dataset, actions, {
+          theme,
+          collapsed: collapsedOf(state, dataset.id),
+          columnWidths: state.ui.cards[dataset.id]?.columnWidths
+        });
         cards.set(dataset.id, card);
       } else {
         card.update(dataset, collapsedOf(state, dataset.id));

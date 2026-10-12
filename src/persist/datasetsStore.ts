@@ -2,6 +2,7 @@
 // restores everything. Text rather than parsed tables: independent of the library's output
 // model (an upgrade simply rebuilds on the next boot), smaller to clone, and stable to hash.
 
+import type { ColumnWidths, DataDictionaryColumn } from "json-schema-data-dictionary";
 import type { BatchSource, LoadBatch } from "../state/types";
 import { errorMessage } from "../util/text";
 import type { Kv } from "./kv";
@@ -31,6 +32,8 @@ export interface DatasetOverride {
   label?: string | undefined;
   colorIndex?: number | undefined;
   collapsed?: boolean | undefined;
+  /** Column widths (px) by column name, as the dictionary's `dd-column-resize` event reports them. */
+  columnWidths?: Record<string, number> | undefined;
 }
 
 export interface StoredMeta {
@@ -90,6 +93,28 @@ function isStoredMeta(value: unknown): value is StoredMeta {
     Array.isArray(meta.hiddenDatasets) &&
     typeof meta.overrides === "object"
   );
+}
+
+/** The dictionary's columns; a record so the compiler flags a column the library adds. */
+const COLUMNS: Record<DataDictionaryColumn, true> = {
+  "Variable name": true,
+  Description: true,
+  "Data type": true,
+  Format: true,
+  "Valid values": true,
+  Constraints: true,
+  "Additional information": true
+};
+
+/** Saved column widths, keeping only known columns with a positive width; undefined when none. */
+export function savedColumnWidths(value: unknown): ColumnWidths | undefined {
+  if (typeof value !== "object" || value === null) return undefined;
+  const widths: ColumnWidths = {};
+  for (const [column, width] of Object.entries(value)) {
+    if (column in COLUMNS && typeof width === "number" && Number.isFinite(width) && width > 0)
+      widths[column as DataDictionaryColumn] = Math.round(width);
+  }
+  return Object.keys(widths).length > 0 ? widths : undefined;
 }
 
 export function createDatasetsStore(kvPromise: Promise<Kv> | Kv): DatasetsStore {

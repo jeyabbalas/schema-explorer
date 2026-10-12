@@ -1,4 +1,9 @@
-import type { DataDictionaryTable, JsonSchema, SchemaRootCandidate } from "json-schema-data-dictionary";
+import type {
+  ColumnWidths,
+  DataDictionaryTable,
+  JsonSchema,
+  SchemaRootCandidate
+} from "json-schema-data-dictionary";
 import type { CatalogSearchResult } from "../search/types";
 import type { IgnoredFile } from "../ingest/filter";
 
@@ -108,11 +113,17 @@ export interface BusyState {
   progress?: number | undefined;
 }
 
+export interface CardUiState {
+  collapsed: boolean;
+  /** Column widths the reader set in the card's dictionary (px), handed back on the next render. */
+  columnWidths?: ColumnWidths | undefined;
+}
+
 export interface UiState {
   /** A drag with files is over the page. */
   dragOver: boolean;
   /** Per-dataset card state. */
-  cards: Record<string, { collapsed: boolean }>;
+  cards: Record<string, CardUiState>;
   /** Files ignored by the most recent ingestion, for the "N files ignored" disclosure. */
   ignoredFiles: IgnoredFile[];
   /** Text for the polite live region (e.g. after a jump to a variable). */

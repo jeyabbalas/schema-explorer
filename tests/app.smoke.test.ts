@@ -37,12 +37,27 @@ describe("app smoke test", () => {
     expect(root.querySelector(".se-empty")?.hasAttribute("hidden")).toBe(true);
     expect(root.querySelector(".se-shelf")?.hasAttribute("hidden")).toBe(false);
 
-    // Each card hosts the library component with its rendered dictionary in a shadow root.
+    // Each card hosts the library component with its rendered dictionary in a shadow root; its
+    // download button saves an Excel workbook.
     for (const card of Array.from(root.querySelectorAll(".se-card"))) {
       const component = card.querySelector("json-data-dictionary");
       expect(component?.shadowRoot?.querySelector(".dd-root")).not.toBeNull();
+      const download = component?.shadowRoot?.querySelector("[data-dd-action='download']");
+      expect(download?.textContent?.trim()).toBe("Excel");
       expect(card.getAttribute("data-ds")).toMatch(/^[1-8]$/);
     }
+
+    // A column resize in a dictionary is remembered for its dataset.
+    const firstCard = root.querySelector(".se-card");
+    const firstId = app.store.get().datasets[0]?.id ?? "";
+    firstCard?.querySelector("json-data-dictionary")?.dispatchEvent(
+      new CustomEvent("dd-column-resize", {
+        detail: { column: "Description", widths: { Description: 380 } },
+        bubbles: true,
+        composed: true
+      })
+    );
+    expect(app.store.get().ui.cards[firstId]?.columnWidths).toEqual({ Description: 380 });
     const hues = Array.from(root.querySelectorAll(".se-card")).map((card) => card.getAttribute("data-ds"));
     expect(new Set(hues).size).toBe(5);
 

@@ -8,7 +8,12 @@ import { ingest, type IngestResult, type IngestSource } from "../ingest/index";
 import { uniqueLabel } from "../ingest/paths";
 import { parseTexts } from "../ingest/parse";
 import { buildDatasets } from "../ingest/build";
-import { toStoredBatch, type DatasetsStore, type StoredMeta } from "../persist/datasetsStore";
+import {
+  savedColumnWidths,
+  toStoredBatch,
+  type DatasetsStore,
+  type StoredMeta
+} from "../persist/datasetsStore";
 import { savePrefs } from "../persist/prefs";
 import { buildCatalog, type Catalog } from "../search/catalog";
 import { createCatalogSearch, type CatalogSearch } from "../search/catalogSearch";
@@ -21,10 +26,18 @@ import { appendNotices, createNotice } from "../state/notices";
 import { downloadText } from "../util/download";
 import { colorAllocator } from "../state/selectors";
 import type { Store } from "../state/store";
-import type { AppState, Dataset, LoadBatch, Notice, NoticeLevel, ThemePreference } from "../state/types";
+import type {
+  AppState,
+  CardUiState,
+  Dataset,
+  LoadBatch,
+  Notice,
+  NoticeLevel,
+  ThemePreference
+} from "../state/types";
 import { withTimeout, yieldToBrowser } from "../util/async";
 import { errorMessage, pluralize } from "../util/text";
-import { detectWebGpu } from "json-schema-data-dictionary";
+import { detectWebGpu, type ColumnWidths } from "json-schema-data-dictionary";
 
 /** What the card shelf can do for the actions layer (registered once the UI is mounted). */
 export interface ShelfBridge {
@@ -44,6 +57,8 @@ export interface AppActions {
   renameDataset(id: string, label: string): void;
   setCardCollapsed(id: string, collapsed: boolean): void;
   setAllCardsCollapsed(collapsed: boolean): void;
+  /** Remember the column widths the reader set in a dataset's dictionary (`{}` after a reset). */
+  setColumnWidths(id: string, widths: ColumnWidths): void;
   clearAll(): Promise<void>;
   setTheme(theme: ThemePreference): void;
   notify(
@@ -106,10 +121,14 @@ export function createActions(store: Store<AppState>, deps: ActionDeps = {}): Ap
     const state = store.get();
     const overrides: StoredMeta["overrides"] = {};
     for (const dataset of state.datasets) {
+      const card = state.ui.cards[dataset.id];
       overrides[dataset.id] = {
         label: dataset.label,
         colorIndex: dataset.colorIndex,
-        collapsed: state.ui.cards[dataset.id]?.collapsed ?? false
+        collapsed: card?.collapsed ?? false,
+        ...(card?.columnWidths && Object.keys(card.columnWidths).length > 0
+          ? { columnWidths: { ...card.columnWidths } }
+          : {})
       };
     }
     return {
@@ -121,7 +140,7 @@ export function createActions(store: Store<AppState>, deps: ActionDeps = {}): Ap
     };
   };
 
-  /** Save the arrangement (order, labels, colours, collapsed cards); bursts are coalesced. */
+  /** Save the arrangement (order, labels, colours, collapsed cards, column widths); bursts are coalesced. */
   const persistMeta = (): void => {
     if (!deps.datasetsStore) return;
     if (metaTimer) clearTimeout(metaTimer);
@@ -129,6 +148,14 @@ export function createActions(store: Store<AppState>, deps: ActionDeps = {}): Ap
       metaTimer = undefined;
       void deps.datasetsStore?.saveMeta(currentMeta());
     }, 300);
+  };
+
+  const updateCard = (id: string, patch: Partial<CardUiState>): void => {
+    store.set((state) => {
+      const card: CardUiState = { collapsed: false, ...state.ui.cards[id], ...patch };
+      return { ui: { ...state.ui, cards: { ...state.ui.cards, [id]: card } } };
+    });
+    persistMeta();
   };
 
   const persistBatches = async (batches: readonly LoadBatch[]): Promise<void> => {
@@ -207,7 +234,7 @@ export function createActions(store: Store<AppState>, deps: ActionDeps = {}): Ap
         notices.push(createNotice("error", `Could not restore ${stored.label}: ${errorMessage(err)}`));
       }
     }
-    // Apply the saved arrangement: order, labels, colours (unique), collapsed cards.
+    // Apply the saved arrangement: order, labels, colours (unique), collapsed cards, column widths.
     const order = new Map((meta?.datasetOrder ?? []).map((id, index) => [id, index]));
     restored.sort(
       (a, b) => (order.get(a.id) ?? Number.MAX_SAFE_INTEGER) - (order.get(b.id) ?? Number.MAX_SAFE_INTEGER)
@@ -226,7 +253,9 @@ export function createActions(store: Store<AppState>, deps: ActionDeps = {}): Ap
       taken.add(colorIndex);
       const label = uniqueLabel(override?.label?.trim() || dataset.label, labels);
       labels.add(label);
-      if (override?.collapsed) cards[dataset.id] = { collapsed: true };
+      const columnWidths = savedColumnWidths(override?.columnWidths);
+      if (override?.collapsed || columnWidths)
+        cards[dataset.id] = { collapsed: override?.collapsed ?? false, columnWidths };
       return { ...dataset, label, colorIndex };
     });
     store.batch(() => {
@@ -652,17 +681,20 @@ export function createActions(store: Store<AppState>, deps: ActionDeps = {}): Ap
     },
 
     setCardCollapsed(id, collapsed) {
-      store.set((state) => ({ ui: { ...state.ui, cards: { ...state.ui.cards, [id]: { collapsed } } } }));
-      persistMeta();
+      updateCard(id, { collapsed });
     },
 
     setAllCardsCollapsed(collapsed) {
       store.set((state) => {
         const cards = { ...state.ui.cards };
-        for (const dataset of state.datasets) cards[dataset.id] = { collapsed };
+        for (const dataset of state.datasets) cards[dataset.id] = { ...cards[dataset.id], collapsed };
         return { ui: { ...state.ui, cards } };
       });
       persistMeta();
+    },
+
+    setColumnWidths(id, widths) {
+      updateCard(id, { columnWidths: Object.keys(widths).length > 0 ? { ...widths } : undefined });
     },
 
     clearAll() {

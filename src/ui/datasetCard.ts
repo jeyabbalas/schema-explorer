@@ -1,4 +1,9 @@
-import { renderDataDictionary, type DataDictionaryElement } from "json-schema-data-dictionary";
+import {
+  renderDataDictionary,
+  type ColumnResizeDetail,
+  type ColumnWidths,
+  type DataDictionaryElement
+} from "json-schema-data-dictionary";
 import type { AppActions } from "../app/actions";
 import type { Dataset } from "../state/types";
 import { pluralize } from "../util/text";
@@ -10,6 +15,8 @@ import type { ResolvedTheme } from "./theme";
 export interface CardOptions {
   theme: ResolvedTheme;
   collapsed: boolean;
+  /** Column widths saved for this dataset's dictionary. */
+  columnWidths?: ColumnWidths | undefined;
 }
 
 export interface CardHandle {
@@ -27,14 +34,6 @@ export function createCard(dataset: Dataset, actions: AppActions, options: CardO
   const id = dataset.id;
   const label = el("h2", { class: "se-card__label", id: `${cardDomId(id)}-label` }, dataset.label);
   const meta = el("p", { class: "se-card__meta" });
-  const warnBadge = el("button", {
-    type: "button",
-    class: "se-badge se-badge--warn",
-    "aria-expanded": "false",
-    "aria-controls": `${cardDomId(id)}-warnings`,
-    hidden: true
-  });
-  const warnList = el("ul", { class: "se-card__warnlist", id: `${cardDomId(id)}-warnings`, hidden: true });
   const filterName = el("code", null);
   const filter = el(
     "p",
@@ -78,7 +77,6 @@ export function createCard(dataset: Dataset, actions: AppActions, options: CardO
     el("span", { class: "se-swatch se-swatch--lg", "aria-hidden": "true" }),
     label,
     meta,
-    warnBadge,
     el("div", { class: "se-card__actions" }, renameButton, collapseButton, removeButton)
   );
   const root = el(
@@ -91,7 +89,6 @@ export function createCard(dataset: Dataset, actions: AppActions, options: CardO
       ...datasetColorAttrs(dataset)
     },
     head,
-    warnList,
     filter,
     body
   );
@@ -101,6 +98,8 @@ export function createCard(dataset: Dataset, actions: AppActions, options: CardO
   let element: DataDictionaryElement | undefined;
 
   const mountDictionary = (): void => {
+    // The component brings its own toolbar: skip logic, metadata and extraction warnings panels,
+    // copy as CSV and the Excel download.
     element = renderDataDictionary(body, current.table, {
       theme: options.theme,
       // Small or single-section dictionaries open expanded; larger ones start as a table of
@@ -108,6 +107,8 @@ export function createCard(dataset: Dataset, actions: AppActions, options: CardO
       expandCategories: current.categoryCount <= 1 || current.variableCount <= 20,
       searchPlaceholder: `Search within ${current.label}…`,
       includeExport: true,
+      exportFormat: "xlsx",
+      columnWidths: options.columnWidths,
       pageSize: 100,
       resultsPageSize: 50
     });
@@ -125,13 +126,6 @@ export function createCard(dataset: Dataset, actions: AppActions, options: CardO
       `${pluralize(current.variableCount, "variable")} · ${pluralize(current.categoryCount, "category", "categories")}`,
       current.source === "example" ? [" · ", el("span", { class: "se-card__source" }, "Example")] : null
     );
-    const n = current.warnings.length;
-    warnBadge.hidden = n === 0;
-    replaceChildren(warnBadge, icon("warning", 14), ` ${pluralize(n, "warning")}`);
-    replaceChildren(
-      warnList,
-      current.warnings.map((warning) => el("li", null, warning))
-    );
     renameButton.setAttribute("aria-label", `Rename ${current.label}`);
     renameButton.title = `Rename ${current.label}`;
     removeButton.setAttribute("aria-label", `Remove ${current.label}`);
@@ -147,11 +141,6 @@ export function createCard(dataset: Dataset, actions: AppActions, options: CardO
     else root.removeAttribute("data-ds-cycle");
   };
 
-  warnBadge.addEventListener("click", () => {
-    const open = warnList.hidden;
-    warnList.hidden = !open;
-    warnBadge.setAttribute("aria-expanded", String(open));
-  });
   collapseButton.addEventListener("click", () => {
     actions.setCardCollapsed(id, !collapsed);
   });
@@ -242,6 +231,11 @@ export function createCard(dataset: Dataset, actions: AppActions, options: CardO
       root.remove();
     }
   };
+
+  body.addEventListener("dd-column-resize", (event) => {
+    const { widths } = (event as CustomEvent<ColumnResizeDetail>).detail;
+    actions.setColumnWidths(id, widths);
+  });
 
   // Hide the filter notice again when the user edits the embedded search box themselves.
   body.addEventListener("input", (event) => {

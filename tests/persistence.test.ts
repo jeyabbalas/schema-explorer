@@ -6,6 +6,7 @@ import {
   DB_NAME,
   DB_VERSION,
   MAX_PERSIST_BATCH_BYTES,
+  savedColumnWidths,
   STORES,
   toStoredBatch,
   type StoredBatch
@@ -101,6 +102,14 @@ describe("datasets store", () => {
     silent.mockRestore();
   });
 
+  it("keeps only known columns with a positive width from saved column widths", () => {
+    expect(
+      savedColumnWidths({ Description: 419.6, Bogus: 200, Constraints: -1, Format: "wide", Notes: NaN })
+    ).toEqual({ Description: 420 });
+    expect(savedColumnWidths({ Bogus: 200 })).toBeUndefined();
+    expect(savedColumnWidths("wide")).toBeUndefined();
+  });
+
   it("converts a batch to its stored form (text only)", () => {
     const batch: LoadBatch = {
       id: "b",
@@ -151,6 +160,7 @@ describe("restore on boot", () => {
     if (!participant || !bgs) throw new Error("missing datasets");
     await firstActions.removeDataset(participant.id);
     firstActions.renameDataset(bgs.id, "Generations");
+    firstActions.setColumnWidths(bgs.id, { Description: 420, "Valid values": 300 });
     firstActions.setCardCollapsed(bgs.id, true);
     await until(
       async () => (await datasetsStore.loadAll()).meta?.overrides[bgs.id]?.label === "Generations",
@@ -160,6 +170,7 @@ describe("restore on boot", () => {
     const savedMeta = (await datasetsStore.loadAll()).meta;
     expect(savedMeta?.hiddenDatasets).toEqual([participant.id]);
     expect(savedMeta?.datasetOrder).toHaveLength(4);
+    expect(savedMeta?.overrides[bgs.id]?.columnWidths).toEqual({ Description: 420, "Valid values": 300 });
 
     // Session 2: a fresh store restores the same arrangement.
     const second = createStore(
@@ -182,7 +193,10 @@ describe("restore on boot", () => {
     ]);
     expect(restored.datasets.map((d) => d.id)).toEqual(first.get().datasets.map((d) => d.id));
     expect(restored.datasets.map((d) => d.colorIndex)).toEqual(first.get().datasets.map((d) => d.colorIndex));
-    expect(restored.ui.cards[bgs.id]?.collapsed).toBe(true);
+    expect(restored.ui.cards[bgs.id]).toEqual({
+      collapsed: true,
+      columnWidths: { Description: 420, "Valid values": 300 }
+    });
     expect(Object.keys(restored.batches)).toHaveLength(4);
     expect(restored.datasets[0]?.variableCount).toBe(60);
     expect(restored.search.result).toBeUndefined();
