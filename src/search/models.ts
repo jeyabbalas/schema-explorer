@@ -34,6 +34,14 @@ const MODEL_COPY: ReadonlyArray<Pick<EmbeddingModelOption, "id" | "name" | "down
     summary: "Small and quick to index; runs on WebGPU or WASM."
   },
   {
+    // Google's multimodal EmbeddingGemma 2 loaded as its text model alone (the library drops the
+    // vision and audio encoders from the config, so their weights are never fetched).
+    id: "onnx-community/embeddinggemma-2-ONNX",
+    name: "EmbeddingGemma 2",
+    download: "190 MB",
+    summary: "Strong retrieval in 100+ languages, free for commercial use; needs WebGPU."
+  },
+  {
     id: "jinaai/jina-embeddings-v5-text-nano-retrieval",
     name: "Jina v5 nano",
     download: "124 MB",

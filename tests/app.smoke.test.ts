@@ -118,13 +118,17 @@ describe("app smoke test", () => {
     expect(box?.value).toBe(jumpName);
     expect(app.store.get().ui.announcement).toContain(jumpName);
 
-    // The model picker next to the semantic switch: LEAF-IR selected, Jina disabled without WebGPU.
+    // The model picker next to the semantic switch: LEAF-IR selected; EmbeddingGemma 2 and Jina
+    // need WebGPU, which happy-dom lacks.
     const picker = root.querySelector<HTMLDetailsElement>(".se-model");
     expect(picker?.querySelector("summary")?.textContent).toContain("LEAF-IR");
     const options = Array.from(root.querySelectorAll<HTMLButtonElement>(".se-model__item"));
-    expect(options.map((option) => option.getAttribute("aria-checked"))).toEqual(["true", "false"]);
+    expect(options.map((option) => option.getAttribute("aria-checked"))).toEqual(["true", "false", "false"]);
+    expect(
+      options.map((option) => option.querySelector(".se-model__text .se-model__name")?.textContent)
+    ).toEqual(["LEAF-IR", "EmbeddingGemma 2", "Jina v5 nano"]);
     expect(app.store.get().webGpu).toBe(false);
-    expect(options[1]?.disabled).toBe(true);
+    expect(options.map((option) => option.disabled)).toEqual([false, true, true]);
     expect(options[1]?.textContent).toContain("WebGPU unavailable");
 
     // Export and clear.

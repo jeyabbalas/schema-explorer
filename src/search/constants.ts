@@ -1,5 +1,5 @@
-/** Transformers.js, loaded on demand inside the embedding worker. */
-export const TRANSFORMERS_URL = "https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.2.0";
+/** Transformers.js, loaded on demand inside the embedding worker (EmbeddingGemma 2 needs 4.3.1+). */
+export const TRANSFORMERS_URL = "https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.3.1";
 export const WORKER_START_TIMEOUT_MS = 8000;
 /**
  * Vector cache database, one per model (the library prunes a cache to the current index's

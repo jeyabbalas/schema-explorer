@@ -179,10 +179,11 @@ describe("semantic search through the actions layer", () => {
 });
 
 const JINA = "jinaai/jina-embeddings-v5-text-nano-retrieval";
+const GEMMA = "onnx-community/embeddinggemma-2-ONNX";
 
 describe("embedding model catalogue", () => {
-  it("offers verified models only, LEAF-IR first and Jina v5 nano as the WebGPU-only option", () => {
-    expect(EMBEDDING_MODELS.map((model) => model.id)).toEqual([DEFAULT_MODEL_ID, JINA]);
+  it("offers verified models only: LEAF-IR first, then the WebGPU-only EmbeddingGemma 2 and Jina v5 nano", () => {
+    expect(EMBEDDING_MODELS.map((model) => model.id)).toEqual([DEFAULT_MODEL_ID, GEMMA, JINA]);
     for (const model of EMBEDDING_MODELS) expect(KNOWN_EMBEDDING_MODELS[model.id]).toBeDefined();
     expect(findModel(DEFAULT_MODEL_ID)).toMatchObject({
       name: "LEAF-IR",
@@ -191,6 +192,16 @@ describe("embedding model catalogue", () => {
       needsWebGpu: false,
       nonCommercial: false
     });
+    expect(findModel(GEMMA)).toMatchObject({
+      name: "EmbeddingGemma 2",
+      params: "270M",
+      license: "Apache-2.0",
+      needsWebGpu: true,
+      nonCommercial: false
+    });
+    expect(modelMeta(GEMMA, true)).toBe("270M params · Apache-2.0 · 190 MB · WebGPU only");
+    expect(defaultDeviceFor(GEMMA)).toBe("webgpu");
+    expect(vectorDbName(GEMMA)).toBe("schema-explorer-vectors:onnx-community-embeddinggemma-2-onnx");
     expect(findModel(JINA)).toMatchObject({
       name: "Jina v5 nano",
       params: "239M",
