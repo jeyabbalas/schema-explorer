@@ -18,6 +18,7 @@
         "licenseFile": { "type": "string" }
       }
     },
+    "description": { "type": "string" },
     "groups": {
       "type": "array",
       "minItems": 1,

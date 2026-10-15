@@ -321,6 +321,7 @@ describe("switching the embedding model", () => {
   });
 
   it("falls back to the default model when the saved model needs WebGPU and there is none", async () => {
+    installExamplesFetch();
     const started: string[] = [];
     const semantic = createSemanticController({
       createEmbedder: (model) => {

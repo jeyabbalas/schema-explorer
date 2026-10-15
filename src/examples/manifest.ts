@@ -45,6 +45,8 @@ export interface ExampleManifest {
     copyright: string;
     licenseFile: string;
   };
+  /** One line shown under the "Load the example datasets" button. */
+  description?: string;
   groups: ExampleGroup[];
 }
 
@@ -63,6 +65,7 @@ function isCount(value: unknown): value is number {
 /** Structural validation of a parsed manifest (a fetched file is untrusted input). */
 export function isExampleManifest(value: unknown): value is ExampleManifest {
   if (!isRecord(value) || value.version !== MANIFEST_VERSION) return false;
+  if (value.description !== undefined && !isString(value.description)) return false;
   const source = value.source;
   if (
     !isRecord(source) ||

@@ -19,6 +19,11 @@ describe("app smoke test", () => {
     await app.actions.boot();
     const root = app.root;
     expect(root.querySelector(".se-empty")?.hasAttribute("hidden")).toBe(false);
+    // The line under the examples button and the footer credit come from the manifest.
+    expect(root.querySelector(".se-empty__examples .se-empty__hint")?.textContent).toMatch(
+      /^Four CD3 pilot schema sets/
+    );
+    expect(root.querySelector(".se-footer")?.textContent).toContain("CD3 schemify pilot");
 
     const button = root.querySelector<HTMLButtonElement>(".se-empty [data-action='load-examples']");
     expect(button).not.toBeNull();
@@ -150,5 +155,39 @@ describe("app smoke test", () => {
     expect(notice?.level).toBe("error");
     expect(notice?.text).toContain("No .json files found");
     expect(app.root.querySelector(".se-toast[data-kind='error']")).not.toBeNull();
+  });
+});
+
+describe("a build without bundled examples", () => {
+  let app: TestApp;
+
+  beforeEach(() => {
+    vi.stubGlobal("fetch", () => Promise.resolve(new Response("not found", { status: 404 })));
+    app = mountTestApp();
+  });
+
+  afterEach(() => {
+    app.destroy();
+    vi.unstubAllGlobals();
+  });
+
+  it("hides every way to load examples, and the examples credit", async () => {
+    await app.actions.boot();
+    const root = app.root;
+    expect(app.store.get().examples).toBeNull();
+    expect(root.querySelector(".se-empty")?.hasAttribute("hidden")).toBe(false);
+    expect(root.querySelector(".se-empty__examples")?.hasAttribute("hidden")).toBe(true);
+
+    // With a dataset loaded the header menu and the tray show; their examples entries stay hidden.
+    const schema = JSON.stringify({
+      type: "array",
+      items: { type: "object", properties: { age: { type: "integer" } } }
+    });
+    await app.actions.addFiles([new File([schema], "cohort.schema.json", { type: "application/json" })]);
+    await until(() => root.querySelectorAll(".se-card").length === 1, 10_000, "one card");
+    const buttons = Array.from(root.querySelectorAll("[data-action='load-examples']"));
+    expect(buttons.length).toBeGreaterThan(0);
+    for (const button of buttons) expect(button.closest("[hidden]")).not.toBeNull();
+    expect(root.querySelector(".se-footer")?.textContent).not.toContain("Example schemas");
   });
 });

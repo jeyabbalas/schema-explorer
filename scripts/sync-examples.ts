@@ -214,6 +214,8 @@ function main(): void {
       copyright: "Copyright (c) 2026 mgarciaclosas",
       licenseFile: "LICENSE"
     },
+    description:
+      "Four CD3 pilot schema sets: BGS (Breast Cancer Now Generations Study, 60 variables), MWS (Million Women Study, 38), Our Future Health (participant 14, questionnaire 359) and TARGET, a proposed harmonised cross-cohort schema (5).",
     groups
   };
   writeFileSync(join(DEST, "manifest.json"), `${JSON.stringify(manifest, null, 2)}\n`);

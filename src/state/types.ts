@@ -4,6 +4,7 @@ import type {
   JsonSchema,
   SchemaRootCandidate
 } from "json-schema-data-dictionary";
+import type { ExampleManifest } from "../examples/manifest";
 import type { CatalogSearchResult } from "../search/types";
 import type { IgnoredFile } from "../ingest/filter";
 
@@ -142,6 +143,8 @@ export interface AppState {
   prefs: Prefs;
   /** Whether a WebGPU adapter is available (undefined until probed at boot). */
   webGpu: boolean | undefined;
+  /** The bundled example manifest: undefined until fetched at boot, null when the build ships none. */
+  examples: ExampleManifest | null | undefined;
   /** Newest last; capped. */
   notices: Notice[];
   busy: BusyState | undefined;
@@ -159,6 +162,7 @@ export function initialState(prefs: Prefs): AppState {
     semantic: { kind: "off" },
     prefs,
     webGpu: undefined,
+    examples: undefined,
     notices: [],
     busy: undefined,
     persistence: { available: true, lastError: undefined },

@@ -62,21 +62,15 @@ export function mountEmptyState(
     icon("spinner"),
     " Restoring saved datasets…"
   );
+  const or = el("p", { class: "se-empty__or", "aria-hidden": "true" }, "or");
+  const examplesHint = el("p", { class: "se-empty__hint" });
+  const examples = el("div", { class: "se-empty__examples" }, examplesButton, examplesHint);
   const section = el(
     "section",
     { class: "se-empty", "aria-labelledby": "se-empty-title" },
     dropzone,
-    el("p", { class: "se-empty__or", "aria-hidden": "true" }, "or"),
-    el(
-      "div",
-      { class: "se-empty__examples" },
-      examplesButton,
-      el(
-        "p",
-        { class: "se-empty__hint" },
-        "Four CD3 pilot schema sets: BGS (Breast Cancer Now Generations Study, 60 variables), MWS (Million Women Study, 38), Our Future Health (participant 14, questionnaire 359) and TARGET, a proposed harmonised cross-cohort schema (5)."
-      )
-    ),
+    or,
+    examples,
     el(
       "p",
       { class: "se-empty__privacy" },
@@ -94,6 +88,11 @@ export function mountEmptyState(
     section.dataset.restoring = String(isRestoring);
     restoring.hidden = !isRestoring;
     dropzone.dataset.dragover = String(state.ui.dragOver);
+    const manifest = state.examples;
+    or.hidden = !manifest;
+    examples.hidden = !manifest;
+    examplesHint.textContent = manifest?.description ?? "";
+    examplesHint.hidden = !manifest?.description;
     const loading = state.busy?.kind === "loading-examples";
     examplesButton.disabled = loading || isRestoring || state.busy?.kind === "ingesting";
     examplesButton.setAttribute("aria-busy", String(loading));

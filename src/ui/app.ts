@@ -63,7 +63,7 @@ export function mountApp(root: HTMLElement, store: Store<AppState>, actions: App
   const shelf = mountShelf(shelfSlot, store, actions);
   const unmountNotices = mountNotices(app, store, actions);
   const unmountDrop = mountDropOverlay(app, store, actions);
-  const unmountFooter = mountFooter(footerSlot);
+  const unmountFooter = mountFooter(footerSlot, store);
 
   actions.registerShelf({
     focusDataset(id) {
