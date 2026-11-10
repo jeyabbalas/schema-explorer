@@ -216,6 +216,7 @@ describe("restore on boot", () => {
   });
 
   it("boots without a store and reports an unavailable one", async () => {
+    installExamplesFetch();
     const silent = vi.spyOn(console, "warn").mockImplementation(() => undefined);
     const plain = createStore(
       initialState({ theme: "light", semantic: false, semanticModel: DEFAULT_MODEL_ID })

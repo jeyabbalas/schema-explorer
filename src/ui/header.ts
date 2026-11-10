@@ -14,6 +14,25 @@ export function mountHeader(
   actions: AppActions,
   pickers: Pickers
 ): () => void {
+  const examplesItem = el(
+    "li",
+    null,
+    el(
+      "button",
+      {
+        type: "button",
+        class: "se-menu__item",
+        role: "menuitem",
+        "data-action": "load-examples",
+        onclick: () => {
+          closeMenu();
+          void actions.loadExamples();
+        }
+      },
+      icon("sparkles"),
+      "Load example datasets"
+    )
+  );
   const menuList = el(
     "ul",
     { class: "se-menu__list", role: "menu" },
@@ -55,25 +74,7 @@ export function mountHeader(
         "Folder…"
       )
     ),
-    el(
-      "li",
-      null,
-      el(
-        "button",
-        {
-          type: "button",
-          class: "se-menu__item",
-          role: "menuitem",
-          "data-action": "load-examples",
-          onclick: () => {
-            closeMenu();
-            void actions.loadExamples();
-          }
-        },
-        icon("sparkles"),
-        "Load example datasets"
-      )
-    )
+    examplesItem
   );
   const menu = el(
     "details",
@@ -155,12 +156,20 @@ export function mountHeader(
     }
   );
   menu.hidden = store.get().datasets.length === 0;
+  const unsubscribeExamples = store.select(
+    (state) => state.examples,
+    (manifest) => {
+      examplesItem.hidden = !manifest;
+    }
+  );
+  examplesItem.hidden = !store.get().examples;
   const unsubscribeTheme = store.select((state) => state.prefs.theme, renderThemeButton);
   const media = typeof matchMedia === "function" ? matchMedia("(prefers-color-scheme: dark)") : undefined;
   media?.addEventListener?.("change", renderThemeButton);
 
   return () => {
     unsubscribeDatasets();
+    unsubscribeExamples();
     unsubscribeTheme();
     media?.removeEventListener?.("change", renderThemeButton);
     document.removeEventListener("click", onDocumentClick);

@@ -59,6 +59,12 @@ describe("bundled example manifest", () => {
     expect(manifest.source.url).toContain("github.com/mgarciaclosas/cd3-schemify-pilot");
   });
 
+  it("describes the example sets for the empty state", () => {
+    expect(manifest.description).toMatch(/^Four CD3 pilot schema sets/);
+    expect(isExampleManifest({ ...manifest, description: 42 })).toBe(false);
+    expect(isExampleManifest({ ...manifest, description: undefined })).toBe(true);
+  });
+
   it("pins the expected table sizes", () => {
     const byId = new Map(manifest.groups.map((group) => [group.id, group]));
     const counts = (id: string) =>

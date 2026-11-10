@@ -1,10 +1,24 @@
-import { el } from "./dom";
+import type { ExampleManifest } from "../examples/manifest";
+import type { Store } from "../state/store";
+import type { AppState } from "../state/types";
+import { el, replaceChildren } from "./dom";
 
 const LIBRARY_URL = "https://github.com/jeyabbalas/json-schema-to-data-dictionary";
-const EXAMPLES_URL = "https://github.com/mgarciaclosas/cd3-schemify-pilot";
 const REPO_URL = "https://github.com/jeyabbalas/schema-explorer";
 
-export function mountFooter(container: HTMLElement): () => void {
+export function mountFooter(container: HTMLElement, store: Store<AppState>): () => void {
+  const credit = el("p", { class: "se-footer__text", hidden: true });
+  const renderCredit = (manifest: ExampleManifest | null | undefined): void => {
+    credit.hidden = !manifest;
+    if (!manifest) return;
+    const { name, url, license, copyright } = manifest.source;
+    replaceChildren(
+      credit,
+      "Example schemas: ",
+      el("a", { class: "se-footer__link", href: url, rel: "noopener" }, name),
+      ` (${license}, ${copyright})`
+    );
+  };
   const footer = el(
     "footer",
     { class: "se-footer" },
@@ -22,12 +36,7 @@ export function mountFooter(container: HTMLElement): () => void {
         ),
         " · Schemas never leave your browser"
       ),
-      el(
-        "p",
-        { class: "se-footer__text" },
-        "Example schemas © 2026 mgarciaclosas (MIT) — ",
-        el("a", { class: "se-footer__link", href: EXAMPLES_URL, rel: "noopener" }, "cd3-schemify-pilot")
-      ),
+      credit,
       el(
         "p",
         { class: "se-footer__text" },
@@ -42,5 +51,10 @@ export function mountFooter(container: HTMLElement): () => void {
     )
   );
   container.appendChild(footer);
-  return () => footer.remove();
+  renderCredit(store.get().examples);
+  const unsubscribe = store.select((state) => state.examples, renderCredit);
+  return () => {
+    unsubscribe();
+    footer.remove();
+  };
 }

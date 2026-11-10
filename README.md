@@ -94,6 +94,11 @@ MIT License; the license text is redistributed at `public/examples/LICENSE`. Reg
 checkout of that repository with `npm run sync-examples` (`CD3_SOURCE=/path/to/checkout` overrides the
 default sibling-directory location).
 
+A self-hosted build can ship its own example sets instead. Replace the contents of `public/examples/` with
+your schema files and a `manifest.json` in the format defined in `src/examples/manifest.ts`: its
+`description` is the line under the **Load the example datasets** button, and the footer credits its
+`source`. Without a `public/examples/manifest.json`, the app hides the examples buttons.
+
 ## Development
 
 Requires Node 22.18 or later.

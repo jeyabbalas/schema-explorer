@@ -38,6 +38,19 @@ export function mountTray(
   const ignoredSummary = el("summary", null, "");
   const ignored = el("details", { class: "se-tray__ignored", hidden: true }, ignoredSummary, ignoredList);
   const semanticSlot = el("div", { class: "se-tray__semantic" });
+  const examplesButton = el(
+    "button",
+    {
+      type: "button",
+      class: "se-btn se-btn--ghost se-btn--sm",
+      "data-action": "load-examples",
+      onclick: () => {
+        void actions.loadExamples();
+      }
+    },
+    icon("sparkles"),
+    "Load examples"
+  );
   const nav = el(
     "nav",
     { class: "se-tray", "aria-label": "Loaded datasets", hidden: true },
@@ -71,19 +84,7 @@ export function mountTray(
           icon("folder"),
           "Add folder"
         ),
-        el(
-          "button",
-          {
-            type: "button",
-            class: "se-btn se-btn--ghost se-btn--sm",
-            "data-action": "load-examples",
-            onclick: () => {
-              void actions.loadExamples();
-            }
-          },
-          icon("sparkles"),
-          "Load examples"
-        ),
+        examplesButton,
         el(
           "button",
           {
@@ -160,6 +161,7 @@ export function mountTray(
     const visible = state.datasets.length > 0 || state.busy !== undefined;
     nav.hidden = !visible;
     if (!visible) return;
+    examplesButton.hidden = !state.examples;
     if (state.busy) {
       const progress = state.busy.progress !== undefined ? ` ${Math.round(state.busy.progress * 100)}%` : "";
       replaceChildren(busy, icon("spinner"), ` ${state.busy.label}${progress}`);

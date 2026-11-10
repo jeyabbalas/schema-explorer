@@ -488,13 +488,15 @@ export function createActions(store: Store<AppState>, deps: ActionDeps = {}): Ap
       return enqueue(async () => {
         rebuildSearch();
         const webGpu = probeWebGpu();
+        // A build without bundled examples has no manifest; the views then hide the examples.
+        const examples = fetchExampleManifest().catch(() => null);
         try {
           await restore();
         } catch (err) {
           pushNotices([createNotice("error", `Could not restore the saved datasets: ${errorMessage(err)}`)]);
         } finally {
           setBusy(undefined);
-          store.set({ phase: "ready" });
+          store.set({ phase: "ready", examples: await examples });
         }
         store.set({ webGpu: await webGpu });
         ensureModelSupported();
